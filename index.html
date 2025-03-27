@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Links</title>
+  <!-- Feather Icons - Minimalistic icon set -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <!-- Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f5f5f7;
+      --card-bg: #ffffff;
+      --text-color: #1d1d1f;
+      --accent-color: #0071e3;
+      --subtle-color: #86868b;
+      --divider-color: #e5e5e7;
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      --card-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #1a1a1c;
+        --card-bg: #2a2a2c;
+        --text-color: #f5f5f7;
+        --accent-color: #0a84ff;
+        --subtle-color: #a1a1a6;
+        --divider-color: #38383a;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 640px;
+      width: 100%;
+      margin: 40px auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    h2.section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 40px 0 20px;
+      text-align: center;
+      letter-spacing: -0.3px;
+      color: var(--subtle-color);
+    }
+
+    .link-card, .payment-card, .pgp-card {
+      background-color: var(--card-bg);
+      border-radius: var(--card-radius);
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card:hover, .payment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .link-card:active, .payment-card:active {
+      transform: translateY(0);
+    }
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 16px;
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+
+    .content {
+      flex-grow: 1;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--subtle-color);
+      word-break: break-all;
+    }
+
+    .link-card a, .payment-card a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .pgp-card {
+      display: block;
+      cursor: default;
+    }
+
+    .pgp-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+    }
+
+    .pgp-title i {
+      margin-right: 8px;
+    }
+
+    .pgp-key {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--subtle-color);
+      word-break: break-all;
+      margin-bottom: 4px;
+    }
+
+    .copy-btn {
+      background-color: transparent;
+      border: 1px solid var(--divider-color);
+      color: var(--subtle-color);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .copy-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+
+    .copy-btn i {
+      margin-right: 6px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--subtle-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Links</h1>
+
+    <!-- Communication Links -->
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="calendar"></i>
+      </div>
+      <div class="content">
+        <div class="title">Book a meeting - Reclaim.ai</div>
+      </div>
+      <a href="https://app.reclaim.ai/m/robbiemed" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="message-square"></i>
+      </div>
+      <div class="content">
+        <div class="title">Send Anonymous Feedback</div>
+        <div class="subtitle">Free Suggestion Box</div>
+      </div>
+      <a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="lock"></i>
+      </div>
+      <div class="content">
+        <div class="title">SimpleX Chat</div>
+        <div class="subtitle">Anonymous Contact</div>
+      </div>
+      <a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="message-circle"></i>
+      </div>
+      <div class="content">
+        <div class="title">Signal Messenger</div>
+        <div class="subtitle">@robbiemed.19</div>
+      </div>
+      <a href="https://signal.me/#eu/gXsp9Yso8tqsCOrxlJFmk2ByjUKkQsQiqycn6qfu4zyNgsQD4NFG36cF9WuNgMTQ" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="send"></i>
+      </div>
+      <div class="content">
+        <div class="title">Telegram</div>
+        <div class="subtitle">@robbiemed</div>
+      </div>
+      <a href="https://t.me/robbiemed" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="zap"></i>
+      </div>
+      <div class="content">
+        <div class="title">Nostr</div>
+      </div>
+      <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="hash"></i>
+      </div>
+      <div class="content">
+        <div class="title">Mastodon</div>
+      </div>
+      <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="grid"></i>
+      </div>
+      <div class="content">
+        <div class="title">Matrix</div>
+        <div class="subtitle">@robbie.med:matrix.org</div>
+      </div>
+      <a href="#" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="message-circle"></i>
+      </div>
+      <div class="content">
+        <div class="title">Discord</div>
+        <div class="subtitle">@robbiemed</div>
+      </div>
+      <a href="https://discord.com/channels/@me/1216917840108457985" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="twitter"></i>
+      </div>
+      <div class="content">
+        <div class="title">Twitter</div>
+      </div>
+      <a href="https://twitter.com/robbie_med" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="x"></i>
+      </div>
+      <div class="content">
+        <div class="title">X Link</div>
+      </div>
+      <a href="#" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="instagram"></i>
+      </div>
+      <div class="content">
+        <div class="title">Instagram</div>
+      </div>
+      <a href="https://www.instagram.com/robbie_med" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="link-card">
+      <div class="icon-wrapper">
+        <i data-feather="key"></i>
+      </div>
+      <div class="content">
+        <div class="title">Identity Verification</div>
+        <div class="subtitle">Keyoxide</div>
+      </div>
+      <a href="https://keyoxide.org/1D2412790985AFF9763910BE9FE44CDEA199DFB8" target="_blank" rel="noopener"></a>
+    </div>
+
+    <!-- Payment Options Section -->
+    <h2 class="section-title">Payment Options</h2>
+
+    <div class="payment-card">
+      <div class="icon-wrapper">
+        <i data-feather="dollar-sign"></i>
+      </div>
+      <div class="content">
+        <div class="title">Venmo</div>
+        <div class="subtitle">@robbie-med</div>
+      </div>
+    </div>
+
+    <div class="payment-card">
+      <div class="icon-wrapper">
+        <i data-feather="dollar-sign"></i>
+      </div>
+      <div class="content">
+        <div class="title">Cashapp</div>
+        <div class="subtitle">$robbiemedcash</div>
+      </div>
+    </div>
+
+    <div class="payment-card">
+      <div class="icon-wrapper">
+        <i data-feather="hexagon"></i>
+      </div>
+      <div class="content">
+        <div class="title">Bitcoin</div>
+        <div class="subtitle">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</div>
+      </div>
+    </div>
+
+    <div class="payment-card">
+      <div class="icon-wrapper">
+        <i data-feather="framer"></i>
+      </div>
+      <div class="content">
+        <div class="title">Ethereum</div>
+        <div class="subtitle">0x78364f80CF725c947Bd97A3669c5240f07ec78b0</div>
+      </div>
+    </div>
+
+    <div class="payment-card">
+      <div class="icon-wrapper">
+        <i data-feather="shield"></i>
+      </div>
+      <div class="content">
+        <div class="title">Monero</div>
+        <div class="subtitle">88WUyTE4AmwBJLvwQ6pcJPGbQQhpo9gEHYBkktgNueSbAcDeyM1K3wbDDhUAQBvxwi5mpW35mLQ9fN5j2DsYNBy26owpPTX</div>
+      </div>
+    </div>
+
+    <!-- PGP Key Section -->
+    <h2 class="section-title">Encryption</h2>
+    <div class="pgp-card">
+      <div class="pgp-title">
+        <i data-feather="lock"></i> OpenPGP Key
+      </div>
+      <div class="pgp-key" id="pgp-key">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</div>
+      <button class="copy-btn" onclick="copyToClipboard('pgp-key')">
+        <i data-feather="copy"></i> Copy
+      </button>
+    </div>
+
+    <footer>
+      © 2025
+    </footer>
+  </div>
+
+  <script>
+    // Initialize Feather Icons
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace();
+    });
+
+    // Copy text function
+    function copyToClipboard(elementId) {
+      const element = document.getElementById(elementId);
+      const text = element.innerText;
+      
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          const button = element.nextElementSibling;
+          const originalText = button.innerHTML;
+          
+          button.innerHTML = '<i data-feather="check"></i> Copied!';
+          feather.replace();
+          
+          setTimeout(() => {
+            button.innerHTML = originalText;
+            feather.replace();
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
+    }
+  </script>
+</body>
+</html>
