@@ -22,6 +22,7 @@
       --hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
       --card-radius: 12px;
       --transition: all 0.3s ease;
+      --warning-color: #ff3b30;
     }
     
     /* Dark mode support */
@@ -33,6 +34,7 @@
         --accent-color: #0a84ff;
         --subtle-color: #a1a1a6;
         --divider-color: #38383a;
+        --warning-color: #ff453a;
       }
     }
 
@@ -75,7 +77,7 @@
       color: var(--subtle-color);
     }
 
-    .link-card, .payment-card, .pgp-card {
+    .link-card, .payment-card, .pgp-card, .privacy-card {
       background-color: var(--card-bg);
       border-radius: var(--card-radius);
       padding: 16px 20px;
@@ -87,6 +89,11 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+    }
+
+    .privacy-card {
+      display: block;
+      cursor: default;
     }
 
     .link-card:hover, .payment-card:hover {
@@ -192,13 +199,64 @@
       font-size: 0.8rem;
       color: var(--subtle-color);
     }
+    
+    .privacy-policy-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--accent-color);
+    }
+    
+    .privacy-level {
+      margin-bottom: 10px;
+    }
+    
+    .privacy-level strong {
+      font-weight: 600;
+    }
+    
+    .privacy-warning {
+      margin-top: 15px;
+      font-weight: 700;
+      color: var(--warning-color);
+    }
+    
+    .subtle-statement {
+      font-size: 0.75rem;
+      color: var(--subtle-color);
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.4;
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>My Links</h1>
+    
+    <!-- Privacy Information Section -->
+    <h2 class="section-title">Privacy Information</h2>
+    <div class="privacy-card">
+      <div class="privacy-policy-title">
+        <i data-feather="shield"></i> Communication Privacy Levels
+      </div>
+      <div class="privacy-level">
+        <strong>Preferred:</strong> SimpleX, Oxchat, Signal (end-to-end encrypted, minimal metadata)
+      </div>
+      <div class="privacy-level">
+        <strong>Acceptable:</strong> Email (if PGP encrypted)
+      </div>
+      <div class="privacy-level">
+        <strong>Not private:</strong> Email, Kakao Talk, Telegram, SMS (texting) (assume data collection)
+      </div>
+      <div class="privacy-warning">
+        For sensitive topics, use SimpleX, Signal, or Oxchat.
+      </div>
+    </div>
 
     <!-- Communication Links -->
+    <h2 class="section-title">Communication</h2>
     <div class="link-card">
       <div class="icon-wrapper">
         <i data-feather="calendar"></i>
@@ -403,6 +461,9 @@
 
     <footer>
       © 2025
+      <div class="subtle-statement">
+        I avoid Google, Facebook, Microsoft, and Apple products and services whenever possible due to their pervasive data collection practices, which undermine personal privacy and autonomy by exploiting user information for profit, often at the expense of individual rights and societal trust.
+      </div>
     </footer>
   </div>
 
