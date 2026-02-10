@@ -7,39 +7,44 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     :root {
-      --bg-color: #f5f5f7;
-      --card-bg: #ffffff;
-      --text-color: #1d1d1f;
-      --accent-color: #0071e3;
-      --subtle-color: #86868b;
-      --divider-color: #e5e5e7;
-      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      --hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-      --card-radius: 12px;
-      --transition: all 0.3s ease;
-      --warning-color: #ff3b30;
-      --preferred-color: #34c759;
-      --acceptable-color: #ff9500;
-      --not-private-color: #ff3b30;
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface-elevated: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #666666;
+      --text-tertiary: #999999;
+      --border: #e5e5e5;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --preferred: #10b981;
+      --acceptable: #f59e0b;
+      --warning: #ef4444;
+      --radius: 12px;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #1a1a1c;
-        --card-bg: #2a2a2c;
-        --text-color: #f5f5f7;
-        --accent-color: #0a84ff;
-        --subtle-color: #a1a1a6;
-        --divider-color: #38383a;
-        --warning-color: #ff453a;
-        --preferred-color: #32d74b;
-        --acceptable-color: #ff9f0a;
-        --not-private-color: #ff453a;
-      }
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-elevated: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --text-tertiary: #737373;
+      --border: #262626;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --preferred: #34d399;
+      --acceptable: #fbbf24;
+      --warning: #f87171;
     }
 
     * {
@@ -49,230 +54,190 @@
     }
 
     body {
-      background-color: var(--bg-color);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-color);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 0;
+      margin: 0;
     }
 
     .container {
       max-width: 1200px;
-      width: 100%;
-      margin: 40px auto;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-top: 40px;
     }
 
     h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: -0.5px;
-    }
-
-    h2.section-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin: 40px 0 20px;
-      text-align: center;
-      letter-spacing: -0.3px;
-      color: var(--subtle-color);
-    }
-
-    .link-card, .payment-card, .pgp-card, .privacy-card {
-      background-color: var(--card-bg);
-      border-radius: var(--card-radius);
-      padding: 16px 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .privacy-card {
-      display: block;
-      cursor: default;
-    }
-
-    .link-card:hover, .payment-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--hover-shadow);
-    }
-
-    .link-card:active, .payment-card:active {
-      transform: translateY(0);
-    }
-
-    .icon-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 16px;
-      color: var(--accent-color);
-      flex-shrink: 0;
-    }
-
-    .content {
-      flex-grow: 1;
-    }
-
-    .title {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .subtitle {
-      font-size: 0.85rem;
-      color: var(--subtle-color);
-      word-break: break-all;
-    }
-
-    .link-card a, .payment-card a {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      z-index: 1;
-    }
-
-    .pgp-card {
-      display: block;
-      cursor: default;
-    }
-
-    .pgp-title {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 8px;
-      color: var(--accent-color);
-      display: flex;
-      align-items: center;
-    }
-
-    .pgp-title i {
-      margin-right: 8px;
-    }
-
-    .pgp-title i {
-      font-size: 1.1rem;
-    }
-
-    .pgp-key {
-      font-family: monospace;
-      font-size: 0.85rem;
-      color: var(--subtle-color);
-      word-break: break-all;
-      margin-bottom: 4px;
-    }
-
-    .copy-btn {
-      background-color: transparent;
-      border: 1px solid var(--divider-color);
-      color: var(--subtle-color);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .copy-btn:hover {
-      background-color: var(--accent-color);
-      color: white;
-      border-color: var(--accent-color);
-    }
-
-    .copy-btn i {
-      margin-right: 6px;
-    }
-
-    .privacy-policy-title {
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
       margin-bottom: 12px;
-      color: var(--accent-color);
-      display: flex;
-      align-items: center;
+      letter-spacing: -0.02em;
     }
 
-    .privacy-policy-title i {
-      margin-right: 8px;
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 10px 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+      z-index: 1000;
+      font-weight: 500;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* Privacy Card */
+    .privacy-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+
+    .privacy-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
     }
 
     .privacy-level {
-      margin-bottom: 10px;
-      padding: 8px 12px;
+      padding: 12px 16px;
       border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.02);
+      margin-bottom: 12px;
+      background: var(--surface);
+      border-left: 3px solid transparent;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .privacy-level {
-        background-color: rgba(255, 255, 255, 0.02);
-      }
-    }
+    .privacy-level.preferred { border-left-color: var(--preferred); }
+    .privacy-level.acceptable { border-left-color: var(--acceptable); }
+    .privacy-level.not-private { border-left-color: var(--warning); }
 
     .privacy-level strong {
       font-weight: 600;
     }
 
-    .privacy-level.preferred strong {
-      color: var(--preferred-color);
-    }
-
-    .privacy-level.acceptable strong {
-      color: var(--acceptable-color);
-    }
-
-    .privacy-level.not-private strong {
-      color: var(--not-private-color);
-    }
+    .privacy-level.preferred strong { color: var(--preferred); }
+    .privacy-level.acceptable strong { color: var(--acceptable); }
+    .privacy-level.not-private strong { color: var(--warning); }
 
     .privacy-warning {
-      margin-top: 15px;
-      font-weight: 700;
-      color: var(--warning-color);
-      padding: 12px;
+      margin-top: 16px;
+      padding: 14px 18px;
       border-radius: 8px;
-      background-color: rgba(255, 59, 48, 0.1);
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--warning);
+      color: var(--warning);
+      font-weight: 600;
+      font-size: 0.9rem;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .privacy-warning {
-        background-color: rgba(255, 69, 58, 0.15);
-      }
+    /* Communication Cards */
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
     }
 
-    .subtle-statement {
-      font-size: 0.75rem;
-      color: var(--subtle-color);
-      text-align: center;
-      margin-top: 20px;
-      line-height: 1.4;
-      opacity: 0.8;
+    .link-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .link-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+
+    .link-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 16px;
-      margin-bottom: 20px;
     }
 
     @media (max-width: 768px) {
@@ -288,429 +253,541 @@
       }
     }
 
-    .project-card {
-      background-color: var(--card-bg);
-      border-radius: var(--card-radius);
-      padding: 16px 20px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      text-decoration: none;
-      color: inherit;
+    /* Payment & PGP Cards */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .payment-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
       display: flex;
       align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pgp-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pgp-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .pgp-key {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: var(--surface);
+      border-radius: 6px;
+    }
+
+    .copy-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
-      position: relative;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .project-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--hover-shadow);
-    }
-
-    .project-card:active {
-      transform: translateY(0);
+    .copy-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
     footer {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
       text-align: center;
-      margin-top: 40px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .copyright {
       font-size: 0.8rem;
-      color: var(--subtle-color);
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px 60px;
+      }
+
+      .theme-toggle {
+        top: 16px;
+        right: 16px;
+      }
+
+      .comm-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <i class="ph ph-sun" id="theme-icon"></i>
+    <span id="theme-text">Light</span>
+  </button>
+
   <div class="container">
-    <h1>My Links</h1>
+    <header>
+      <h1>My Links</h1>
+    </header>
 
-    <!-- Privacy Information Section -->
-    <h2 class="section-title">Privacy Information</h2>
-    <div class="privacy-card">
-      <div class="privacy-policy-title">
-        <i class="ph ph-shield"></i> Communication Privacy Levels
-      </div>
-      <div class="privacy-level preferred">
-        <strong>Preferred:</strong> SimpleX, 0xchat, Signal (end-to-end encrypted, minimal metadata)
-      </div>
-      <div class="privacy-level acceptable">
-        <strong>Acceptable:</strong> Email (if PGP encrypted), WhatsApp
-      </div>
-      <div class="privacy-level not-private">
-        <strong>Not private:</strong> Email, Telegram, SMS (texting) (assume data collection)
-      </div>
-      <div class="privacy-warning">
-        For sensitive topics, use SimpleX, Signal, or 0xchat.
-      </div>
-    </div>
-
-    <!-- Communication Links -->
-    <h2 class="section-title">Communication</h2>
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-calendar"></i>
-      </div>
-      <div class="content">
-        <div class="title">Book a meeting</div>
-      </div>
-      <a href="https://cal.robbiemed.org/robbiemed" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-chat-text"></i>
-      </div>
-      <div class="content">
-        <div class="title">Send Anonymous Feedback</div>
-        <div class="subtitle">Free Suggestion Box</div>
-      </div>
-      <a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-lock"></i>
-      </div>
-      <div class="content">
-        <div class="title">SimpleX Chat</div>
-        <div class="subtitle">Anonymous Contact</div>
-      </div>
-      <a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-chat-circle-dots"></i>
-      </div>
-      <div class="content">
-        <div class="title">Signal Messenger</div>
-        <div class="subtitle">@robbiemed.01</div>
-      </div>
-      <a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-paper-plane-tilt"></i>
-      </div>
-      <div class="content">
-        <div class="title">Telegram</div>
-        <div class="subtitle">@robbiemed</div>
-      </div>
-      <a href="https://t.me/robbiemed" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-lightning"></i>
-      </div>
-      <div class="content">
-        <div class="title">Nostr</div>
-      </div>
-      <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-hash"></i>
-      </div>
-      <div class="content">
-        <div class="title">Mastodon</div>
-      </div>
-      <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-grid-four"></i>
-      </div>
-      <div class="content">
-        <div class="title">Matrix</div>
-        <div class="subtitle">@robbie.med:matrix.org</div>
-      </div>
-      <a href="#" target="_blank" rel="noopener"></a>
-    </div>
-
-    <div class="link-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-chat-circle-dots"></i>
-      </div>
-      <div class="content">
-        <div class="title">Discord</div>
-        <div class="subtitle">@robbiemed</div>
-      </div>
-      <a href="https://discord.com/channels/@me/1216917840108457985" target="_blank" rel="noopener"></a>
-    </div>
-
-    <!-- Things I've Built Section - ALL PROJECTS -->
-    <h2 class="section-title">Things I've Built</h2>
-
-    <div class="projects-grid">
-      <!-- Medical Projects -->
-      <a href="https://nabxcalc.vercel.app" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-cube"></i>
+    <!-- Privacy Information -->
+    <section class="section">
+      <h2 class="section-title">Privacy Information</h2>
+      <div class="privacy-card">
+        <div class="privacy-title">
+          <i class="ph ph-shield"></i>
+          Communication Privacy Levels
         </div>
-        <div class="content">
-          <div class="title">NaBXCalc</div>
-          <div class="subtitle">Estimator of Na load from IV antibiotics</div>
+        <div class="privacy-level preferred">
+          <strong>Preferred:</strong> SimpleX, 0xchat, Signal (end-to-end encrypted, minimal metadata)
         </div>
-      </a>
+        <div class="privacy-level acceptable">
+          <strong>Acceptable:</strong> Email (if PGP encrypted), WhatsApp
+        </div>
+        <div class="privacy-level not-private">
+          <strong>Not private:</strong> Email, Telegram, SMS (texting) (assume data collection)
+        </div>
+        <div class="privacy-warning">
+          For sensitive topics, use SimpleX, Signal, or 0xchat.
+        </div>
+      </div>
+    </section>
 
-      <a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-cpu"></i>
-        </div>
-        <div class="content">
-          <div class="title">Rhesus</div>
-          <div class="subtitle">AI-powered virtual patient simulator</div>
-        </div>
-      </a>
+    <!-- Communication -->
+    <section class="section">
+      <h2 class="section-title">Communication</h2>
+      <div class="comm-grid">
+        <a href="https://cal.robbiemed.org/robbiemed" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-calendar"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Book a meeting</div>
+          </div>
+        </a>
 
-      <a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-activity"></i>
-        </div>
-        <div class="content">
-          <div class="title">PetaHamr</div>
-          <div class="subtitle">Pediatric vital signs drill</div>
-        </div>
-      </a>
+        <a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-chat-text"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Send Anonymous Feedback</div>
+            <div class="link-subtitle">Free Suggestion Box</div>
+          </div>
+        </a>
 
-      <a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-disc"></i>
-        </div>
-        <div class="content">
-          <div class="title">Rhisk</div>
-          <div class="subtitle">Cervical screening risk and guidance</div>
-        </div>
-      </a>
+        <a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-lock"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">SimpleX Chat</div>
+            <div class="link-subtitle">Anonymous Contact</div>
+          </div>
+        </a>
 
-      <a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-trend-up"></i>
-        </div>
-        <div class="content">
-          <div class="title">rhetrain</div>
-          <div class="subtitle">Physiology-based oral intake retraining after prolonged underuse</div>
-        </div>
-      </a>
+        <a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-chat-circle-dots"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Signal Messenger</div>
+            <div class="link-subtitle">@robbiemed.01</div>
+          </div>
+        </a>
 
-      <a href="https://asthma.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-wind"></i>
-        </div>
-        <div class="content">
-          <div class="title">Asthma Action Plan</div>
-          <div class="subtitle">Interactive pediatric asthma action plan generator</div>
-        </div>
-      </a>
+        <a href="https://t.me/robbiemed" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-paper-plane-tilt"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Telegram</div>
+            <div class="link-subtitle">@robbiemed</div>
+          </div>
+        </a>
 
-      <a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
+        <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-lightning"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Nostr</div>
+          </div>
+        </a>
+
+        <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-hash"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Mastodon</div>
+          </div>
+        </a>
+
+        <a href="#" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-grid-four"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Matrix</div>
+            <div class="link-subtitle">@robbie.med:matrix.org</div>
+          </div>
+        </a>
+
+        <a href="https://discord.com/channels/@me/1216917840108457985" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-chat-circle-dots"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Discord</div>
+            <div class="link-subtitle">@robbiemed</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Things I've Built -->
+    <section class="section">
+      <h2 class="section-title">Things I've Built</h2>
+      <div class="projects-grid">
+        <a href="https://nabxcalc.vercel.app" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-cube"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">NaBXCalc</div>
+            <div class="link-subtitle">Estimator of Na load from IV antibiotics</div>
+          </div>
+        </a>
+
+        <a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-cpu"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Rhesus</div>
+            <div class="link-subtitle">AI-powered virtual patient simulator</div>
+          </div>
+        </a>
+
+        <a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-activity"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">PetaHamr</div>
+            <div class="link-subtitle">Pediatric vital signs drill</div>
+          </div>
+        </a>
+
+        <a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-disc"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Rhisk</div>
+            <div class="link-subtitle">Cervical screening risk and guidance</div>
+          </div>
+        </a>
+
+        <a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-trend-up"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">rhetrain</div>
+            <div class="link-subtitle">Physiology-based oral intake retraining after prolonged underuse</div>
+          </div>
+        </a>
+
+        <a href="https://asthma.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-wind"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Asthma Action Plan</div>
+            <div class="link-subtitle">Interactive pediatric asthma action plan generator</div>
+          </div>
+        </a>
+
+        <a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-lock"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Encryptor</div>
+            <div class="link-subtitle">Client-side code block encryption with password</div>
+          </div>
+        </a>
+
+        <a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-drop"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Hanemia</div>
+            <div class="link-subtitle">Phlebotomy loss tracker for hospital-acquired anemia</div>
+          </div>
+        </a>
+
+        <a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-clipboard-text"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Khaycal</div>
+            <div class="link-subtitle">Pediatric shift intake calorie calculator</div>
+          </div>
+        </a>
+
+        <a href="https://rcv.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-chart-bar"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">RCV Analyzer</div>
+            <div class="link-subtitle">Determine if observed changes are genuine</div>
+          </div>
+        </a>
+
+        <a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-warning"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Rhefeed</div>
+            <div class="link-subtitle">Refeeding syndrome risk assessment and guidance</div>
+          </div>
+        </a>
+
+        <a href="https://sfprice.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-magnifying-glass"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Hospital Cost Itemizer</div>
+            <div class="link-subtitle">Search and itemize hospital charges</div>
+          </div>
+        </a>
+
+        <a href="https://cash.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-trend-up"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">CashFlow</div>
+            <div class="link-subtitle">Real-time salary tracker with expense management</div>
+          </div>
+        </a>
+
+        <a href="https://bhible.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-book-open"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Bhible</div>
+            <div class="link-subtitle">Track your Bible reading</div>
+          </div>
+        </a>
+
+        <a href="https://prhay.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-note-pencil"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Prhay</div>
+            <div class="link-subtitle">Digital prayer notebook</div>
+          </div>
+        </a>
+
+        <a href="https://sehx.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-target"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Sehx</div>
+            <div class="link-subtitle">Quantified self taken too far - first app of its kind</div>
+          </div>
+        </a>
+
+        <a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener" class="link-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-heart"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">OhbTracker</div>
+            <div class="link-subtitle">For busy residents - duplicate entry your data for a pretty dashboard & team situational awareness</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="section">
+      <h2 class="section-title">Payment Options</h2>
+      <div class="payment-grid">
+        <div class="payment-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-currency-dollar"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Venmo</div>
+            <div class="link-subtitle">@robbie-med</div>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-currency-dollar"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Cash App</div>
+            <div class="link-subtitle">$robbiemedcash</div>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-hexagon"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Bitcoin</div>
+            <div class="link-subtitle">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</div>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-polygon"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Ethereum</div>
+            <div class="link-subtitle">0x78364f80CF725c947Bd97A3669c5240f07ec78b0</div>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="icon-wrapper">
+            <i class="ph ph-shield"></i>
+          </div>
+          <div class="link-content">
+            <div class="link-title">Monero</div>
+            <div class="link-subtitle">88WUyTE4AmwBJLvwQ6pcJPGbQQhpo9gEHYBkktgNueSbAcDeyM1K3wbDDhUAQBvxwi5mpW35mLQ9fN5j2DsYNBy26owpPTX</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Encryption -->
+    <section class="section">
+      <h2 class="section-title">Encryption</h2>
+      <div class="pgp-card">
+        <div class="pgp-title">
           <i class="ph ph-lock"></i>
+          OpenPGP Key
         </div>
-        <div class="content">
-          <div class="title">Encryptor</div>
-          <div class="subtitle">Client-side code block encryption with password</div>
-        </div>
-      </a>
-
-      <a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-drop"></i>
-        </div>
-        <div class="content">
-          <div class="title">Hanemia</div>
-          <div class="subtitle">Phlebotomy loss tracker for hospital-acquired anemia</div>
-        </div>
-      </a>
-
-      <a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-clipboard-text"></i>
-        </div>
-        <div class="content">
-          <div class="title">Khaycal</div>
-          <div class="subtitle">Pediatric shift intake calorie calculator</div>
-        </div>
-      </a>
-
-      <a href="https://rcv.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-chart-bar"></i>
-        </div>
-        <div class="content">
-          <div class="title">RCV Analyzer</div>
-          <div class="subtitle">Determine if observed changes are genuine</div>
-        </div>
-      </a>
-
-      <a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-warning"></i>
-        </div>
-        <div class="content">
-          <div class="title">Rhefeed</div>
-          <div class="subtitle">Refeeding syndrome risk assessment and guidance</div>
-        </div>
-      </a>
-
-      <a href="https://sfprice.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-magnifying-glass"></i>
-        </div>
-        <div class="content">
-          <div class="title">Hospital Cost Itemizer</div>
-          <div class="subtitle">Search and itemize hospital charges</div>
-        </div>
-      </a>
-
-      <a href="https://cash.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-trend-up"></i>
-        </div>
-        <div class="content">
-          <div class="title">CashFlow</div>
-          <div class="subtitle">Real-time salary tracker with expense management</div>
-        </div>
-      </a>
-
-      <!-- Open Source Projects -->
-      <a href="https://bhible.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-book-open"></i>
-        </div>
-        <div class="content">
-          <div class="title">Bhible</div>
-          <div class="subtitle">Track your Bible reading</div>
-        </div>
-      </a>
-
-      <a href="https://prhay.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-note-pencil"></i>
-        </div>
-        <div class="content">
-          <div class="title">Prhay</div>
-          <div class="subtitle">Digital prayer notebook</div>
-        </div>
-      </a>
-
-      <a href="https://sehx.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-target"></i>
-        </div>
-        <div class="content">
-          <div class="title">Sehx</div>
-          <div class="subtitle">Quantified self taken too far - first app of its kind</div>
-        </div>
-      </a>
-
-      <a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener" class="project-card">
-        <div class="icon-wrapper">
-          <i class="ph ph-heart"></i>
-        </div>
-        <div class="content">
-          <div class="title">OhbTracker</div>
-          <div class="subtitle">For busy residents - duplicate entry your data for a pretty dashboard & team situational awareness</div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Payment Options Section -->
-    <h2 class="section-title">Payment Options</h2>
-
-    <div class="payment-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-currency-dollar"></i>
+        <div class="pgp-key" id="pgp-key">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</div>
+        <button class="copy-btn" onclick="copyToClipboard('pgp-key')">
+          <i class="ph ph-copy"></i> Copy
+        </button>
       </div>
-      <div class="content">
-        <div class="title">Venmo</div>
-        <div class="subtitle">@robbie-med</div>
-      </div>
-    </div>
-
-    <div class="payment-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-currency-dollar"></i>
-      </div>
-      <div class="content">
-        <div class="title">Cashapp</div>
-        <div class="subtitle">$robbiemedcash</div>
-      </div>
-    </div>
-
-    <div class="payment-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-hexagon"></i>
-      </div>
-      <div class="content">
-        <div class="title">Bitcoin</div>
-        <div class="subtitle">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</div>
-      </div>
-    </div>
-
-    <div class="payment-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-polygon"></i>
-      </div>
-      <div class="content">
-        <div class="title">Ethereum</div>
-        <div class="subtitle">0x78364f80CF725c947Bd97A3669c5240f07ec78b0</div>
-      </div>
-    </div>
-
-    <div class="payment-card">
-      <div class="icon-wrapper">
-        <i class="ph ph-shield"></i>
-      </div>
-      <div class="content">
-        <div class="title">Monero</div>
-        <div class="subtitle">88WUyTE4AmwBJLvwQ6pcJPGbQQhpo9gEHYBkktgNueSbAcDeyM1K3wbDDhUAQBvxwi5mpW35mLQ9fN5j2DsYNBy26owpPTX</div>
-      </div>
-    </div>
-
-    <!-- PGP Key Section -->
-    <h2 class="section-title">Encryption</h2>
-    <div class="pgp-card">
-      <div class="pgp-title">
-        <i class="ph ph-lock"></i> OpenPGP Key
-      </div>
-      <div class="pgp-key" id="pgp-key">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</div>
-      <button class="copy-btn" onclick="copyToClipboard('pgp-key')">
-        <i class="ph ph-copy"></i> Copy
-      </button>
-    </div>
+    </section>
 
     <footer>
-      © 2025
-      <div class="subtle-statement">
+      <div class="footer-text">
         I avoid Alphabet (Google), Meta (Facebook), Microsoft, and Apple products and services whenever possible due to their pervasive data collection practices, which undermine personal privacy and autonomy by exploiting user information for profit, often at the expense of individual rights and societal trust. That being said, for this professional site I prioritize functionality and migrating away from these services is a work in progress.
       </div>
+      <div class="copyright">© 2025</div>
     </footer>
   </div>
 
   <script>
-    // Copy text function
+    // Theme management
+    function getPreferredTheme() {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeToggle(theme);
+    }
+
+    function updateThemeToggle(theme) {
+      const icon = document.getElementById('theme-icon');
+      const text = document.getElementById('theme-text');
+      if (theme === 'dark') {
+        icon.className = 'ph ph-moon';
+        text.textContent = 'Dark';
+      } else {
+        icon.className = 'ph ph-sun';
+        text.textContent = 'Light';
+      }
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    }
+
+    // Initialize theme
+    setTheme(getPreferredTheme());
+
+    // Copy to clipboard
     function copyToClipboard(elementId) {
       const element = document.getElementById(elementId);
-      const text = element.innerText;
-
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          const button = element.nextElementSibling;
-          const originalText = button.innerHTML;
-
-          button.innerHTML = '<i class="ph ph-check"></i> Copied!';
-
-          setTimeout(() => {
-            button.innerHTML = originalText;
-          }, 2000);
-        })
-        .catch(err => {
-          console.error('Failed to copy text: ', err);
-        });
+      const text = element.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const button = element.nextElementSibling;
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="ph ph-check"></i> Copied!';
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
     }
   </script>
 </body>
