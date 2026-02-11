@@ -171,6 +171,63 @@
       font-size: 0.9rem;
     }
 
+    /* Languages Section */
+    .languages-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .language-item {
+      margin-bottom: 20px;
+    }
+
+    .language-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .language-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .language-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .language-percent {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .language-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: var(--surface);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .language-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    .lang-javascript { background: linear-gradient(90deg, #f7df1e 0%, #e5c700 100%); }
+    .lang-typescript { background: linear-gradient(90deg, #3178c6 0%, #2b6cb0 100%); }
+    .lang-python { background: linear-gradient(90deg, #3776ab 0%, #2d5d8a 100%); }
+    .lang-html { background: linear-gradient(90deg, #e34c26 0%, #c23616 100%); }
+    .lang-css { background: linear-gradient(90deg, #264de4 0%, #1b3bb3 100%); }
+    .lang-react { background: linear-gradient(90deg, #61dafb 0%, #21a1c4 100%); }
+
     /* Communication Cards */
     .comm-grid {
       display: grid;
@@ -240,16 +297,54 @@
       gap: 16px;
     }
 
-    @media (max-width: 768px) {
+    /* Tablet layout */
+    @media (max-width: 1024px) {
       .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
     }
 
-    @media (max-width: 480px) {
+    /* Phone landscape */
+    @media (max-width: 768px) {
       .projects-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+      }
+
+      .link-card {
+        padding: 16px;
+      }
+
+      .icon-wrapper {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+      }
+
+      .link-title {
+        font-size: 0.9rem;
+      }
+
+      .link-subtitle {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Phone portrait */
+    @media (max-width: 480px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .link-card {
+        padding: 12px;
+      }
+
+      .icon-wrapper {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
       }
     }
 
@@ -387,6 +482,62 @@
         </div>
         <div class="privacy-warning">
           For sensitive topics, use SimpleX, Signal, or 0xchat.
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages I Code In -->
+    <section class="section">
+      <h2 class="section-title">Languages I Code In</h2>
+      <div class="languages-card">
+        <div class="language-item">
+          <div class="language-header">
+            <span class="language-name">JavaScript</span>
+            <span class="language-percent">35%</span>
+          </div>
+          <div class="language-bar-bg">
+            <div class="language-bar lang-javascript" style="width: 35%"></div>
+          </div>
+        </div>
+
+        <div class="language-item">
+          <div class="language-header">
+            <span class="language-name">TypeScript</span>
+            <span class="language-percent">25%</span>
+          </div>
+          <div class="language-bar-bg">
+            <div class="language-bar lang-typescript" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <div class="language-item">
+          <div class="language-header">
+            <span class="language-name">Python</span>
+            <span class="language-percent">20%</span>
+          </div>
+          <div class="language-bar-bg">
+            <div class="language-bar lang-python" style="width: 20%"></div>
+          </div>
+        </div>
+
+        <div class="language-item">
+          <div class="language-header">
+            <span class="language-name">HTML</span>
+            <span class="language-percent">12%</span>
+          </div>
+          <div class="language-bar-bg">
+            <div class="language-bar lang-html" style="width: 12%"></div>
+          </div>
+        </div>
+
+        <div class="language-item">
+          <div class="language-header">
+            <span class="language-name">CSS</span>
+            <span class="language-percent">8%</span>
+          </div>
+          <div class="language-bar-bg">
+            <div class="language-bar lang-css" style="width: 8%"></div>
+          </div>
         </div>
       </div>
     </section>
