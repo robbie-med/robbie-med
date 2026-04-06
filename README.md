@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @robbie-med
-- 👀 I’m interested in medicine
+- 👀 I’m interested in the human body
 - 🌱 I’m currently learning a lot of things
 - 📫 Reach me at robbiemed.org
 
