@@ -38,7 +38,6 @@ body::before{
   background-size:32px 32px;
 }
 
-/* nav */
 header{
   position:sticky;top:0;z-index:100;background:var(--bg);
   border-bottom:1px solid var(--border);display:flex;align-items:stretch;height:52px;
@@ -63,14 +62,13 @@ header{
 
 main{position:relative;z-index:1}
 
-/* sign */
 .sign{
   display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
   padding:36px 28px 22px;border-bottom:1px solid var(--border);background:var(--bg1);
 }
 .sign h1{font-family:var(--display);font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--fg)}
 .sign h1 .acc{color:var(--amber)}
-.sign-tag{font-size:11px;color:var(--fg-dim);letter-spacing:.08em;max-width:520px;line-height:1.7}
+.sign-tag{font-size:11px;color:var(--fg-dim);letter-spacing:.08em;max-width:540px;line-height:1.7}
 .sign-tag strong{color:var(--fg);font-weight:500}
 .sign-row{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
 .chip{
@@ -82,7 +80,6 @@ main{position:relative;z-index:1}
 .chip.pri{background:var(--fg);color:var(--bg);border-color:var(--fg);font-weight:700}
 .chip.pri:hover{background:var(--amber);border-color:var(--amber);color:var(--bg)}
 
-/* section header */
 .sec-hd{
   display:flex;align-items:center;gap:14px;
   padding:11px 28px;border-bottom:1px solid var(--border);background:var(--bg1);
@@ -92,7 +89,6 @@ main{position:relative;z-index:1}
 .sec-hd .line{flex:1;height:1px;background:var(--border)}
 .sec-hd .meta{font-size:10px;color:var(--fg-ghost);letter-spacing:.08em;white-space:nowrap}
 
-/* controls */
 .ctrl{display:flex;align-items:stretch;border-bottom:1px solid var(--border);background:var(--bg1);flex-wrap:wrap}
 .search{display:flex;align-items:center;gap:10px;flex:1;min-width:200px;padding:0 18px;border-right:1px solid var(--border)}
 .search::before{content:'⌕';font-size:14px;opacity:.4}
@@ -107,7 +103,6 @@ main{position:relative;z-index:1}
 .fbtn.active{color:var(--amber)}
 .count{padding:0 18px;font-size:10px;color:var(--fg-ghost);display:flex;align-items:center;white-space:nowrap}
 
-/* category */
 .cat{
   display:flex;align-items:center;gap:14px;
   padding:10px 24px;border-bottom:1px solid var(--border);background:var(--bg2);
@@ -118,7 +113,6 @@ main{position:relative;z-index:1}
 .cat .cline{flex:1;height:1px;background:var(--border)}
 .cat .ccount{font-size:9px;color:var(--fg-ghost);letter-spacing:.1em}
 
-/* grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border)}
 .card{
   background:var(--bg);padding:18px 22px;cursor:pointer;
@@ -145,7 +139,6 @@ main{position:relative;z-index:1}
 .no-results{display:none;padding:46px;text-align:center;font-size:12px;color:var(--fg-ghost);background:var(--bg);border-top:1px solid var(--border)}
 .no-results .red{color:var(--red)}
 
-/* contact */
 #contact{border-top:1px solid var(--border)}
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .contact-l{padding:40px 36px;border-right:1px solid var(--border)}
@@ -192,7 +185,6 @@ main{position:relative;z-index:1}
 .pay-val{color:var(--fg)}
 .pay-val.tiny{font-size:9px;letter-spacing:.04em}
 
-/* footer */
 footer{
   border-top:1px solid var(--border);background:var(--bg1);
   padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
@@ -248,7 +240,7 @@ footer{
 
 <div class="sign">
   <h1>Open <span class="acc">tools.</span></h1>
-  <p class="sign-tag">A directory of small, free, open-source utilities — clinical, calculators, and a few for the rest of life. <strong>No trackers, no ads, no accounts.</strong></p>
+  <p class="sign-tag">A directory of small, free utilities hosted on <strong>robbiemed.org</strong> — clinical, calculators, and a few for the rest of life. <strong>No trackers, no ads, no accounts.</strong></p>
   <div class="sign-row">
     <a href="#tools" class="chip pri">browse tools</a>
     <a href="#contact" class="chip">contact</a>
@@ -283,119 +275,67 @@ footer{
   </div>
 
   <!-- SIM / CASES -->
-  <div class="cat cat-group"><div class="cdot" style="background:var(--blue)"></div><div class="cname">Simulation &amp; Cases</div><div class="cline"></div><div class="ccount">9 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:var(--blue)"></div><div class="cname">Simulation &amp; Cases</div><div class="cline"></div><div class="ccount">3 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="sim ai edu clinical" data-name="Rhesus" data-url="https://rhesus.robbiemed.org">
       <div class="card-hd"><div class="card-name">Rhesus</div><div class="card-tag">sim · ai</div></div>
-      <div class="card-desc">Virtual patient simulator. Choose a case, order labs/imaging/meds, message the team, get scored on each decision.</div>
+      <div class="card-desc">Virtual patient simulator. Choose a case, order labs / imaging / meds, message the team, get scored on each decision.</div>
       <span class="badge b-ai">AI</span>
       <div class="card-url">rhesus.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="sim ai edu clinical new" data-name="Rhesus 2.0" data-url="https://github.com/robbie-med/rhesus2.0">
-      <div class="card-hd"><div class="card-name">Rhesus 2.0</div><div class="card-tag">sim · ai</div></div>
-      <div class="card-desc">Expanded virtual patient simulator. Deeper case complexity and clinical reasoning.</div>
-      <span class="badge b-wip">WIP</span>
-      <div class="card-url">github.com/robbie-med/rhesus2.0</div>
-    </div>
-    <div class="card" data-tags="sim edu clinical" data-name="Vital Decisions" data-url="https://github.com/robbie-med/Vital-Decisions-Resident-s-Challenge">
-      <div class="card-hd"><div class="card-name">Vital Decisions</div><div class="card-tag">sim · game</div></div>
-      <div class="card-desc">Resident's challenge — scenario-based decision-making under pressure.</div>
-      <div class="card-url">github.com/robbie-med/Vital-Decisions-Resident-s-Challenge</div>
-    </div>
-    <div class="card" data-tags="sim edu clinical" data-name="CaseRunner" data-url="https://github.com/robbie-med/caserunner">
-      <div class="card-hd"><div class="card-name">CaseRunner</div><div class="card-tag">sim · classroom</div></div>
-      <div class="card-desc">Instructor-driven clinical case presentation tool for classroom teaching.</div>
-      <div class="card-url">github.com/robbie-med/caserunner</div>
-    </div>
-    <div class="card" data-tags="sim clinical nephrology" data-name="Rhenal" data-url="https://github.com/robbie-med/rhenal">
-      <div class="card-hd"><div class="card-name">Rhenal</div><div class="card-tag">sim · nephrology</div></div>
-      <div class="card-desc">Fluid and electrolyte physiology simulator — AKI, CKD, renal replacement scenarios.</div>
-      <div class="card-url">github.com/robbie-med/rhenal</div>
-    </div>
-    <div class="card" data-tags="sim id pharmacy game" data-name="GrowaBX" data-url="https://github.com/robbie-med/growabx">
-      <div class="card-hd"><div class="card-name">GrowaBX</div><div class="card-tag">id · game</div></div>
-      <div class="card-desc">A game to grow antibiotic knowledge — learn ID drugs the way you learned the periodic table.</div>
-      <div class="card-url">github.com/robbie-med/growabx</div>
-    </div>
-    <div class="card" data-tags="sim id pharmacy game new" data-name="AbxAhbs" data-url="https://github.com/robbie-med/AbxAhbs">
-      <div class="card-hd"><div class="card-name">AbxAhbs</div><div class="card-tag">id · game</div></div>
-      <div class="card-desc">Antibiotic six-pack. Pick six and defend the choice — quick-fire empiric coverage drill.</div>
+    <div class="card" data-tags="sim id pharmacy drill new" data-name="AbxAhbs" data-url="https://abxahbs.robbiemed.org">
+      <div class="card-hd"><div class="card-name">AbxAhbs · Armory Drill</div><div class="card-tag">id · drill</div></div>
+      <div class="card-desc">Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose / interval / route, beat the timer. Modes: empiric, culture de-escalation, bug-targeted.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/AbxAhbs</div>
+      <div class="card-url">abxahbs.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="sim id pharmacy game new" data-name="AhntibioticArmory" data-url="https://github.com/robbie-med/AhntibioticArmory">
-      <div class="card-hd"><div class="card-name">AhntibioticArmory</div><div class="card-tag">id · game</div></div>
-      <div class="card-desc">Antibiotic resistance game — gamified stewardship and resistance mechanism drills.</div>
+    <div class="card" data-tags="sim id pharmacy game new" data-name="AhntibioticArmory" data-url="https://ahntibioticarmory.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Antibiotic Armory</div><div class="card-tag">id · sim</div></div>
+      <div class="card-desc">Timed ID prescribing simulator — inpatient and outpatient scenarios scored on coverage, safety, stewardship, dosing, and speed.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/AhntibioticArmory</div>
-    </div>
-    <div class="card" data-tags="sim edu cards" data-name="Cardiac Vector Simulation" data-url="https://github.com/robbie-med/Cardiac-Vector-Simulation">
-      <div class="card-hd"><div class="card-name">Cardiac Vector Sim</div><div class="card-tag">sim · cards</div></div>
-      <div class="card-desc">Interactive 12-lead ECG simulator powered by a dipole-summation physics engine — not template-based.</div>
-      <div class="card-url">github.com/robbie-med/Cardiac-Vector-Simulation</div>
+      <div class="card-url">ahntibioticarmory.robbiemed.org</div>
     </div>
   </div>
 
   <!-- CARDIOLOGY -->
-  <div class="cat cat-group"><div class="cdot" style="background:#ff8a7a"></div><div class="cname">Cardiology</div><div class="cline"></div><div class="ccount">4 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:#ff8a7a"></div><div class="cname">Cardiology</div><div class="cline"></div><div class="ccount">2 tools</div></div>
   <div class="grid">
-    <div class="card" data-tags="cards clinical edu" data-name="EkhayG" data-url="https://github.com/robbie-med/EkhayG">
+    <div class="card" data-tags="cards clinical edu" data-name="EkhayG" data-url="https://ekhayg.robbiemed.org">
       <div class="card-hd"><div class="card-name">EkhayG</div><div class="card-tag">ecg</div></div>
       <div class="card-desc">ECG interpretation tool — built to make 12-lead analysis learnable at the bedside.</div>
-      <div class="card-url">github.com/robbie-med/EkhayG</div>
+      <div class="card-url">ekhayg.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="cards edu new" data-name="EZEKG" data-url="https://github.com/robbie-med/EZEKG">
-      <div class="card-hd"><div class="card-name">EZEKG</div><div class="card-tag">ecg · learn</div></div>
-      <div class="card-desc">Approachable ECG learning — practice rhythm and morphology reading.</div>
+    <div class="card" data-tags="cards edu ecg new" data-name="EZEKG" data-url="https://ezekg.robbiemed.org">
+      <div class="card-hd"><div class="card-name">EKG Systematic Read</div><div class="card-tag">ecg · learn</div></div>
+      <div class="card-desc">A structured walkthrough for 12-lead interpretation — rate, rhythm, axis, intervals, morphology, in order.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/EZEKG</div>
-    </div>
-    <div class="card" data-tags="cards model" data-name="Cardiacmodel" data-url="https://github.com/robbie-med/Cardiacmodel">
-      <div class="card-hd"><div class="card-name">Cardiacmodel</div><div class="card-tag">cards · model</div></div>
-      <div class="card-desc">Detailed cardiac physiology model — companion to the ECG simulator.</div>
-      <div class="card-url">github.com/robbie-med/Cardiacmodel</div>
-    </div>
-    <div class="card" data-tags="cards clinical new" data-name="HeartHome" data-url="https://github.com/robbie-med/HeartHome">
-      <div class="card-hd"><div class="card-name">HeartHome</div><div class="card-tag">hf · clinical</div></div>
-      <div class="card-desc">Heart failure central — reference, GDMT tracking, decompensation review.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/HeartHome</div>
+      <div class="card-url">ezekg.robbiemed.org</div>
     </div>
   </div>
 
   <!-- OB -->
-  <div class="cat cat-group"><div class="cdot" style="background:var(--pink)"></div><div class="cname">OB / Labor &amp; Delivery</div><div class="cline"></div><div class="ccount">6 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:var(--pink)"></div><div class="cname">OB / Labor &amp; Delivery</div><div class="cline"></div><div class="ccount">4 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="ob clinical" data-name="Labor Curve" data-url="https://laborlog.robbiemed.org">
       <div class="card-hd"><div class="card-name">Labor Curve</div><div class="card-tag">ob · tracker</div></div>
       <div class="card-desc">When will she deliver? Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.</div>
       <div class="card-url">laborlog.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="ob clinical" data-name="LahborLogger" data-url="https://github.com/robbie-med/lahborlogger">
-      <div class="card-hd"><div class="card-name">LahborLogger</div><div class="card-tag">ob · logger</div></div>
-      <div class="card-desc">Structured labor-floor logging with timeline visualization.</div>
-      <div class="card-url">github.com/robbie-med/lahborlogger</div>
-    </div>
-    <div class="card" data-tags="ob clinical" data-name="MyOB" data-url="https://github.com/robbie-med/MyOB">
+    <div class="card" data-tags="ob clinical" data-name="MyOB" data-url="https://myob.robbiemed.org">
       <div class="card-hd"><div class="card-name">MyOB</div><div class="card-tag">ob · reference</div></div>
       <div class="card-desc">Quick-access obstetric calculations and clinical decision support for the labor deck.</div>
-      <div class="card-url">github.com/robbie-med/MyOB</div>
-    </div>
-    <div class="card" data-tags="ob clinical" data-name="OBMM" data-url="https://github.com/robbie-med/OBMM">
-      <div class="card-hd"><div class="card-name">OBMM</div><div class="card-tag">ob · meds</div></div>
-      <div class="card-desc">OB medication and management reference — formulary and protocol quick-reference.</div>
-      <div class="card-url">github.com/robbie-med/OBMM</div>
+      <div class="card-url">myob.robbiemed.org</div>
     </div>
     <div class="card" data-tags="ob gyn screening clinical" data-name="Rhisk" data-url="https://rhisk.robbiemed.org">
       <div class="card-hd"><div class="card-name">Rhisk</div><div class="card-tag">gyn · screening</div></div>
       <div class="card-desc">Cervical cancer screening risk calculator and colposcopy management — ASCCP-aligned.</div>
       <div class="card-url">rhisk.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="ob clinical new" data-name="Prehgtime" data-url="https://github.com/robbie-med/Prehgtime">
-      <div class="card-hd"><div class="card-name">Prehgtime</div><div class="card-tag">ob · dating</div></div>
-      <div class="card-desc">Pregnancy timing — EDD, gestational age, and milestone calculations.</div>
+    <div class="card" data-tags="ob clinical timeline new" data-name="Prehgtime" data-url="https://prehghx.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Pregnancy Clinical Timeline</div><div class="card-tag">ob · timeline</div></div>
+      <div class="card-desc">Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/Prehgtime</div>
+      <div class="card-url">prehghx.robbiemed.org</div>
     </div>
   </div>
 
@@ -417,10 +357,10 @@ footer{
       <div class="card-desc">Printable green/yellow/red zone plans with patient-specific medication instructions.</div>
       <div class="card-url">asthma.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="peds clinical neonatal" data-name="Nheonatal" data-url="https://github.com/robbie-med/nheonatal">
+    <div class="card" data-tags="peds clinical neonatal" data-name="Nheonatal" data-url="https://nheonatal.robbiemed.org">
       <div class="card-hd"><div class="card-name">Nheonatal</div><div class="card-tag">peds · neo</div></div>
       <div class="card-desc">Neonatal calculator suite — dosing, bilirubin thresholds, nursery decision support.</div>
-      <div class="card-url">github.com/robbie-med/nheonatal</div>
+      <div class="card-url">nheonatal.robbiemed.org</div>
     </div>
   </div>
 
@@ -429,13 +369,13 @@ footer{
   <div class="grid">
     <div class="card" data-tags="lab clinical stats" data-name="RCV Analyzer" data-url="https://rcv.robbiemed.org">
       <div class="card-hd"><div class="card-name">RCV Analyzer</div><div class="card-tag">lab · stats</div></div>
-      <div class="card-desc">Reference Change Value — is the change real? Distinguishes physiologic change from biological/analytical noise.</div>
+      <div class="card-desc">Reference Change Value — is the change real? Distinguishes physiologic change from biological / analytical noise.</div>
       <div class="card-url">rcv.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="lab clinical rx" data-name="NaBXCalc" data-url="https://nabxcalc.vercel.app">
+    <div class="card" data-tags="lab clinical rx" data-name="NaBXCalc" data-url="https://nabxcalc.robbiemed.org">
       <div class="card-hd"><div class="card-name">NaBXCalc</div><div class="card-tag">lab · electrolytes</div></div>
-      <div class="card-desc">Estimates sodium load from IV antibiotic infusions — critical for fluid/sodium-restricted patients on high-volume abx.</div>
-      <div class="card-url">nabxcalc.vercel.app</div>
+      <div class="card-desc">Estimates sodium load from IV antibiotic infusions — critical for fluid / sodium-restricted patients on high-volume abx.</div>
+      <div class="card-url">nabxcalc.robbiemed.org</div>
     </div>
     <div class="card" data-tags="lab clinical heme" data-name="Hanemia" data-url="https://hanemia.robbiemed.org">
       <div class="card-hd"><div class="card-name">Hanemia</div><div class="card-tag">lab · heme</div></div>
@@ -452,139 +392,85 @@ footer{
       <div class="card-desc">Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.</div>
       <div class="card-url">rhetrain.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="lab edu stats new" data-name="Step-3-biostats" data-url="https://github.com/robbie-med/Step-3-biostats">
-      <div class="card-hd"><div class="card-name">Step 3 Biostats</div><div class="card-tag">edu · stats</div></div>
-      <div class="card-desc">Biostatistics drills for USMLE Step 3 — sensitivity, specificity, LR, study design.</div>
+    <div class="card" data-tags="lab edu stats new" data-name="Step-3-biostats" data-url="https://step-3-biostats.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Step 3 Evidence Interpreter</div><div class="card-tag">edu · stats</div></div>
+      <div class="card-desc">Practice interpreting biostatistics and study design questions for USMLE Step 3.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/Step-3-biostats</div>
+      <div class="card-url">step-3-biostats.robbiemed.org</div>
     </div>
   </div>
 
   <!-- CLINICAL -->
-  <div class="cat cat-group"><div class="cdot" style="background:var(--green)"></div><div class="cname">Clinical Workflow &amp; Reference</div><div class="cline"></div><div class="ccount">17 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:var(--green)"></div><div class="cname">Clinical Workflow &amp; Reference</div><div class="cline"></div><div class="ccount">9 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="clinical workflow rounding" data-name="OhbTracker" data-url="https://ohbtracker.robbiemed.org">
       <div class="card-hd"><div class="card-name">OhbTracker</div><div class="card-tag">rounding</div></div>
       <div class="card-desc">Duplicate-entry patient data into a visual dashboard. Minimal-friction rounding and team handoff.</div>
       <div class="card-url">ohbtracker.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical workflow new" data-name="RhoundingOS" data-url="https://github.com/robbie-med/RhoundingOS">
-      <div class="card-hd"><div class="card-name">RhoundingOS</div><div class="card-tag">rounding · scribe</div></div>
-      <div class="card-desc">Scribe slickly — capture, structure, and export the bedside workflow.</div>
+    <div class="card" data-tags="clinical workflow rounding pwa new" data-name="RhoundingOS" data-url="https://rhoundos.robbiemed.org">
+      <div class="card-hd"><div class="card-name">RoundingOS</div><div class="card-tag">rounding · pwa</div></div>
+      <div class="card-desc">Tablet-first inpatient rounding. Assessment-first A&amp;P with problem containers, a clinical mannequin for exam findings, drag-drop med linking, and dynamic note export. 14+ templates (DKA, COPD, sepsis…).</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/RhoundingOS</div>
+      <div class="card-url">rhoundos.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical admin" data-name="By8" data-url="https://github.com/robbie-med/By8">
+    <div class="card" data-tags="clinical admin" data-name="By8" data-url="https://by8.robbiemed.org">
       <div class="card-hd"><div class="card-name">By8</div><div class="card-tag">admin · notes</div></div>
       <div class="card-desc">Cold hard stats on your note-signing compliance. Sign 'em by eight.</div>
-      <div class="card-url">github.com/robbie-med/By8</div>
+      <div class="card-url">by8.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical pharmacy" data-name="Druhgs" data-url="https://github.com/robbie-med/druhgs">
-      <div class="card-hd"><div class="card-name">Druhgs</div><div class="card-tag">pharmacy</div></div>
-      <div class="card-desc">Drug reference — dosing, interactions, clinical pharmacology, quick-access on the floor.</div>
-      <div class="card-url">github.com/robbie-med/druhgs</div>
-    </div>
-    <div class="card" data-tags="clinical psychiatry" data-name="Lohns" data-url="https://github.com/robbie-med/lohns">
-      <div class="card-hd"><div class="card-name">Lohns</div><div class="card-tag">psych</div></div>
-      <div class="card-desc">Psychiatric clinical reference — inpatient psych workflows and symptom assessment.</div>
-      <div class="card-url">github.com/robbie-med/lohns</div>
-    </div>
-    <div class="card" data-tags="clinical gi procedures" data-name="PEG-J" data-url="https://github.com/robbie-med/Peg-J">
+    <div class="card" data-tags="clinical gi procedures" data-name="PEG-J" data-url="https://pegj.robbiemed.org">
       <div class="card-hd"><div class="card-name">PEG-J Reference</div><div class="card-tag">gi · proc</div></div>
       <div class="card-desc">Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</div>
-      <div class="card-url">github.com/robbie-med/Peg-J</div>
+      <div class="card-url">pegj.robbiemed.org</div>
     </div>
     <div class="card" data-tags="clinical admin transparency" data-name="SF Price" data-url="https://sfprice.robbiemed.org">
       <div class="card-hd"><div class="card-name">SF Price</div><div class="card-tag">admin · transparency</div></div>
       <div class="card-desc">Search and itemize SF hospital chargemaster data — price transparency in practice.</div>
       <div class="card-url">sfprice.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical admin transparency" data-name="SJ Price" data-url="https://github.com/robbie-med/Sjprice">
+    <div class="card" data-tags="clinical admin transparency" data-name="SJ Price" data-url="https://sjprice.robbiemed.org">
       <div class="card-hd"><div class="card-name">SJ Price</div><div class="card-tag">admin · transparency</div></div>
       <div class="card-desc">San Jose hospital chargemaster search — sister tool to SF Price.</div>
-      <div class="card-url">github.com/robbie-med/Sjprice</div>
+      <div class="card-url">sjprice.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical habits" data-name="Improve" data-url="https://github.com/robbie-med/improve">
-      <div class="card-hd"><div class="card-name">Improve</div><div class="card-tag">habits</div></div>
-      <div class="card-desc">Habit and development tracker. Be always improving your fighting position.</div>
-      <div class="card-url">github.com/robbie-med/improve</div>
-    </div>
-    <div class="card" data-tags="clinical dashboard" data-name="Flightdeck" data-url="https://github.com/robbie-med/Flightdeck">
+    <div class="card" data-tags="clinical dashboard" data-name="Flightdeck" data-url="https://flightdeck.robbiemed.org">
       <div class="card-hd"><div class="card-name">Flightdeck</div><div class="card-tag">dashboard</div></div>
       <div class="card-desc">Flight tracking PWA — parses FlightAware URLs, converts schedules, generates .ics, renders great-circle routes on a Leaflet map.</div>
-      <div class="card-url">github.com/robbie-med/Flightdeck</div>
+      <div class="card-url">flightdeck.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical evaluation" data-name="Evalue" data-url="https://github.com/robbie-med/evalue">
-      <div class="card-hd"><div class="card-name">Evalue</div><div class="card-tag">evaluation</div></div>
-      <div class="card-desc">Structured competency tracking and evaluation form generator for residency programs.</div>
-      <div class="card-url">github.com/robbie-med/evalue</div>
-    </div>
-    <div class="card" data-tags="clinical addiction new" data-name="EtOH" data-url="https://github.com/robbie-med/EtOH">
-      <div class="card-hd"><div class="card-name">EtOH</div><div class="card-tag">addiction · score</div></div>
-      <div class="card-desc">Alcohol withdrawal assessment — score it, watch it, treat it.</div>
+    <div class="card" data-tags="clinical addiction pwa new" data-name="EtOH" data-url="https://etoh.robbiemed.org">
+      <div class="card-hd"><div class="card-name">EtOH WD</div><div class="card-tag">addiction · pwa</div></div>
+      <div class="card-desc">Alcohol withdrawal at the bedside — screening, severe-withdrawal prediction, CIWA monitoring, dosing for phenobarb / dex / ketamine, ASCII chart notes. Mobile PWA, works offline.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/EtOH</div>
+      <div class="card-url">etoh.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="clinical id new" data-name="FOU" data-url="https://github.com/robbie-med/FOU">
-      <div class="card-hd"><div class="card-name">FOU</div><div class="card-tag">id · workup</div></div>
-      <div class="card-desc">Fever of unknown origin — structured workup framework. Like an IOU, but worse.</div>
+    <div class="card" data-tags="clinical id ddx new" data-name="FOU" data-url="https://fou.robbiemed.org">
+      <div class="card-hd"><div class="card-name">FUO Workup</div><div class="card-tag">id · ddx</div></div>
+      <div class="card-desc">Fever of unknown origin — exposure-driven differential generator. Check geography, travel, exposures, symptoms; 68 diseases scored in real time with red-flag alerts and a copyable case summary.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/FOU</div>
-    </div>
-    <div class="card" data-tags="clinical utility new" data-name="TahlkTime" data-url="https://github.com/robbie-med/TahlkTime">
-      <div class="card-hd"><div class="card-name">TahlkTime</div><div class="card-tag">utility</div></div>
-      <div class="card-desc">Measure the speech — track who talks and for how long in a conversation or encounter.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/TahlkTime</div>
-    </div>
-    <div class="card" data-tags="clinical emergency new" data-name="EDhelp" data-url="https://github.com/robbie-med/EDhelp">
-      <div class="card-hd"><div class="card-name">EDhelp</div><div class="card-tag">ed · workflow</div></div>
-      <div class="card-desc">Emergency department workflow assistant — fast triage and disposition support.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/EDhelp</div>
-    </div>
-    <div class="card" data-tags="clinical ophth new" data-name="EyeTriahge" data-url="https://github.com/robbie-med/EyeTriahge">
-      <div class="card-hd"><div class="card-name">EyeTriahge</div><div class="card-tag">ophth · triage</div></div>
-      <div class="card-desc">Ophthalmology triage — structured assessment of common eye complaints.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/EyeTriahge</div>
-    </div>
-    <div class="card" data-tags="clinical phr new" data-name="SelfPatientRecord" data-url="https://github.com/robbie-med/SelfPatientRecord">
-      <div class="card-hd"><div class="card-name">SelfPatientRecord</div><div class="card-tag">phr · personal</div></div>
-      <div class="card-desc">A personal health record built for the patient — own your chart.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/SelfPatientRecord</div>
+      <div class="card-url">fou.robbiemed.org</div>
     </div>
   </div>
 
   <!-- EDU -->
-  <div class="cat cat-group"><div class="cdot" style="background:var(--purple)"></div><div class="cname">Education</div><div class="cline"></div><div class="ccount">4 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:var(--purple)"></div><div class="cname">Education</div><div class="cline"></div><div class="ccount">2 tools</div></div>
   <div class="grid">
-    <div class="card" data-tags="edu language" data-name="Kapp" data-url="https://github.com/robbie-med/kapp">
+    <div class="card" data-tags="edu language" data-name="Kapp" data-url="https://kapp.robbiemed.org">
       <div class="card-hd"><div class="card-name">Kapp</div><div class="card-tag">korean · adaptive</div></div>
       <div class="card-desc">Personalized Korean language app — adaptive vocabulary and grammar drills.</div>
-      <div class="card-url">github.com/robbie-med/kapp</div>
+      <div class="card-url">kapp.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="edu language new" data-name="Koreancards" data-url="https://github.com/robbie-med/Koreancards">
-      <div class="card-hd"><div class="card-name">Koreancards</div><div class="card-tag">korean · cards</div></div>
-      <div class="card-desc">Korean flashcards — spaced-repetition Hangul vocabulary.</div>
+    <div class="card" data-tags="edu boards exam new" data-name="SPEHX" data-url="https://spehx.robbiemed.org">
+      <div class="card-hd"><div class="card-name">SPEX Practice Test</div><div class="card-tag">edu · boards</div></div>
+      <div class="card-desc">Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.</div>
       <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/Koreancards</div>
-    </div>
-    <div class="card" data-tags="edu clinical" data-name="Pahnel" data-url="https://github.com/robbie-med/pahnel">
-      <div class="card-hd"><div class="card-name">Pahnel</div><div class="card-tag">curriculum</div></div>
-      <div class="card-desc">Python-based education panel — curriculum and case panel management for structured teaching.</div>
-      <div class="card-url">github.com/robbie-med/pahnel</div>
-    </div>
-    <div class="card" data-tags="edu cms" data-name="Cmsiphy" data-url="https://github.com/robbie-med/cmsiphy">
-      <div class="card-hd"><div class="card-name">Cmsiphy</div><div class="card-tag">cms · notes</div></div>
-      <div class="card-desc">A local app to CMSify notes — converts structured notes into a browseable content interface.</div>
-      <div class="card-url">github.com/robbie-med/cmsiphy</div>
+      <div class="card-url">spehx.robbiemed.org</div>
     </div>
   </div>
 
   <!-- LIFE -->
-  <div class="cat cat-group"><div class="cdot" style="background:#d4c87a"></div><div class="cname">Life, Home &amp; Faith</div><div class="cline"></div><div class="ccount">15 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:#d4c87a"></div><div class="cname">Life, Home &amp; Faith</div><div class="cline"></div><div class="ccount">6 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="life faith" data-name="Prhay" data-url="https://prhay.robbiemed.org">
       <div class="card-hd"><div class="card-name">Prhay</div><div class="card-tag">faith</div></div>
@@ -601,107 +487,47 @@ footer{
       <div class="card-desc">Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.</div>
       <div class="card-url">mohri.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="life calendar" data-name="LihfeCalendar" data-url="https://github.com/robbie-med/lihfecalendar">
-      <div class="card-hd"><div class="card-name">LihfeCalendar</div><div class="card-tag">weeks</div></div>
-      <div class="card-desc">Visualize two lifespans in weeks — joint life-weeks calendar for couples or families.</div>
-      <div class="card-url">github.com/robbie-med/lihfecalendar</div>
-    </div>
     <div class="card" data-tags="life qs health" data-name="Sehx" data-url="https://sehx.robbiemed.org">
       <div class="card-hd"><div class="card-name">Sehx</div><div class="card-tag">qs · private</div></div>
       <div class="card-desc">Quantified-self taken to its logical conclusion. Private, local-first. No cloud, no judgment.</div>
       <span class="badge b-local">local</span>
       <div class="card-url">sehx.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="life qs new" data-name="SPEHX" data-url="https://github.com/robbie-med/SPEHX">
-      <div class="card-hd"><div class="card-name">SPEHX</div><div class="card-tag">qs · private</div></div>
-      <div class="card-desc">Companion tracker to Sehx — local-first, private by default.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/SPEHX</div>
-    </div>
-    <div class="card" data-tags="life qs health" data-name="Pehriod" data-url="https://github.com/robbie-med/pehriod">
+    <div class="card" data-tags="life qs health" data-name="Pehriod" data-url="https://pehriod.robbiemed.org">
       <div class="card-hd"><div class="card-name">Pehriod</div><div class="card-tag">cycle · private</div></div>
       <div class="card-desc">Privacy-first menstrual cycle tracking. Local-first — no apps sending reproductive data anywhere.</div>
       <span class="badge b-local">local</span>
-      <div class="card-url">github.com/robbie-med/pehriod</div>
+      <div class="card-url">pehriod.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="life home" data-name="Cluhter" data-url="https://github.com/robbie-med/cluhter">
-      <div class="card-hd"><div class="card-name">Cluhter</div><div class="card-tag">home · declutter</div></div>
-      <div class="card-desc">Stewardship in practice — a guided decluttering app with purpose.</div>
-      <div class="card-url">github.com/robbie-med/cluhter</div>
-    </div>
-    <div class="card" data-tags="life home" data-name="HomeOrganihzer" data-url="https://github.com/robbie-med/homeorganihzer">
-      <div class="card-hd"><div class="card-name">HomeOrganihzer</div><div class="card-tag">home · records</div></div>
-      <div class="card-desc">Static household organizer — turns notebook forms into searchable records. No account, no cloud.</div>
-      <div class="card-url">github.com/robbie-med/homeorganihzer</div>
-    </div>
-    <div class="card" data-tags="life pets" data-name="Bohma Tracker" data-url="https://github.com/robbie-med/bohma-tracker">
-      <div class="card-hd"><div class="card-name">Bohma Tracker</div><div class="card-tag">pets · cats</div></div>
-      <div class="card-desc">Cat care tracking — meals, meds, behaviors, vet visits, with pattern recognition.</div>
-      <span class="badge b-ai">AI</span>
-      <div class="card-url">github.com/robbie-med/bohma-tracker</div>
-    </div>
-    <div class="card" data-tags="life memory" data-name="DayhCounter" data-url="https://github.com/robbie-med/dayhcounter">
-      <div class="card-hd"><div class="card-name">DayhCounter</div><div class="card-tag">memory</div></div>
+    <div class="card" data-tags="life memory" data-name="DayhCounter" data-url="https://days.robbiemed.org">
+      <div class="card-hd"><div class="card-name">DayhCounter</div><div class="card-tag">memory · days</div></div>
       <div class="card-desc">Track days since important life moments, with desktop notifications.</div>
-      <div class="card-url">github.com/robbie-med/dayhcounter</div>
-    </div>
-    <div class="card" data-tags="life recipes family" data-name="Souhp" data-url="https://github.com/robbie-med/souhp">
-      <div class="card-hd"><div class="card-name">Souhp</div><div class="card-tag">recipes</div></div>
-      <div class="card-desc">Password-protected family recipe storage with client-side encryption. Encrypted, no subscription.</div>
-      <span class="badge b-local">encrypted</span>
-      <div class="card-url">github.com/robbie-med/souhp</div>
-    </div>
-    <div class="card" data-tags="life family history" data-name="Ancehstral" data-url="https://github.com/robbie-med/Ancehstral">
-      <div class="card-hd"><div class="card-name">Ancehstral</div><div class="card-tag">family · history</div></div>
-      <div class="card-desc">Family ancestry visualization — map your lineage without handing DNA to a corporation.</div>
-      <div class="card-url">github.com/robbie-med/Ancehstral</div>
-    </div>
-    <div class="card" data-tags="life notes" data-name="Analog" data-url="https://github.com/robbie-med/Analog">
-      <div class="card-hd"><div class="card-name">Analog</div><div class="card-tag">notes</div></div>
-      <div class="card-desc">Analog-to-digital bridge for note-taking — capture and organize handwritten notes searchably.</div>
-      <div class="card-url">github.com/robbie-med/Analog</div>
-    </div>
-    <div class="card" data-tags="life decisions new" data-name="Loop Reality Engine" data-url="https://github.com/robbie-med/The-Loop-Reality-Engine">
-      <div class="card-hd"><div class="card-name">Loop Reality Engine</div><div class="card-tag">decisions · local</div></div>
-      <div class="card-desc">Local-first personal operating system for decision-making under real-world constraints.</div>
-      <span class="badge b-new">new</span>
-      <div class="card-url">github.com/robbie-med/The-Loop-Reality-Engine</div>
+      <div class="card-url">days.robbiemed.org</div>
     </div>
   </div>
 
   <!-- FINANCE -->
-  <div class="cat cat-group"><div class="cdot" style="background:#8ad47a"></div><div class="cname">Finance</div><div class="cline"></div><div class="ccount">5 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:#8ad47a"></div><div class="cname">Finance</div><div class="cline"></div><div class="ccount">3 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="finance salary" data-name="CashFlow" data-url="https://cash.robbiemed.org">
       <div class="card-hd"><div class="card-name">CashFlow</div><div class="card-tag">salary</div></div>
       <div class="card-desc">Real-time salary tracker with expense management — earnings to the second, burn rate vs income.</div>
       <div class="card-url">cash.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="finance lifetime" data-name="LifeOfCash" data-url="https://github.com/robbie-med/lifeofcash">
+    <div class="card" data-tags="finance lifetime" data-name="LifeOfCash" data-url="https://lifeofcash.robbiemed.org">
       <div class="card-hd"><div class="card-name">LifeOfCash</div><div class="card-tag">lifetime</div></div>
       <div class="card-desc">Lifetime financial flow visualizer — see the full arc of a career, not just this paycheck.</div>
-      <div class="card-url">github.com/robbie-med/lifeofcash</div>
+      <div class="card-url">lifeofcash.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="finance loans" data-name="LoanAhlyzer" data-url="https://github.com/robbie-med/LoanAhlyzer">
-      <div class="card-hd"><div class="card-name">LoanAhlyzer</div><div class="card-tag">loans</div></div>
-      <div class="card-desc">Med school loan analysis — IBR, PSLF, refinance, and repayment scenario modeling.</div>
-      <div class="card-url">github.com/robbie-med/LoanAhlyzer</div>
-    </div>
-    <div class="card" data-tags="finance android" data-name="MoneyHtrack" data-url="https://github.com/robbie-med/moneyhtrack">
-      <div class="card-hd"><div class="card-name">MoneyHtrack</div><div class="card-tag">android · local</div></div>
-      <div class="card-desc">Android expense tracking with local-only data. No subscription, no sync, no surveillance.</div>
-      <span class="badge b-local">local</span>
-      <div class="card-url">github.com/robbie-med/moneyhtrack</div>
-    </div>
-    <div class="card" data-tags="finance planning" data-name="Lifeahtlas" data-url="https://github.com/robbie-med/lifeahtlas">
+    <div class="card" data-tags="finance planning" data-name="Lifeahtlas" data-url="https://lifeahtlas.robbiemed.org">
       <div class="card-hd"><div class="card-name">Lifeahtlas</div><div class="card-tag">life · plan</div></div>
       <div class="card-desc">Life atlas — financial, personal, and career milestones on a unified timeline.</div>
-      <div class="card-url">github.com/robbie-med/lifeahtlas</div>
+      <div class="card-url">lifeahtlas.robbiemed.org</div>
     </div>
   </div>
 
   <!-- UTILITY -->
-  <div class="cat cat-group"><div class="cdot" style="background:var(--red)"></div><div class="cname">Utilities &amp; Writing</div><div class="cline"></div><div class="ccount">6 tools</div></div>
+  <div class="cat cat-group"><div class="cdot" style="background:var(--red)"></div><div class="cname">Utilities</div><div class="cline"></div><div class="ccount">2 tools</div></div>
   <div class="grid">
     <div class="card" data-tags="util privacy" data-name="Encryptor" data-url="https://encryptor.robbiemed.org">
       <div class="card-hd"><div class="card-name">Encryptor</div><div class="card-tag">crypto</div></div>
@@ -709,30 +535,10 @@ footer{
       <span class="badge b-local">in-browser</span>
       <div class="card-url">encryptor.robbiemed.org</div>
     </div>
-    <div class="card" data-tags="util" data-name="Bypass" data-url="https://github.com/robbie-med/bypass">
-      <div class="card-hd"><div class="card-name">Bypass</div><div class="card-tag">access</div></div>
-      <div class="card-desc">Navigate around paywalls and institutional access barriers to information that should be free.</div>
-      <div class="card-url">github.com/robbie-med/bypass</div>
-    </div>
-    <div class="card" data-tags="util fun" data-name="WheresGeorge" data-url="https://github.com/robbie-med/wheresgeorge">
-      <div class="card-hd"><div class="card-name">WheresGeorge</div><div class="card-tag">fun</div></div>
-      <div class="card-desc">Bill-tracking companion for the Where's George currency community.</div>
-      <div class="card-url">github.com/robbie-med/wheresgeorge</div>
-    </div>
-    <div class="card" data-tags="util" data-name="Ohptimize" data-url="https://github.com/robbie-med/ohptimize">
+    <div class="card" data-tags="util" data-name="Ohptimize" data-url="https://ohptimize.robbiemed.org">
       <div class="card-hd"><div class="card-name">Ohptimize</div><div class="card-tag">optimize</div></div>
       <div class="card-desc">Identify and systematically improve high-leverage areas of daily life.</div>
-      <div class="card-url">github.com/robbie-med/ohptimize</div>
-    </div>
-    <div class="card" data-tags="util writing" data-name="Blog" data-url="https://github.com/robbie-med/blog">
-      <div class="card-hd"><div class="card-name">Blog</div><div class="card-tag">writing</div></div>
-      <div class="card-desc">Static-site personal writing platform. Open-source, no tracking.</div>
-      <div class="card-url">github.com/robbie-med/blog</div>
-    </div>
-    <div class="card" data-tags="util reading" data-name="Book" data-url="https://github.com/robbie-med/book">
-      <div class="card-hd"><div class="card-name">Book</div><div class="card-tag">reading</div></div>
-      <div class="card-desc">Reading log — what you've read, want to read, are working through. Without Goodreads watching.</div>
-      <div class="card-url">github.com/robbie-med/book</div>
+      <div class="card-url">ohptimize.robbiemed.org</div>
     </div>
   </div>
 
@@ -788,8 +594,7 @@ footer{
         <div class="box-t"><span class="pr">&gt;</span> privacy, plainly</div>
         <div class="box-body">
           <strong>No analytics. No cookies. No third-party trackers.</strong> No visitor database, no Google / Meta / Microsoft scripts.<br><br>
-          The site is served through <strong>Cloudflare</strong>, which acts as the CDN and TLS terminator — that's the one third party that sees your request. Cloudflare may keep aggregate edge logs for security and abuse handling; I don't run analytics on top of them.<br><br>
-          A few tools still live on Vercel while migration is in progress.
+          The site is served through <strong>Cloudflare</strong>, which acts as the CDN and TLS terminator — that's the one third party that sees your request. Cloudflare may keep aggregate edge logs for security and abuse handling; I don't run analytics on top of them.
         </div>
       </div>
       <div class="box">
@@ -843,7 +648,6 @@ footer{
 
 <script>
 (function(){
-  // theme
   var toggle = document.getElementById('theme-toggle');
   var stored = null;
   try { stored = localStorage.getItem('rm-theme'); } catch(e){}
@@ -859,7 +663,6 @@ footer{
     try { localStorage.setItem('rm-theme', next); } catch(e){}
   });
 
-  // search + filter
   var qEl     = document.getElementById('q');
   var qEcho   = document.getElementById('q-echo');
   var cards   = document.querySelectorAll('.card');
@@ -904,7 +707,6 @@ footer{
     });
   });
 
-  // cards open URLs
   cards.forEach(function(card){
     card.addEventListener('click', function(){
       var url = card.dataset.url;
@@ -913,11 +715,9 @@ footer{
     });
   });
 
-  // counts
   metaEl.textContent = cards.length + ' entries · ' + cats.length + ' categories';
   countEl.textContent = cards.length + ' tools';
 
-  // active nav
   var sections = document.querySelectorAll('section[id]');
   var navAs = document.querySelectorAll('.nav a');
   var obs = new IntersectionObserver(function(entries){
