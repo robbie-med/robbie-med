@@ -1,1205 +1,936 @@
 <!DOCTYPE html>
-
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>robbie.med</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>robbie.med — tools</title>
+<link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Open tools — clinical, calculators, life. No trackers. No ads.">
 <style>
-:root {
-  --fg:       #c8d67a;
-  --fg-dim:   rgba(200,214,122,.5);
-  --fg-ghost: rgba(200,214,122,.2);
-  --fg-off:   rgba(200,214,122,.07);
-  --bg:       #070d07;
-  --bg1:      #0c140c;
-  --bg2:      #101810;
-  --bg3:      #141e14;
-  --amber:    #d4a04a;
-  --amber-d:  rgba(212,160,74,.28);
-  --green:    #28c840;
-  --red:      #ff5f57;
-  --blue:     #5ab4d4;
-  --purple:   #b09ad4;
-  --border:   rgba(200,214,122,.11);
-  --border-h: rgba(200,214,122,.28);
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-d: 'Syne', sans-serif;
+:root{
+  --fg:#c8d67a; --fg-dim:rgba(200,214,122,.58); --fg-ghost:rgba(200,214,122,.22); --fg-off:rgba(200,214,122,.07);
+  --bg:#070d07; --bg1:#0c140c; --bg2:#111911;
+  --amber:#d4a04a; --amber-d:rgba(212,160,74,.3);
+  --green:#28c840; --red:#ff5f57; --blue:#5ab4d4; --purple:#b09ad4; --pink:#e88aaa; --teal:#7ad4c8;
+  --border:rgba(200,214,122,.12); --border-h:rgba(200,214,122,.3);
+  --mono:'JetBrains Mono',ui-monospace,monospace; --display:'Syne',sans-serif;
 }
-[data-theme="light"] {
-  --fg:       #1a280a;
-  --fg-dim:   rgba(26,40,10,.55);
-  --fg-ghost: rgba(26,40,10,.22);
-  --fg-off:   rgba(26,40,10,.06);
-  --bg:       #f4f2ec;
-  --bg1:      #eeeae0;
-  --bg2:      #e8e4d8;
-  --bg3:      #e0dbd0;
-  --amber:    #9a6010;
-  --amber-d:  rgba(154,96,16,.22);
-  --green:    #1a6a28;
-  --red:      #b83020;
-  --blue:     #2a7aaa;
-  --purple:   #6a4ab0;
-  --border:   rgba(26,40,10,.13);
-  --border-h: rgba(26,40,10,.32);
+[data-theme="light"]{
+  --fg:#1a280a; --fg-dim:rgba(26,40,10,.6); --fg-ghost:rgba(26,40,10,.25); --fg-off:rgba(26,40,10,.06);
+  --bg:#f4f2ec; --bg1:#ece8dc; --bg2:#e4e0d2;
+  --amber:#9a6010; --amber-d:rgba(154,96,16,.25);
+  --green:#1a6a28; --red:#b83020; --blue:#2a7aaa; --purple:#6a4ab0; --pink:#a04060; --teal:#1f7a6a;
+  --border:rgba(26,40,10,.14); --border-h:rgba(26,40,10,.32);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:14px}
-body{
-  background:var(--bg);color:var(--fg);
-  font-family:var(--font-mono);line-height:1.6;
-  overflow-x:hidden;cursor:crosshair;
-}
-a{color:var(--fg);text-decoration:none}
-button{font-family:var(--font-mono);cursor:pointer;border:none;background:none}
+html{font-size:14px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 ::selection{background:var(--fg);color:var(--bg)}
+
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(var(--fg-off) 1px,transparent 1px),linear-gradient(90deg,var(--fg-off) 1px,transparent 1px);
-  background-size:28px 28px;
-}
-[data-theme="dark"] body::after{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:repeating-linear-gradient(transparent,transparent 3px,rgba(0,0,0,.055) 3px,rgba(0,0,0,.055) 4px);
+  background-size:32px 32px;
 }
 
-/* ── NAV ── */
-nav{
-position:sticky;top:0;z-index:1000;
-background:var(–bg);border-bottom:1px solid var(–border);
-display:flex;align-items:stretch;height:48px;
+/* nav */
+header{
+  position:sticky;top:0;z-index:100;background:var(--bg);
+  border-bottom:1px solid var(--border);display:flex;align-items:stretch;height:52px;
 }
-.nav-brand{
-display:flex;align-items:center;gap:10px;
-padding:0 20px;border-right:1px solid var(–border);flex-shrink:0;
+.brand{display:flex;align-items:center;gap:10px;padding:0 22px;border-right:1px solid var(--border)}
+.brand-mark{width:22px;height:26px}
+.brand-name{font-family:var(--display);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.brand-name span{color:var(--amber)}
+.nav{display:flex;align-items:stretch;flex:1;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  display:flex;align-items:center;padding:0 18px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--fg-dim);border-right:1px solid var(--border);white-space:nowrap;transition:color .15s,background .15s;
 }
-.nav-logo{width:24px;height:28px}
-.nav-wordmark{font-family:var(–font-d);font-size:16px;font-weight:800;letter-spacing:-.02em}
-.nav-wordmark span{color:var(–amber)}
-.nav-links{display:flex;align-items:stretch;flex:1;overflow-x:auto}
-.nav-links a{
-display:flex;align-items:center;padding:0 16px;
-font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(–fg-dim);
-border-right:1px solid var(–border);white-space:nowrap;
-transition:color .15s,background .15s;
-}
-.nav-links a:hover,.nav-links a.active{color:var(–fg);background:var(–fg-off)}
-.nav-right{display:flex;align-items:center;margin-left:auto}
-.nav-status{
-display:flex;align-items:center;gap:6px;
-padding:0 14px;border-left:1px solid var(–border);
-font-size:10px;color:var(–fg-dim);letter-spacing:.08em;white-space:nowrap;
-}
-.sdot{width:6px;height:6px;border-radius:50%;background:var(–green);animation:pulse 2.5s ease-in-out infinite}
+.nav a:hover,.nav a.active{color:var(--fg);background:var(--fg-off)}
+.right{display:flex;align-items:center;margin-left:auto}
+.status{display:flex;align-items:center;gap:7px;padding:0 16px;border-left:1px solid var(--border);font-size:10px;color:var(--fg-dim);letter-spacing:.08em;white-space:nowrap}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.nav-theme{
-display:flex;align-items:center;justify-content:center;
-width:48px;height:48px;border-left:1px solid var(–border);
-color:var(–fg-dim);font-size:15px;transition:color .15s,background .15s;
-}
-.nav-theme:hover{color:var(–fg);background:var(–fg-off)}
+.theme{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-left:1px solid var(--border);color:var(--fg-dim);font-size:15px;transition:color .15s,background .15s}
+.theme:hover{color:var(--fg);background:var(--fg-off)}
 
-/* ── SECTION WRAPPER ── */
-section{position:relative;z-index:1}
+main{position:relative;z-index:1}
+
+/* sign */
+.sign{
+  display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
+  padding:36px 28px 22px;border-bottom:1px solid var(--border);background:var(--bg1);
+}
+.sign h1{font-family:var(--display);font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--fg)}
+.sign h1 .acc{color:var(--amber)}
+.sign-tag{font-size:11px;color:var(--fg-dim);letter-spacing:.08em;max-width:520px;line-height:1.7}
+.sign-tag strong{color:var(--fg);font-weight:500}
+.sign-row{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 12px;
+  border:1px solid var(--border-h);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-dim);
+  transition:color .15s,border-color .15s,background .15s;
+}
+.chip:hover{color:var(--fg);border-color:var(--fg);background:var(--fg-off)}
+.chip.pri{background:var(--fg);color:var(--bg);border-color:var(--fg);font-weight:700}
+.chip.pri:hover{background:var(--amber);border-color:var(--amber);color:var(--bg)}
+
+/* section header */
 .sec-hd{
-display:flex;align-items:center;gap:14px;
-padding:10px 28px;border-bottom:1px solid var(–border);background:var(–bg1);
+  display:flex;align-items:center;gap:14px;
+  padding:11px 28px;border-bottom:1px solid var(--border);background:var(--bg1);
 }
-.sec-cmd{font-size:10px;color:var(–fg-dim);letter-spacing:.1em}
-.sec-cmd .pr{color:var(–amber);margin-right:5px}
-.sec-line{flex:1;height:1px;background:var(–border)}
-.sec-meta{font-size:9px;color:var(–fg-ghost);letter-spacing:.08em;white-space:nowrap}
+.sec-hd .label{font-size:10px;color:var(--fg-dim);letter-spacing:.12em;text-transform:uppercase}
+.sec-hd .label .pr{color:var(--amber);margin-right:6px}
+.sec-hd .line{flex:1;height:1px;background:var(--border)}
+.sec-hd .meta{font-size:10px;color:var(--fg-ghost);letter-spacing:.08em;white-space:nowrap}
 
-/* ── HERO ── */
-#home{min-height:calc(100vh - 48px);display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(–border)}
-.hero-l{
-padding:64px 44px 52px;border-right:1px solid var(–border);
-display:flex;flex-direction:column;justify-content:space-between;
-animation:fadeUp .55s ease both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.hero-kick{
-display:flex;align-items:center;gap:8px;
-font-size:10px;letter-spacing:.14em;color:var(–fg-dim);
-text-transform:uppercase;margin-bottom:36px;
-}
-.hero-kick::before{content:’$’;color:var(–amber);margin-right:2px}
-.hero-hed{
-font-family:var(–font-d);font-size:clamp(46px,5.5vw,76px);
-font-weight:800;line-height:.91;letter-spacing:-.04em;color:var(–fg);margin-bottom:28px;
-}
-.hero-hed .dim{color:var(–fg-ghost)}.hero-hed .acc{color:var(–amber)}
-.hero-mani{
-font-size:12px;color:var(–fg-dim);line-height:1.95;max-width:480px;margin-bottom:40px;
-border-left:2px solid var(–border-h);padding-left:16px;
-}
-.hero-mani strong{color:var(–fg);font-weight:500}
-.hero-ctas{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.btn{
-display:inline-flex;align-items:center;gap:7px;
-padding:9px 20px;font-family:var(–font-mono);
-font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:all .15s;
-}
-.btn-p{background:var(–fg);color:var(–bg);font-weight:700}
-.btn-p:hover{background:var(–amber);color:var(–bg)}
-.btn-g{border:1px solid var(–border-h);color:var(–fg-dim)}
-.btn-g:hover{border-color:var(–fg);color:var(–fg);background:var(–fg-off)}
-.hero-stats{
-display:flex;gap:28px;align-items:center;
-padding-top:28px;border-top:1px solid var(–border);margin-top:40px;flex-wrap:wrap;
-}
-.hstat{display:flex;flex-direction:column;gap:2px}
-.hstat-n{font-family:var(–font-d);font-size:26px;font-weight:800;color:var(–fg);letter-spacing:-.03em;line-height:1}
-.hstat-l{font-size:9px;color:var(–fg-dim);letter-spacing:.1em;text-transform:uppercase}
-.hstat-sep{width:1px;height:32px;background:var(–border)}
-.hero-r{padding:44px;display:flex;flex-direction:column;animation:fadeUp .55s .18s ease both}
-.terminal{background:var(–bg1);border:1px solid var(–border);flex:1;display:flex;flex-direction:column}
-.tbar{
-display:flex;align-items:center;gap:6px;
-padding:9px 13px;border-bottom:1px solid var(–border);background:var(–bg2);
-}
-.tdot{width:10px;height:10px;border-radius:50%}
-.tdr{background:var(–red)}.tdy{background:var(–amber)}.tdg{background:var(–green)}
-.ttitle{font-size:10px;color:var(–fg-dim);margin-left:8px;letter-spacing:.06em}
-.tbody{padding:18px 16px;flex:1;font-size:12px;line-height:1.9;overflow-y:auto}
-.tl{display:flex}
-.tpr{color:var(–amber);flex-shrink:0;white-space:pre}
-.tout{color:var(–fg-dim)}
-.tout.ok{color:var(–green)}.tout.wa{color:var(–amber)}.tout.er{color:var(–red);opacity:.6;text-decoration:line-through}
-.tblank{height:9px}
-.tcur{display:inline-block;width:8px;height:13px;background:var(–fg);vertical-align:middle;margin-left:2px;animation:blink .9s step-end infinite}
-@keyframes blink{50%{opacity:0}}
-
-/* ── TOOLS ── */
-#tools{border-bottom:1px solid var(–border)}
-.tools-ctrl{
-display:flex;align-items:stretch;border-bottom:1px solid var(–border);
-background:var(–bg1);flex-wrap:wrap;
-}
-.tsearch-wrap{
-display:flex;align-items:center;gap:10px;
-flex:1;min-width:200px;padding:0 18px;
-border-right:1px solid var(–border);
-}
-.tsearch-wrap::before{content:‘⌕’;font-size:14px;opacity:.35;line-height:1}
-#tsearch{
-background:none;border:none;outline:none;
-font-family:var(–font-mono);font-size:12px;color:var(–fg);
-width:100%;padding:13px 0;letter-spacing:.04em;
-}
-#tsearch::placeholder{color:var(–fg-ghost)}
-.fbtns{display:flex;align-items:stretch;flex-wrap:wrap}
+/* controls */
+.ctrl{display:flex;align-items:stretch;border-bottom:1px solid var(--border);background:var(--bg1);flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:10px;flex:1;min-width:200px;padding:0 18px;border-right:1px solid var(--border)}
+.search::before{content:'⌕';font-size:14px;opacity:.4}
+.search input{flex:1;background:none;border:none;outline:none;font:inherit;font-size:12px;color:var(--fg);padding:14px 0;letter-spacing:.04em}
+.search input::placeholder{color:var(--fg-ghost)}
+.fbtns{display:flex;flex-wrap:wrap}
 .fbtn{
-padding:0 13px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-color:var(–fg-dim);border-right:1px solid var(–border);
-height:46px;transition:all .13s;white-space:nowrap;
+  padding:0 14px;height:48px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--fg-dim);border-right:1px solid var(--border);transition:color .13s,background .13s;white-space:nowrap;
 }
-.fbtn:hover,.fbtn.active{color:var(–fg);background:var(–fg-off)}
-.fbtn.active{color:var(–amber)}
-.tcount{padding:0 16px;font-size:10px;color:var(–fg-ghost);white-space:nowrap;display:flex;align-items:center}
+.fbtn:hover,.fbtn.active{color:var(--fg);background:var(--fg-off)}
+.fbtn.active{color:var(--amber)}
+.count{padding:0 18px;font-size:10px;color:var(--fg-ghost);display:flex;align-items:center;white-space:nowrap}
 
-/* category header rows */
-.cat-hd{
-display:flex;align-items:center;gap:14px;
-padding:9px 24px;border-bottom:1px solid var(–border);
-background:var(–bg2);position:sticky;top:48px;z-index:10;
+/* category */
+.cat{
+  display:flex;align-items:center;gap:14px;
+  padding:10px 24px;border-bottom:1px solid var(--border);background:var(--bg2);
+  position:sticky;top:52px;z-index:5;
 }
-.cat-name{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(–fg-dim)}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cat-line{flex:1;height:1px;background:var(–border)}
-.cat-count{font-size:9px;color:var(–fg-ghost);letter-spacing:.08em}
+.cat .cdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat .cname{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-dim)}
+.cat .cline{flex:1;height:1px;background:var(--border)}
+.cat .ccount{font-size:9px;color:var(--fg-ghost);letter-spacing:.1em}
 
-/* tool grid */
-.tgrid{
-display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-gap:1px;background:var(–border);
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border)}
+.card{
+  background:var(--bg);padding:18px 22px;cursor:pointer;
+  display:flex;flex-direction:column;gap:7px;position:relative;overflow:hidden;
+  transition:background .13s;
 }
-.tcard{
-background:var(–bg);padding:19px 22px;cursor:pointer;
-transition:background .13s;display:flex;flex-direction:column;gap:7px;
-position:relative;overflow:hidden;
-}
-.tcard::before{
-content:’’;position:absolute;left:0;top:0;bottom:0;width:2px;
-background:var(–fg-ghost);transition:background .13s;
-}
-.tcard:hover{background:var(–bg1)}
-.tcard:hover::before{background:var(–amber)}
-.tcard.hidden{display:none!important}
-.tcard-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.tcard-name{font-size:12px;font-weight:700;color:var(–fg);letter-spacing:.02em}
-.tcard-tag{
-font-size:8px;letter-spacing:.11em;text-transform:uppercase;
-padding:2px 7px;border:1px solid var(–border);color:var(–fg-dim);flex-shrink:0;
-transition:border-color .13s,color .13s;
-}
-.tcard:hover .tcard-tag{border-color:var(–amber-d);color:var(–amber)}
-.tcard-desc{font-size:10px;color:var(–fg-dim);line-height:1.65}
-.tcard-url{font-size:9px;color:var(–fg-ghost);letter-spacing:.04em;transition:color .13s;margin-top:2px}
-.tcard:hover .tcard-url{color:var(–fg-dim)}
-.tcard-badge{
-font-size:8px;letter-spacing:.1em;text-transform:uppercase;
-padding:2px 6px;border-radius:0;display:inline-block;margin-top:3px;width:fit-content;
-}
-.badge-new{background:rgba(40,200,64,.12);color:var(–green);border:1px solid rgba(40,200,64,.25)}
-.badge-wip{background:rgba(212,160,74,.1);color:var(–amber);border:1px solid var(–amber-d)}
-.badge-ai{background:rgba(90,180,212,.1);color:var(–blue);border:1px solid rgba(90,180,212,.25)}
-.badge-priv{background:rgba(176,154,212,.1);color:var(–purple);border:1px solid rgba(176,154,212,.25)}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--fg-ghost);transition:background .13s}
+.card:hover{background:var(--bg1)}
+.card:hover::before{background:var(--amber)}
+.card.hidden{display:none!important}
+.card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.card-name{font-size:12px;font-weight:700;color:var(--fg);letter-spacing:.02em}
+.card-tag{font-size:8px;letter-spacing:.11em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--border);color:var(--fg-dim);flex-shrink:0;transition:border-color .13s,color .13s;white-space:nowrap}
+.card:hover .card-tag{border-color:var(--amber-d);color:var(--amber)}
+.card-desc{font-size:10.5px;color:var(--fg-dim);line-height:1.65}
+.card-url{font-size:9px;color:var(--fg-ghost);letter-spacing:.04em;margin-top:auto;padding-top:4px;transition:color .13s}
+.card:hover .card-url{color:var(--fg-dim)}
+.badge{font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;display:inline-block;width:fit-content;margin-top:2px}
+.b-new{background:rgba(40,200,64,.12);color:var(--green);border:1px solid rgba(40,200,64,.28)}
+.b-wip{background:rgba(212,160,74,.1);color:var(--amber);border:1px solid var(--amber-d)}
+.b-ai{background:rgba(90,180,212,.1);color:var(--blue);border:1px solid rgba(90,180,212,.28)}
+.b-local{background:rgba(176,154,212,.1);color:var(--purple);border:1px solid rgba(176,154,212,.28)}
 
-.no-results{
-display:none;padding:48px;text-align:center;
-font-size:12px;color:var(–fg-ghost);
-background:var(–bg);border-top:1px solid var(–border);
-}
+.no-results{display:none;padding:46px;text-align:center;font-size:12px;color:var(--fg-ghost);background:var(--bg);border-top:1px solid var(--border)}
+.no-results .red{color:var(--red)}
 
-/* ── COLLABORATE ── */
-#collaborate{border-bottom:1px solid var(–border)}
-.collab-grid{display:grid;grid-template-columns:1fr 1fr}
-.collab-l{padding:52px 44px;border-right:1px solid var(–border)}
-.collab-r{padding:52px 44px}
-.collab-hed{
-font-family:var(–font-d);font-size:40px;font-weight:800;
-line-height:.93;letter-spacing:-.03em;color:var(–fg);margin-bottom:22px;
-}
-.collab-hed .acc{color:var(–amber)}
-.collab-body{font-size:12px;color:var(–fg-dim);line-height:1.95;margin-bottom:28px;max-width:440px}
-.collab-body strong{color:var(–fg);font-weight:500}
-.collab-items{display:flex;flex-direction:column}
-.ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(–border)}
-.ci:last-child{border-bottom:none}
-.ci-n{font-size:9px;color:var(–fg-ghost);width:24px;flex-shrink:0;padding-top:2px}
-.ci-title{font-size:12px;color:var(–fg);margin-bottom:3px;font-weight:500}
-.ci-desc{font-size:10px;color:var(–fg-dim);line-height:1.65}
-.principles{display:flex;flex-direction:column;margin-top:8px}
-.prin{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(–border);font-size:11px;color:var(–fg-dim)}
-.prin-ico{color:var(–green);flex-shrink:0;font-size:10px;width:14px}
-.prin strong{color:var(–fg);font-weight:500}
-.stitle{
-font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(–fg-dim);
-margin-bottom:12px;
-}
-.stitle .pr{color:var(–amber)}
-
-/* ── CONTACT ── */
-#contact{border-bottom:1px solid var(–border)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr}
-.contact-l{padding:52px 44px;border-right:1px solid var(–border)}
-.contact-r{padding:52px 44px}
-.contact-hed{
-font-family:var(–font-d);font-size:36px;font-weight:800;
-letter-spacing:-.03em;margin-bottom:8px;
-}
-.contact-sub{font-size:11px;color:var(–fg-dim);margin-bottom:28px;line-height:1.75}
-.channels{display:flex;flex-direction:column;gap:1px}
+/* contact */
+#contact{border-top:1px solid var(--border)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.contact-l{padding:40px 36px;border-right:1px solid var(--border)}
+.contact-r{padding:40px 36px}
+.contact-hed{font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
+.contact-sub{font-size:11px;color:var(--fg-dim);line-height:1.75;margin-bottom:24px;max-width:480px}
+.channels{display:flex;flex-direction:column;gap:1px;background:var(--border)}
 .ch{
-display:flex;align-items:center;justify-content:space-between;
-padding:13px 16px;background:var(–bg1);border-left:2px solid transparent;
-transition:all .13s;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:13px 16px;background:var(--bg1);border-left:2px solid transparent;
+  transition:background .13s;cursor:pointer;
 }
-.ch:hover{background:var(–bg2)}
-.ch.pref{border-left-color:var(–green)}
-.ch.ok{border-left-color:var(–amber)}
-.ch.bad{border-left-color:var(–red);opacity:.45}
-.ch-l{display:flex;align-items:center;gap:11px}
-.ch-ico{font-size:12px;width:18px;text-align:center}
-.ch-name{font-size:12px;font-weight:500}
-.ch-handle{font-size:10px;color:var(–fg-dim);margin-top:1px}
-.ch-badge{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;font-weight:700}
-.cbp{color:var(–green);border:1px solid rgba(40,200,64,.28)}
-.cbo{color:var(–amber);border:1px solid var(–amber-d)}
-.cbb{color:var(–fg-ghost);border:1px solid var(–fg-ghost);text-decoration:line-through}
-.pgp-box{
-background:var(–bg1);border:1px solid var(–border);padding:24px;margin-bottom:20px;
-}
-.pgp-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(–fg-dim);margin-bottom:14px}
-.pgp-title .pr{color:var(–amber)}
-.pgp-body{font-size:11px;color:var(–fg-dim);line-height:1.9}
-.pgp-body strong{color:var(–fg);font-weight:500}
-.pgp-key-block{
-background:var(–bg2);border:1px solid var(–border);
-padding:13px 15px;margin-top:14px;
-font-size:10px;color:var(–fg);letter-spacing:.05em;line-height:1.8;
-}
-.anon-links{display:flex;flex-direction:column;gap:7px;margin-top:16px}
-.al{
-display:flex;align-items:center;gap:9px;
-font-size:11px;color:var(–fg-dim);
-padding:9px 13px;border:1px solid var(–border);transition:all .13s;
-}
-.al:hover{border-color:var(–border-h);color:var(–fg);background:var(–fg-off)}
-.al-ico{color:var(–amber);flex-shrink:0}
-.pay-box{
-margin-top:18px;padding:16px 18px;border:1px solid var(–border);background:var(–bg1);
-}
-.pay-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(–fg-dim);margin-bottom:10px}
-.pay-title .pr{color:var(–amber)}
-.pay-body{font-size:10px;color:var(–fg-dim);line-height:2.1}
-.pay-val{color:var(–fg)}
+.ch:hover{background:var(--bg2)}
+.ch.pref{border-left-color:var(--green)}
+.ch.ok{border-left-color:var(--amber)}
+.ch.cold{border-left-color:var(--fg-ghost);opacity:.6}
+.ch-l{display:flex;align-items:center;gap:12px;min-width:0}
+.ch-ico{font-size:13px;width:18px;text-align:center;flex-shrink:0}
+.ch-name{font-size:12px;font-weight:500;color:var(--fg)}
+.ch-handle{font-size:10px;color:var(--fg-dim);margin-top:1px;word-break:break-all}
+.ch-badge{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.cbp{color:var(--green);border:1px solid rgba(40,200,64,.3)}
+.cbo{color:var(--amber);border:1px solid var(--amber-d)}
+.cbc{color:var(--fg-ghost);border:1px solid var(--fg-ghost)}
 
-/* ── FOOTER ── */
+.box{background:var(--bg1);border:1px solid var(--border);padding:20px 22px;margin-top:18px}
+.box-t{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim);margin-bottom:12px}
+.box-t .pr{color:var(--amber)}
+.box-body{font-size:11px;color:var(--fg-dim);line-height:1.85}
+.box-body strong{color:var(--fg);font-weight:500}
+.key{background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-top:12px;font-size:10px;color:var(--fg);letter-spacing:.05em;line-height:1.7;font-family:var(--mono);word-break:break-all}
+
+.elsewhere{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.elsewhere a{
+  display:flex;align-items:center;gap:10px;padding:9px 13px;
+  border:1px solid var(--border);font-size:11px;color:var(--fg-dim);transition:all .13s;
+}
+.elsewhere a:hover{border-color:var(--border-h);color:var(--fg);background:var(--fg-off)}
+.elsewhere .ico{color:var(--amber);flex-shrink:0;width:14px;text-align:center}
+.elsewhere a.struck{opacity:.5}
+.elsewhere a.struck span:last-child{text-decoration:line-through}
+
+.pay-body{font-size:10.5px;color:var(--fg-dim);line-height:2}
+.pay-val{color:var(--fg)}
+.pay-val.tiny{font-size:9px;letter-spacing:.04em}
+
+/* footer */
 footer{
-position:relative;z-index:1;border-top:1px solid var(–border);
-padding:18px 28px;display:flex;align-items:center;justify-content:space-between;
-background:var(–bg1);flex-wrap:wrap;gap:12px;
+  border-top:1px solid var(--border);background:var(--bg1);
+  padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  position:relative;z-index:1;
 }
-.footer-brand{
-display:flex;align-items:center;gap:8px;
-font-family:var(–font-d);font-size:14px;font-weight:800;
-}
-.footer-brand span{color:var(–amber)}
-.footer-meta{font-size:10px;color:var(–fg-ghost);letter-spacing:.08em}
-.footer-links{display:flex;gap:18px;flex-wrap:wrap}
-.footer-links a{font-size:10px;color:var(–fg-dim);letter-spacing:.08em;transition:color .13s}
-.footer-links a:hover{color:var(–fg)}
-.footer-sdg{font-size:10px;color:var(–fg-ghost);letter-spacing:.12em;text-transform:uppercase}
-.footer-sdg strong{color:var(–fg-dim);font-weight:400}
+.f-l{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.f-brand{font-family:var(--display);font-size:14px;font-weight:800}
+.f-brand span{color:var(--amber)}
+.f-meta{font-size:10px;color:var(--fg-ghost);letter-spacing:.08em}
+.f-links{display:flex;gap:18px;flex-wrap:wrap}
+.f-links a{font-size:10px;color:var(--fg-dim);letter-spacing:.08em;transition:color .13s}
+.f-links a:hover{color:var(--fg)}
 
-/* responsive */
-@media(max-width:860px){
-#home,.collab-grid,.contact-grid{grid-template-columns:1fr}
-.hero-l,.hero-r,.collab-l,.collab-r,.contact-l,.contact-r{border-right:none;border-bottom:1px solid var(–border)}
-.hero-hed{font-size:44px}
+@media(max-width:760px){
+  .contact-wrap{grid-template-columns:1fr}
+  .contact-l{border-right:none;border-bottom:1px solid var(--border)}
+  .sign{padding:28px 22px 18px}
+  .sign-row{margin-left:0}
+  .cat{position:static}
 }
 </style>
-
 </head>
 <body>
 
-<nav>
-  <div class="nav-brand">
-    <svg class="nav-logo" viewBox="0 0 100 120" fill="none">
+<header>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 100 120" fill="none" aria-hidden="true">
       <ellipse cx="50" cy="30" rx="20" ry="16" fill="#d4a04a"/>
-      <ellipse cx="50" cy="14" rx="11" ry="8" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="64" cy="21" rx="11" ry="7" transform="rotate(30 64 21)" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="70" cy="34" rx="11" ry="7" transform="rotate(70 70 34)" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="60" cy="46" rx="11" ry="7" transform="rotate(110 60 46)" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="40" cy="46" rx="11" ry="7" transform="rotate(-110 40 46)" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="30" cy="34" rx="11" ry="7" transform="rotate(-70 30 34)" fill="var(--fg)" opacity=".32"/>
-      <ellipse cx="36" cy="21" rx="11" ry="7" transform="rotate(-30 36 21)" fill="var(--fg)" opacity=".32"/>
+      <ellipse cx="50" cy="14" rx="11" ry="8" fill="currentColor" opacity=".3"/>
+      <ellipse cx="64" cy="21" rx="11" ry="7" transform="rotate(30 64 21)" fill="currentColor" opacity=".3"/>
+      <ellipse cx="70" cy="34" rx="11" ry="7" transform="rotate(70 70 34)" fill="currentColor" opacity=".3"/>
+      <ellipse cx="60" cy="46" rx="11" ry="7" transform="rotate(110 60 46)" fill="currentColor" opacity=".3"/>
+      <ellipse cx="40" cy="46" rx="11" ry="7" transform="rotate(-110 40 46)" fill="currentColor" opacity=".3"/>
+      <ellipse cx="30" cy="34" rx="11" ry="7" transform="rotate(-70 30 34)" fill="currentColor" opacity=".3"/>
+      <ellipse cx="36" cy="21" rx="11" ry="7" transform="rotate(-30 36 21)" fill="currentColor" opacity=".3"/>
       <line x1="50" y1="48" x2="50" y2="115" stroke="#4a7a28" stroke-width="5" stroke-linecap="round"/>
       <ellipse cx="34" cy="76" rx="15" ry="7" transform="rotate(-28 34 76)" fill="#4a7a28"/>
       <ellipse cx="66" cy="90" rx="15" ry="7" transform="rotate(24 66 90)" fill="#4a7a28"/>
     </svg>
-    <div class="nav-wordmark">robbie<span>.med</span></div>
+    <div class="brand-name">robbie<span>.med</span></div>
   </div>
-  <div class="nav-links">
-    <a href="#home" class="active">home</a>
-    <a href="#tools">tools</a>
-    <a href="#collaborate">collaborate</a>
+  <nav class="nav">
+    <a href="#tools" class="active">tools</a>
     <a href="#contact">contact</a>
+  </nav>
+  <div class="right">
+    <div class="status"><div class="dot"></div><span>open</span></div>
+    <button class="theme" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
   </div>
-  <div class="nav-right">
-    <div class="nav-status"><div class="sdot"></div><span>all systems up</span></div>
-    <button class="nav-theme" id="theme-toggle" title="Toggle theme">◐</button>
-  </div>
-</nav>
+</header>
 
-<!-- ── HERO ── -->
+<main>
 
-<section id="home">
-  <div class="hero-l">
-    <div>
-      <div class="hero-kick">physician · developer · educator</div>
-      <div class="hero-hed">CLINICAL<br>TOOLS<br>THAT<br><span class="acc">RESPECT</span><br><span class="dim">YOU.</span></div>
-      <p class="hero-mani">
-        This is a website. It loads fast. No trackers. No ads. No surveillance capitalism.
-        <strong>No Google. No Meta. No Microsoft.</strong><br><br>
-        50+ open-source tools built by a physician who writes the code.
-        Use them. Fork them. <strong>Privacy is a feature, not a compliance checkbox.</strong>
-        Nothing here is medical advice. S.D.G.
-      </p>
-      <div class="hero-ctas">
-        <a href="#tools" class="btn btn-p">$ ls tools/</a>
-        <a href="#collaborate" class="btn btn-g">collaborate →</a>
-        <a href="https://cal.robbiemed.org/robbiemed" target="_blank" class="btn btn-g">book_meeting()</a>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n">55+</div><div class="hstat-l">public tools</div></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><div class="hstat-n">0</div><div class="hstat-l">trackers</div></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><div class="hstat-n">JS·TS·Py</div><div class="hstat-l">primary stack</div></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><div class="hstat-n">OSS</div><div class="hstat-l">open source</div></div>
-    </div>
+<div class="sign">
+  <h1>Open <span class="acc">tools.</span></h1>
+  <p class="sign-tag">A directory of small, free, open-source utilities — clinical, calculators, and a few for the rest of life. <strong>No trackers, no ads, no accounts.</strong></p>
+  <div class="sign-row">
+    <a href="#tools" class="chip pri">browse tools</a>
+    <a href="#contact" class="chip">contact</a>
+    <a href="https://cal.robbiemed.org/robbiemed" target="_blank" rel="noopener" class="chip">book a meeting</a>
   </div>
-  <div class="hero-r">
-    <div class="terminal">
-      <div class="tbar">
-        <div class="tdot tdr"></div><div class="tdot tdy"></div><div class="tdot tdg"></div>
-        <div class="ttitle">robbie.med — bash</div>
-      </div>
-      <div class="tbody">
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span>whoami</span></div>
-        <div class="tl"><span class="tout">physician :: developer :: educator :: [pseudonymous]</span></div>
-        <div class="tblank"></div>
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span>ls tools/ | wc -l</span></div>
-        <div class="tl"><span class="tout ok">55</span></div>
-        <div class="tblank"></div>
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span>cat mission.txt</span></div>
-        <div class="tl"><span class="tout">build tools that work.</span></div>
-        <div class="tl"><span class="tout">keep them honest. keep them open.</span></div>
-        <div class="tl"><span class="tout">ship them without tracking you.</span></div>
-        <div class="tblank"></div>
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span>cat privacy.conf</span></div>
-        <div class="tl"><span class="tout ok">preferred: simplex | signal | 0xchat</span></div>
-        <div class="tl"><span class="tout wa">acceptable: pgp-encrypted email</span></div>
-        <div class="tl"><span class="tout er">avoid: plaintext email | sms | telegram</span></div>
-        <div class="tblank"></div>
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span>echo $STACK</span></div>
-        <div class="tl"><span class="tout">JS(35%) TS(25%) Python(20%) HTML(12%) CSS(8%)</span></div>
-        <div class="tblank"></div>
-        <div class="tl"><span class="tpr">robbie@med:~$ </span><span class="tcur"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TOOLS ── -->
+</div>
 
 <section id="tools">
   <div class="sec-hd">
-    <div class="sec-cmd"><span class="pr">$</span> ls -la ~/tools/ | sort -k9</div>
-    <div class="sec-line"></div>
-    <div class="sec-meta" id="tcount-main">55 entries · 8 categories</div>
+    <div class="label"><span class="pr">$</span> ls ~/tools/</div>
+    <div class="line"></div>
+    <div class="meta" id="meta-count">— entries</div>
   </div>
 
-  <div class="tools-ctrl">
-    <div class="tsearch-wrap">
-      <input type="text" id="tsearch" placeholder="search tools, descriptions, tags..." autocomplete="off" spellcheck="false">
-    </div>
+  <div class="ctrl">
+    <div class="search"><input type="text" id="q" placeholder="search name, tag, description…" autocomplete="off" spellcheck="false"></div>
     <div class="fbtns">
       <button class="fbtn active" data-filter="all">all</button>
-      <button class="fbtn" data-filter="sim">simulation</button>
-      <button class="fbtn" data-filter="ob">ob/l&d</button>
+      <button class="fbtn" data-filter="sim">sim/cases</button>
+      <button class="fbtn" data-filter="cards">cards</button>
+      <button class="fbtn" data-filter="ob">ob</button>
       <button class="fbtn" data-filter="peds">peds</button>
-      <button class="fbtn" data-filter="lab">lab/calc</button>
+      <button class="fbtn" data-filter="lab">labs/calc</button>
       <button class="fbtn" data-filter="clinical">clinical</button>
-      <button class="fbtn" data-filter="edu">education</button>
-      <button class="fbtn" data-filter="personal">personal</button>
-      <button class="fbtn" data-filter="finance">finance</button>
+      <button class="fbtn" data-filter="edu">edu</button>
       <button class="fbtn" data-filter="life">life</button>
+      <button class="fbtn" data-filter="finance">finance</button>
+      <button class="fbtn" data-filter="util">utility</button>
+      <button class="fbtn" data-filter="new">new</button>
     </div>
-    <div class="tcount" id="tcount">55 tools</div>
+    <div class="count" id="count">— tools</div>
   </div>
 
-  <!-- ── CATEGORY: SIMULATION & AI ── -->
-
-  <div class="cat-hd cat-group" data-cat="sim">
-    <div class="cat-dot" style="background:var(--blue)"></div>
-    <div class="cat-name">Simulation &amp; AI</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">5 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="sim ai edu clinical" data-name="Rhesus" data-url="https://rhesus.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Rhesus ⚕️</div><div class="tcard-tag">sim · ai</div></div>
-  <div class="tcard-desc">AI-powered virtual patient simulator for medical students and interns. Select case types (Cards, ID, Emergency, Misc), order medications/labs/imaging, chat with @md and @rn, scored on every clinical decision.</div>
-  <div class="tcard-url">rhesus.robbiemed.org</div>
-  <span class="tcard-badge badge-ai">GPT-4o powered</span>
-</div>
-
-<div class="tcard" data-tags="sim ai edu clinical" data-name="Rhesus 2.0" data-url="https://github.com/robbie-med/rhesus2.0">
-  <div class="tcard-hd"><div class="tcard-name">Rhesus 2.0</div><div class="tcard-tag">sim · ai</div></div>
-  <div class="tcard-desc">A more complex, expanded version of the virtual patient simulator. Extended case complexity and clinical reasoning depth.</div>
-  <div class="tcard-url">github.com/robbie-med/rhesus2.0</div>
-  <span class="tcard-badge badge-wip">in development</span>
-</div>
-
-<div class="tcard" data-tags="sim ai edu clinical" data-name="Vital Decisions Resident's Challenge" data-url="https://github.com/robbie-med/Vital-Decisions-Resident-s-Challenge">
-  <div class="tcard-hd"><div class="tcard-name">Vital Decisions: Resident's Challenge</div><div class="tcard-tag">sim · game</div></div>
-  <div class="tcard-desc">Clinical decision-making game framed as a resident challenge. Scenario-based gameplay under pressure — feel the heat of the 8am attending rounds.</div>
-  <div class="tcard-url">github.com/robbie-med/Vital-Decisions-Resident-s-Challenge</div>
-</div>
-
-<div class="tcard" data-tags="sim ai edu clinical" data-name="CaseRunner" data-url="https://github.com/robbie-med/caserunner">
-  <div class="tcard-hd"><div class="tcard-name">CaseRunner</div><div class="tcard-tag">sim · classroom</div></div>
-  <div class="tcard-desc">A case runner for teaching medical students in the classroom. Instructor-driven clinical case presentation and discussion tool.</div>
-  <div class="tcard-url">github.com/robbie-med/caserunner</div>
-</div>
-
-<div class="tcard" data-tags="sim edu clinical cardiology" data-name="Cardiac Vector Simulation" data-url="https://github.com/robbie-med/Cardiac-Vector-Simulation">
-  <div class="tcard-hd"><div class="tcard-name">Cardiac Vector Simulation</div><div class="tcard-tag">sim · cardiology</div></div>
-  <div class="tcard-desc">Interactive 12-lead ECG simulator powered by a dipole summation physics engine. Physiologically grounded cardiac vector modeling — not template-based.</div>
-  <div class="tcard-url">github.com/robbie-med/Cardiac-Vector-Simulation</div>
-  <span class="tcard-badge badge-new">new</span>
-</div>
-```
-
-  </div>
-
-  <!-- ── CATEGORY: OB / L&D ── -->
-
-  <div class="cat-hd cat-group" data-cat="ob">
-    <div class="cat-dot" style="background:#e88aaa"></div>
-    <div class="cat-name">OB / Labor &amp; Delivery</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">5 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="ob clinical" data-name="Labor Curve" data-url="https://laborlog.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Labor Curve</div><div class="tcard-tag">ob · tracker</div></div>
-  <div class="tcard-desc">WhenWillSheDeliver? — real-time labor progress tracker with Friedman curve graphing, cervical exam logging, and delivery time estimation.</div>
-  <div class="tcard-url">laborlog.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="ob clinical" data-name="LahborLogger" data-url="https://github.com/robbie-med/lahborlogger">
-  <div class="tcard-hd"><div class="tcard-name">LahborLogger</div><div class="tcard-tag">ob · logger</div></div>
-  <div class="tcard-desc">Dedicated labor logging tool. Structured data entry for OB floor documentation with timeline visualization.</div>
-  <div class="tcard-url">github.com/robbie-med/lahborlogger</div>
-</div>
-
-<div class="tcard" data-tags="ob clinical" data-name="MyOB" data-url="https://github.com/robbie-med/MyOB">
-  <div class="tcard-hd"><div class="tcard-name">MyOB</div><div class="tcard-tag">ob · clinical</div></div>
-  <div class="tcard-desc">Personal OB reference and workflow tool. Quick-access obstetric calculations and clinical decision support for the labor deck.</div>
-  <div class="tcard-url">github.com/robbie-med/MyOB</div>
-</div>
-
-<div class="tcard" data-tags="ob clinical" data-name="OBMM" data-url="https://github.com/robbie-med/OBMM">
-  <div class="tcard-hd"><div class="tcard-name">OBMM</div><div class="tcard-tag">ob · reference</div></div>
-  <div class="tcard-desc">OB medication and management reference. Formulary and protocol quick-reference for OB floor use.</div>
-  <div class="tcard-url">github.com/robbie-med/OBMM</div>
-</div>
-
-<div class="tcard" data-tags="ob clinical" data-name="Rhisk" data-url="https://rhisk.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Rhisk</div><div class="tcard-tag">ob · gyn · screening</div></div>
-  <div class="tcard-desc">Cervical cancer screening risk calculator and colposcopy management guidance. Evidence-based ASCCP-aligned recommendations.</div>
-  <div class="tcard-url">rhisk.robbiemed.org</div>
-</div>
-```
-
+  <!-- SIM / CASES -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--blue)"></div><div class="cname">Simulation &amp; Cases</div><div class="cline"></div><div class="ccount">9 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="sim ai edu clinical" data-name="Rhesus" data-url="https://rhesus.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Rhesus</div><div class="card-tag">sim · ai</div></div>
+      <div class="card-desc">Virtual patient simulator. Choose a case, order labs/imaging/meds, message the team, get scored on each decision.</div>
+      <span class="badge b-ai">AI</span>
+      <div class="card-url">rhesus.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="sim ai edu clinical new" data-name="Rhesus 2.0" data-url="https://github.com/robbie-med/rhesus2.0">
+      <div class="card-hd"><div class="card-name">Rhesus 2.0</div><div class="card-tag">sim · ai</div></div>
+      <div class="card-desc">Expanded virtual patient simulator. Deeper case complexity and clinical reasoning.</div>
+      <span class="badge b-wip">WIP</span>
+      <div class="card-url">github.com/robbie-med/rhesus2.0</div>
+    </div>
+    <div class="card" data-tags="sim edu clinical" data-name="Vital Decisions" data-url="https://github.com/robbie-med/Vital-Decisions-Resident-s-Challenge">
+      <div class="card-hd"><div class="card-name">Vital Decisions</div><div class="card-tag">sim · game</div></div>
+      <div class="card-desc">Resident's challenge — scenario-based decision-making under pressure.</div>
+      <div class="card-url">github.com/robbie-med/Vital-Decisions-Resident-s-Challenge</div>
+    </div>
+    <div class="card" data-tags="sim edu clinical" data-name="CaseRunner" data-url="https://github.com/robbie-med/caserunner">
+      <div class="card-hd"><div class="card-name">CaseRunner</div><div class="card-tag">sim · classroom</div></div>
+      <div class="card-desc">Instructor-driven clinical case presentation tool for classroom teaching.</div>
+      <div class="card-url">github.com/robbie-med/caserunner</div>
+    </div>
+    <div class="card" data-tags="sim clinical nephrology" data-name="Rhenal" data-url="https://github.com/robbie-med/rhenal">
+      <div class="card-hd"><div class="card-name">Rhenal</div><div class="card-tag">sim · nephrology</div></div>
+      <div class="card-desc">Fluid and electrolyte physiology simulator — AKI, CKD, renal replacement scenarios.</div>
+      <div class="card-url">github.com/robbie-med/rhenal</div>
+    </div>
+    <div class="card" data-tags="sim id pharmacy game" data-name="GrowaBX" data-url="https://github.com/robbie-med/growabx">
+      <div class="card-hd"><div class="card-name">GrowaBX</div><div class="card-tag">id · game</div></div>
+      <div class="card-desc">A game to grow antibiotic knowledge — learn ID drugs the way you learned the periodic table.</div>
+      <div class="card-url">github.com/robbie-med/growabx</div>
+    </div>
+    <div class="card" data-tags="sim id pharmacy game new" data-name="AbxAhbs" data-url="https://github.com/robbie-med/AbxAhbs">
+      <div class="card-hd"><div class="card-name">AbxAhbs</div><div class="card-tag">id · game</div></div>
+      <div class="card-desc">Antibiotic six-pack. Pick six and defend the choice — quick-fire empiric coverage drill.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/AbxAhbs</div>
+    </div>
+    <div class="card" data-tags="sim id pharmacy game new" data-name="AhntibioticArmory" data-url="https://github.com/robbie-med/AhntibioticArmory">
+      <div class="card-hd"><div class="card-name">AhntibioticArmory</div><div class="card-tag">id · game</div></div>
+      <div class="card-desc">Antibiotic resistance game — gamified stewardship and resistance mechanism drills.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/AhntibioticArmory</div>
+    </div>
+    <div class="card" data-tags="sim edu cards" data-name="Cardiac Vector Simulation" data-url="https://github.com/robbie-med/Cardiac-Vector-Simulation">
+      <div class="card-hd"><div class="card-name">Cardiac Vector Sim</div><div class="card-tag">sim · cards</div></div>
+      <div class="card-desc">Interactive 12-lead ECG simulator powered by a dipole-summation physics engine — not template-based.</div>
+      <div class="card-url">github.com/robbie-med/Cardiac-Vector-Simulation</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: PEDIATRICS ── -->
-
-  <div class="cat-hd cat-group" data-cat="peds">
-    <div class="cat-dot" style="background:#7ad4c8"></div>
-    <div class="cat-name">Pediatrics</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">4 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="peds edu" data-name="PetaHamr" data-url="https://petalhamr.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">PetaHamr 🧠🔨</div><div class="tcard-tag">peds · drill</div></div>
-  <div class="tcard-desc">Hammer pediatric vital signs into your brain. Rapid-fire peds vitals reference and spaced-repetition memorization tool for students, interns, and anyone who goes rusty between rotations.</div>
-  <div class="tcard-url">petalhamr.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="peds clinical" data-name="Khaycal" data-url="https://khaycal.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Khaycal</div><div class="tcard-tag">peds · nutrition</div></div>
-  <div class="tcard-desc">Pediatric shift intake calorie calculator. Accounts for IV fluids, enteral feeds, and medication volumes. Displays hourly and shift totals per kilogram.</div>
-  <div class="tcard-url">khaycal.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="peds clinical" data-name="Asthma Action Plan" data-url="https://asthma.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Asthma Action Plan</div><div class="tcard-tag">peds · respiratory</div></div>
-  <div class="tcard-desc">Interactive pediatric asthma action plan generator. Produces printable green/yellow/red zone plans with patient-specific medication instructions for discharge education.</div>
-  <div class="tcard-url">asthma.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="peds clinical neonatal" data-name="Nheonatal" data-url="https://github.com/robbie-med/nheonatal">
-  <div class="tcard-hd"><div class="tcard-name">Nheonatal</div><div class="tcard-tag">peds · neonatal</div></div>
-  <div class="tcard-desc">Neonatal clinical reference and calculator suite. Dosing, bilirubin thresholds, and newborn nursery decision support tools.</div>
-  <div class="tcard-url">github.com/robbie-med/nheonatal</div>
-  <span class="tcard-badge badge-new">new</span>
-</div>
-```
-
+  <!-- CARDIOLOGY -->
+  <div class="cat cat-group"><div class="cdot" style="background:#ff8a7a"></div><div class="cname">Cardiology</div><div class="cline"></div><div class="ccount">4 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="cards clinical edu" data-name="EkhayG" data-url="https://github.com/robbie-med/EkhayG">
+      <div class="card-hd"><div class="card-name">EkhayG</div><div class="card-tag">ecg</div></div>
+      <div class="card-desc">ECG interpretation tool — built to make 12-lead analysis learnable at the bedside.</div>
+      <div class="card-url">github.com/robbie-med/EkhayG</div>
+    </div>
+    <div class="card" data-tags="cards edu new" data-name="EZEKG" data-url="https://github.com/robbie-med/EZEKG">
+      <div class="card-hd"><div class="card-name">EZEKG</div><div class="card-tag">ecg · learn</div></div>
+      <div class="card-desc">Approachable ECG learning — practice rhythm and morphology reading.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/EZEKG</div>
+    </div>
+    <div class="card" data-tags="cards model" data-name="Cardiacmodel" data-url="https://github.com/robbie-med/Cardiacmodel">
+      <div class="card-hd"><div class="card-name">Cardiacmodel</div><div class="card-tag">cards · model</div></div>
+      <div class="card-desc">Detailed cardiac physiology model — companion to the ECG simulator.</div>
+      <div class="card-url">github.com/robbie-med/Cardiacmodel</div>
+    </div>
+    <div class="card" data-tags="cards clinical new" data-name="HeartHome" data-url="https://github.com/robbie-med/HeartHome">
+      <div class="card-hd"><div class="card-name">HeartHome</div><div class="card-tag">hf · clinical</div></div>
+      <div class="card-desc">Heart failure central — reference, GDMT tracking, decompensation review.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/HeartHome</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: LAB & CALCULATORS ── -->
-
-  <div class="cat-hd cat-group" data-cat="lab">
-    <div class="cat-dot" style="background:var(--amber)"></div>
-    <div class="cat-name">Lab &amp; Calculators</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">8 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="lab clinical" data-name="RCV Analyzer" data-url="https://rcv.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">RCV Analyzer</div><div class="tcard-tag">lab · statistics</div></div>
-  <div class="tcard-desc">Reference Change Value calculator — is the change real? Paste chart labs, get instant RCV analysis distinguishing genuine physiologic change from biological and analytical noise.</div>
-  <div class="tcard-url">rcv.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical rx" data-name="NaBXCalc" data-url="https://nabxcalc.vercel.app">
-  <div class="tcard-hd"><div class="tcard-name">NaBXCalc</div><div class="tcard-tag">lab · electrolytes · rx</div></div>
-  <div class="tcard-desc">Estimates sodium load from IV antibiotic infusions. Critical for patients on fluid/sodium restriction receiving high-volume abx. MIT licensed.</div>
-  <div class="tcard-url">nabxcalc.vercel.app</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical heme" data-name="Hanemia" data-url="https://hanemia.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Hanemia</div><div class="tcard-tag">lab · heme</div></div>
-  <div class="tcard-desc">Phlebotomy blood-loss tracker for hospital-acquired anemia. Log daily tube draws, visualize cumulative iatrogenic losses, flag anemia risk before the hemoglobin drops.</div>
-  <div class="tcard-url">hanemia.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical nutrition" data-name="Rhefeed" data-url="https://rhefeed.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Rhefeed</div><div class="tcard-tag">lab · nutrition</div></div>
-  <div class="tcard-desc">Refeeding syndrome risk stratification and management guidance. Electrolyte monitoring schedule and safe caloric advancement calculator.</div>
-  <div class="tcard-url">rhefeed.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical nutrition" data-name="Rhetrain" data-url="https://rhetrain.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Rhetrain</div><div class="tcard-tag">clinical · nutrition</div></div>
-  <div class="tcard-desc">Physiology-based oral intake retraining protocol for patients after prolonged NPO or tube-feed dependence. GI motility rehabilitation guidance.</div>
-  <div class="tcard-url">rhetrain.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical cardiology" data-name="EkhayG" data-url="https://github.com/robbie-med/EkhayG">
-  <div class="tcard-hd"><div class="tcard-name">EkhayG</div><div class="tcard-tag">cardiology · ecg</div></div>
-  <div class="tcard-desc">"I couldn't understand it so I built this." An ECG interpretation tool — built to make 12-lead ECG analysis learnable and accessible at the bedside.</div>
-  <div class="tcard-url">github.com/robbie-med/EkhayG</div>
-  <span class="tcard-badge badge-new">new</span>
-</div>
-
-<div class="tcard" data-tags="lab clinical cardiology" data-name="Cardiacmodel" data-url="https://github.com/robbie-med/Cardiacmodel">
-  <div class="tcard-hd"><div class="tcard-name">Cardiacmodel</div><div class="tcard-tag">cardiology · model</div></div>
-  <div class="tcard-desc">In-detail cardiac physiology model. Companion to the ECG simulator — deep-dives into the electrophysiological underpinnings of cardiac waveforms.</div>
-  <div class="tcard-url">github.com/robbie-med/Cardiacmodel</div>
-</div>
-
-<div class="tcard" data-tags="lab clinical pharmacy" data-name="GrowaBX" data-url="https://github.com/robbie-med/growabx">
-  <div class="tcard-hd"><div class="tcard-name">GrowaBX</div><div class="tcard-tag">id · pharmacy · game</div></div>
-  <div class="tcard-desc">A game to grow your ID antibiotic knowledge. Gamified antimicrobial stewardship — learn your abx the way you learned your Pokémon.</div>
-  <div class="tcard-url">github.com/robbie-med/growabx</div>
-</div>
-```
-
+  <!-- OB -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--pink)"></div><div class="cname">OB / Labor &amp; Delivery</div><div class="cline"></div><div class="ccount">6 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="ob clinical" data-name="Labor Curve" data-url="https://laborlog.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Labor Curve</div><div class="card-tag">ob · tracker</div></div>
+      <div class="card-desc">When will she deliver? Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.</div>
+      <div class="card-url">laborlog.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="ob clinical" data-name="LahborLogger" data-url="https://github.com/robbie-med/lahborlogger">
+      <div class="card-hd"><div class="card-name">LahborLogger</div><div class="card-tag">ob · logger</div></div>
+      <div class="card-desc">Structured labor-floor logging with timeline visualization.</div>
+      <div class="card-url">github.com/robbie-med/lahborlogger</div>
+    </div>
+    <div class="card" data-tags="ob clinical" data-name="MyOB" data-url="https://github.com/robbie-med/MyOB">
+      <div class="card-hd"><div class="card-name">MyOB</div><div class="card-tag">ob · reference</div></div>
+      <div class="card-desc">Quick-access obstetric calculations and clinical decision support for the labor deck.</div>
+      <div class="card-url">github.com/robbie-med/MyOB</div>
+    </div>
+    <div class="card" data-tags="ob clinical" data-name="OBMM" data-url="https://github.com/robbie-med/OBMM">
+      <div class="card-hd"><div class="card-name">OBMM</div><div class="card-tag">ob · meds</div></div>
+      <div class="card-desc">OB medication and management reference — formulary and protocol quick-reference.</div>
+      <div class="card-url">github.com/robbie-med/OBMM</div>
+    </div>
+    <div class="card" data-tags="ob gyn screening clinical" data-name="Rhisk" data-url="https://rhisk.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Rhisk</div><div class="card-tag">gyn · screening</div></div>
+      <div class="card-desc">Cervical cancer screening risk calculator and colposcopy management — ASCCP-aligned.</div>
+      <div class="card-url">rhisk.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="ob clinical new" data-name="Prehgtime" data-url="https://github.com/robbie-med/Prehgtime">
+      <div class="card-hd"><div class="card-name">Prehgtime</div><div class="card-tag">ob · dating</div></div>
+      <div class="card-desc">Pregnancy timing — EDD, gestational age, and milestone calculations.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/Prehgtime</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: CLINICAL WORKFLOW ── -->
-
-  <div class="cat-hd cat-group" data-cat="clinical">
-    <div class="cat-dot" style="background:var(--green)"></div>
-    <div class="cat-name">Clinical Workflow &amp; Reference</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">11 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="clinical workflow resident" data-name="OhbTracker" data-url="https://ohbtracker.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">OhbTracker</div><div class="tcard-tag">clinical · rounding</div></div>
-  <div class="tcard-desc">For busy residents — duplicate-entry your patient data for a visual dashboard and team situational awareness. Minimal-friction rounding and handoff tool.</div>
-  <div class="tcard-url">ohbtracker.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="clinical workflow admin" data-name="By8" data-url="https://github.com/robbie-med/By8">
-  <div class="tcard-hd"><div class="tcard-name">By8</div><div class="tcard-tag">clinical · admin</div></div>
-  <div class="tcard-desc">You gotta sign those notes by eight. Cold hard stats on your note-signing compliance — admins breathing down your neck no more.</div>
-  <div class="tcard-url">github.com/robbie-med/By8</div>
-  <span class="tcard-badge badge-new">new</span>
-</div>
-
-<div class="tcard" data-tags="clinical pharmacy" data-name="Druhgs" data-url="https://github.com/robbie-med/druhgs">
-  <div class="tcard-hd"><div class="tcard-name">Druhgs</div><div class="tcard-tag">clinical · pharmacy</div></div>
-  <div class="tcard-desc">"You can quit." Drug reference and pharmacy tool — dosing, interactions, and clinical pharmacology quick-access for the floor.</div>
-  <div class="tcard-url">github.com/robbie-med/druhgs</div>
-</div>
-
-<div class="tcard" data-tags="clinical psychiatry" data-name="Lohns" data-url="https://github.com/robbie-med/lohns">
-  <div class="tcard-hd"><div class="tcard-name">Lohns</div><div class="tcard-tag">clinical · psychiatry</div></div>
-  <div class="tcard-desc">"Lohns, grohns, and psychiatric overtohns." Psychiatric clinical reference tool covering inpatient psych workflows and symptom assessment.</div>
-  <div class="tcard-url">github.com/robbie-med/lohns</div>
-</div>
-
-<div class="tcard" data-tags="clinical gi" data-name="PEG-J" data-url="https://github.com/robbie-med/Peg-J">
-  <div class="tcard-hd"><div class="tcard-name">PEG-J Reference</div><div class="tcard-tag">clinical · gi · procedures</div></div>
-  <div class="tcard-desc">PEG-J tube information resource. Clinical reference for percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</div>
-  <div class="tcard-url">github.com/robbie-med/Peg-J</div>
-</div>
-
-<div class="tcard" data-tags="clinical hospital admin" data-name="SF Price" data-url="https://sfprice.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Hospital Cost Itemizer</div><div class="tcard-tag">admin · transparency</div></div>
-  <div class="tcard-desc">Search and itemize SF hospital chargemaster data. Helps patients and providers understand what procedures actually cost — price transparency in practice.</div>
-  <div class="tcard-url">sfprice.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="clinical hospital admin" data-name="Sjprice" data-url="https://github.com/robbie-med/Sjprice">
-  <div class="tcard-hd"><div class="tcard-name">SJ Price</div><div class="tcard-tag">admin · transparency</div></div>
-  <div class="tcard-desc">San Jose hospital chargemaster search. Sister tool to SF Price — extending price transparency to SJ-area facilities.</div>
-  <div class="tcard-url">github.com/robbie-med/Sjprice</div>
-</div>
-
-<div class="tcard" data-tags="clinical nephrology" data-name="Rhenal" data-url="https://github.com/robbie-med/rhenal">
-  <div class="tcard-hd"><div class="tcard-name">Rhenal</div><div class="tcard-tag">clinical · nephrology</div></div>
-  <div class="tcard-desc">A renal simulator for MDs. Fluid and electrolyte physiology simulator — model AKI, CKD progression, and renal replacement scenarios.</div>
-  <div class="tcard-url">github.com/robbie-med/rhenal</div>
-</div>
-
-<div class="tcard" data-tags="clinical improve habits" data-name="Improve" data-url="https://github.com/robbie-med/improve">
-  <div class="tcard-hd"><div class="tcard-name">Improve</div><div class="tcard-tag">clinical · habits</div></div>
-  <div class="tcard-desc">Be always improving your fighting position. Habit and professional development tracker for residents who want to close the gap between who they are and who they're becoming.</div>
-  <div class="tcard-url">github.com/robbie-med/improve</div>
-</div>
-
-<div class="tcard" data-tags="clinical flightdeck" data-name="Flightdeck" data-url="https://github.com/robbie-med/Flightdeck">
-  <div class="tcard-hd"><div class="tcard-name">Flightdeck</div><div class="tcard-tag">clinical · dashboard</div></div>
-  <div class="tcard-desc">Flight tracking progressive web app — installable, GitHub Pages hosted. Parses FlightAware URLs, displays local-time-converted schedules, generates .ics files, renders great-circle routes on Leaflet map.</div>
-  <div class="tcard-url">github.com/robbie-med/Flightdeck</div>
-  <span class="tcard-badge badge-new">new</span>
-</div>
-
-<div class="tcard" data-tags="clinical evalue assessment" data-name="Evalue" data-url="https://github.com/robbie-med/evalue">
-  <div class="tcard-hd"><div class="tcard-name">Evalue</div><div class="tcard-tag">clinical · evaluation</div></div>
-  <div class="tcard-desc">Clinical evaluation and assessment tool. Structured competency tracking and evaluation form generator for residency programs.</div>
-  <div class="tcard-url">github.com/robbie-med/evalue</div>
-</div>
-```
-
+  <!-- PEDS -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--teal)"></div><div class="cname">Pediatrics</div><div class="cline"></div><div class="ccount">4 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="peds edu" data-name="PetaHamr" data-url="https://petalhamr.robbiemed.org">
+      <div class="card-hd"><div class="card-name">PetaHamr</div><div class="card-tag">peds · drill</div></div>
+      <div class="card-desc">Hammer pediatric vital signs into memory — spaced-repetition peds vitals drill.</div>
+      <div class="card-url">petalhamr.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="peds clinical nutrition" data-name="Khaycal" data-url="https://khaycal.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Khaycal</div><div class="card-tag">peds · nutrition</div></div>
+      <div class="card-desc">Pediatric shift intake calorie calculator — IVF, enteral feeds, meds. Hourly and shift totals per kg.</div>
+      <div class="card-url">khaycal.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="peds clinical" data-name="Asthma Action Plan" data-url="https://asthma.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Asthma Action Plan</div><div class="card-tag">peds · resp</div></div>
+      <div class="card-desc">Printable green/yellow/red zone plans with patient-specific medication instructions.</div>
+      <div class="card-url">asthma.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="peds clinical neonatal" data-name="Nheonatal" data-url="https://github.com/robbie-med/nheonatal">
+      <div class="card-hd"><div class="card-name">Nheonatal</div><div class="card-tag">peds · neo</div></div>
+      <div class="card-desc">Neonatal calculator suite — dosing, bilirubin thresholds, nursery decision support.</div>
+      <div class="card-url">github.com/robbie-med/nheonatal</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: EDUCATION ── -->
-
-  <div class="cat-hd cat-group" data-cat="edu">
-    <div class="cat-dot" style="background:var(--purple)"></div>
-    <div class="cat-name">Medical Education</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">3 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="edu language learning" data-name="Kapp" data-url="https://github.com/robbie-med/kapp">
-  <div class="tcard-hd"><div class="tcard-name">Kapp</div><div class="tcard-tag">edu · language</div></div>
-  <div class="tcard-desc">Personalized Korean language learning app. Adaptive vocabulary and grammar drills tailored to context and progress.</div>
-  <div class="tcard-url">github.com/robbie-med/kapp</div>
-</div>
-
-<div class="tcard" data-tags="edu clinical" data-name="Pahnel" data-url="https://github.com/robbie-med/pahnel">
-  <div class="tcard-hd"><div class="tcard-name">Pahnel</div><div class="tcard-tag">edu · panel</div></div>
-  <div class="tcard-desc">Python-based education panel tool. Curriculum and case panel management for structured clinical teaching.</div>
-  <div class="tcard-url">github.com/robbie-med/pahnel</div>
-</div>
-
-<div class="tcard" data-tags="edu cms" data-name="Cmsiphy" data-url="https://github.com/robbie-med/cmsiphy">
-  <div class="tcard-hd"><div class="tcard-name">Cmsiphy</div><div class="tcard-tag">edu · cms</div></div>
-  <div class="tcard-desc">A local app to CMSify your notes. Converts structured notes into a browseable content management interface — education content pipeline tool.</div>
-  <div class="tcard-url">github.com/robbie-med/cmsiphy</div>
-</div>
-```
-
-  </div>
-
-  <!-- ── CATEGORY: PERSONAL / FAITH / LIFE ── -->
-
-  <div class="cat-hd cat-group" data-cat="personal life">
-    <div class="cat-dot" style="background:#d4c87a"></div>
-    <div class="cat-name">Personal, Faith &amp; Life</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">13 tools</div>
-  </div>
-  <div class="tgrid">
-
-```
-<div class="tcard" data-tags="personal faith" data-name="Prhay" data-url="https://prhay.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Prhay</div><div class="tcard-tag">personal · faith</div></div>
-  <div class="tcard-desc">Digital prayer notebook. Log intentions, track answered prayers, maintain a private prayer journal without cloud dependency or surveillance.</div>
-  <div class="tcard-url">prhay.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="personal faith" data-name="Bhible" data-url="https://bhible.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Bhible</div><div class="tcard-tag">personal · faith</div></div>
-  <div class="tcard-desc">Bible reading tracker. Log progress through reading plans, visualize completion, build consistency streaks. Local-first.</div>
-  <div class="tcard-url">bhible.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="personal mortality" data-name="Mohri" data-url="https://mohri.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Mohri</div><div class="tcard-tag">personal · mortality</div></div>
-  <div class="tcard-desc">Calculate time remaining with loved ones based on actuarial tables and visit frequency. Mortality awareness as motivation for presence — memento mori as software.</div>
-  <div class="tcard-url">mohri.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="personal mortality life" data-name="LihfeCalendar" data-url="https://github.com/robbie-med/lihfecalendar">
-  <div class="tcard-hd"><div class="tcard-name">LihfeCalendar</div><div class="tcard-tag">personal · life · weeks</div></div>
-  <div class="tcard-desc">Visualize two lifespans in weeks — reflect, pray, plan together. 📅 A joint life-weeks calendar for couples or families to visualize shared time.</div>
-  <div class="tcard-url">github.com/robbie-med/lihfecalendar</div>
-</div>
-
-<div class="tcard" data-tags="personal qs health" data-name="Sehx" data-url="https://sehx.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Sehx</div><div class="tcard-tag">personal · quantified self</div></div>
-  <div class="tcard-desc">Quantified self taken to its logical conclusion — first app of its kind. Private, local-first data. No cloud. No judgment. You know what it tracks.</div>
-  <div class="tcard-url">sehx.robbiemed.org</div>
-  <span class="tcard-badge badge-priv">local-first</span>
-</div>
-
-<div class="tcard" data-tags="personal qs health female" data-name="Pehriod" data-url="https://github.com/robbie-med/pehriod">
-  <div class="tcard-hd"><div class="tcard-name">Pehriod</div><div class="tcard-tag">personal · health · qs</div></div>
-  <div class="tcard-desc">Privacy-first menstrual cycle tracking. Local-first — no apps sending your reproductive data to insurance companies.</div>
-  <div class="tcard-url">github.com/robbie-med/pehriod</div>
-  <span class="tcard-badge badge-priv">local-first</span>
-</div>
-
-<div class="tcard" data-tags="personal home declutter" data-name="Cluhter" data-url="https://github.com/robbie-med/cluhter">
-  <div class="tcard-hd"><div class="tcard-name">Cluhter</div><div class="tcard-tag">personal · home</div></div>
-  <div class="tcard-desc">Stewardship in practice: a guided decluttering app with purpose. 🧹 Intentional minimalism — not just tidying, but thinking through what you keep and why.</div>
-  <div class="tcard-url">github.com/robbie-med/cluhter</div>
-</div>
-
-<div class="tcard" data-tags="personal home organize" data-name="HomeOrganihzer" data-url="https://github.com/robbie-med/homeorganihzer">
-  <div class="tcard-hd"><div class="tcard-name">HomeOrganihzer</div><div class="tcard-tag">personal · home</div></div>
-  <div class="tcard-desc">Static household organizer turning notebook forms into searchable records. 📝 No account, no cloud — your household data stays in your house.</div>
-  <div class="tcard-url">github.com/robbie-med/homeorganihzer</div>
-</div>
-
-<div class="tcard" data-tags="personal pets cat" data-name="Bohma Tracker" data-url="https://github.com/robbie-med/bohma-tracker">
-  <div class="tcard-hd"><div class="tcard-name">Bohma Tracker 🐈‍⬛</div><div class="tcard-tag">personal · pets</div></div>
-  <div class="tcard-desc">Comprehensive cat care tracking with AI-powered guidance. Log meals, medications, behaviors, vet visits — with intelligent pattern recognition.</div>
-  <div class="tcard-url">github.com/robbie-med/bohma-tracker</div>
-  <span class="tcard-badge badge-ai">AI-powered</span>
-</div>
-
-<div class="tcard" data-tags="personal days memory" data-name="DayhCounter" data-url="https://github.com/robbie-med/dayhcounter">
-  <div class="tcard-hd"><div class="tcard-name">DayhCounter</div><div class="tcard-tag">personal · memory</div></div>
-  <div class="tcard-desc">Track days since important life moments with desktop notifications. 🕒 Mark what matters and let the days speak for themselves.</div>
-  <div class="tcard-url">github.com/robbie-med/dayhcounter</div>
-</div>
-
-<div class="tcard" data-tags="personal recipe food family" data-name="Souhp" data-url="https://github.com/robbie-med/souhp">
-  <div class="tcard-hd"><div class="tcard-name">Souhp</div><div class="tcard-tag">personal · recipes</div></div>
-  <div class="tcard-desc">Password-protected family recipe storage with client-side encryption. 🥣 Your grandmother's recipes, encrypted. No subscription. No cloud. Just your family's food.</div>
-  <div class="tcard-url">github.com/robbie-med/souhp</div>
-  <span class="tcard-badge badge-priv">encrypted</span>
-</div>
-
-<div class="tcard" data-tags="personal ancestry family" data-name="Ancehstral" data-url="https://github.com/robbie-med/Ancehstral">
-  <div class="tcard-hd"><div class="tcard-name">Ancehstral</div><div class="tcard-tag">personal · family · history</div></div>
-  <div class="tcard-desc">Family ancestry and lineage visualization. Explore and map your family history without surrendering your DNA to a corporation.</div>
-  <div class="tcard-url">github.com/robbie-med/Ancehstral</div>
-</div>
-
-<div class="tcard" data-tags="personal analog notes" data-name="Analog" data-url="https://github.com/robbie-med/Analog">
-  <div class="tcard-hd"><div class="tcard-name">Analog</div><div class="tcard-tag">personal · notes</div></div>
-  <div class="tcard-desc">Analog-to-digital bridge for note-taking. Capture and organize analog notes into a searchable digital format — the best of both worlds.</div>
-  <div class="tcard-url">github.com/robbie-med/Analog</div>
-</div>
-```
-
+  <!-- LABS / CALC -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--amber)"></div><div class="cname">Labs &amp; Calculators</div><div class="cline"></div><div class="ccount">6 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="lab clinical stats" data-name="RCV Analyzer" data-url="https://rcv.robbiemed.org">
+      <div class="card-hd"><div class="card-name">RCV Analyzer</div><div class="card-tag">lab · stats</div></div>
+      <div class="card-desc">Reference Change Value — is the change real? Distinguishes physiologic change from biological/analytical noise.</div>
+      <div class="card-url">rcv.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="lab clinical rx" data-name="NaBXCalc" data-url="https://nabxcalc.vercel.app">
+      <div class="card-hd"><div class="card-name">NaBXCalc</div><div class="card-tag">lab · electrolytes</div></div>
+      <div class="card-desc">Estimates sodium load from IV antibiotic infusions — critical for fluid/sodium-restricted patients on high-volume abx.</div>
+      <div class="card-url">nabxcalc.vercel.app</div>
+    </div>
+    <div class="card" data-tags="lab clinical heme" data-name="Hanemia" data-url="https://hanemia.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Hanemia</div><div class="card-tag">lab · heme</div></div>
+      <div class="card-desc">Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.</div>
+      <div class="card-url">hanemia.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="lab clinical nutrition" data-name="Rhefeed" data-url="https://rhefeed.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Rhefeed</div><div class="card-tag">lab · nutrition</div></div>
+      <div class="card-desc">Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.</div>
+      <div class="card-url">rhefeed.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="lab clinical nutrition" data-name="Rhetrain" data-url="https://rhetrain.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Rhetrain</div><div class="card-tag">nutrition · gi</div></div>
+      <div class="card-desc">Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.</div>
+      <div class="card-url">rhetrain.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="lab edu stats new" data-name="Step-3-biostats" data-url="https://github.com/robbie-med/Step-3-biostats">
+      <div class="card-hd"><div class="card-name">Step 3 Biostats</div><div class="card-tag">edu · stats</div></div>
+      <div class="card-desc">Biostatistics drills for USMLE Step 3 — sensitivity, specificity, LR, study design.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/Step-3-biostats</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: FINANCE ── -->
-
-  <div class="cat-hd cat-group" data-cat="finance">
-    <div class="cat-dot" style="background:#8ad47a"></div>
-    <div class="cat-name">Finance &amp; Economics</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">5 tools</div>
+  <!-- CLINICAL -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--green)"></div><div class="cname">Clinical Workflow &amp; Reference</div><div class="cline"></div><div class="ccount">17 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="clinical workflow rounding" data-name="OhbTracker" data-url="https://ohbtracker.robbiemed.org">
+      <div class="card-hd"><div class="card-name">OhbTracker</div><div class="card-tag">rounding</div></div>
+      <div class="card-desc">Duplicate-entry patient data into a visual dashboard. Minimal-friction rounding and team handoff.</div>
+      <div class="card-url">ohbtracker.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="clinical workflow new" data-name="RhoundingOS" data-url="https://github.com/robbie-med/RhoundingOS">
+      <div class="card-hd"><div class="card-name">RhoundingOS</div><div class="card-tag">rounding · scribe</div></div>
+      <div class="card-desc">Scribe slickly — capture, structure, and export the bedside workflow.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/RhoundingOS</div>
+    </div>
+    <div class="card" data-tags="clinical admin" data-name="By8" data-url="https://github.com/robbie-med/By8">
+      <div class="card-hd"><div class="card-name">By8</div><div class="card-tag">admin · notes</div></div>
+      <div class="card-desc">Cold hard stats on your note-signing compliance. Sign 'em by eight.</div>
+      <div class="card-url">github.com/robbie-med/By8</div>
+    </div>
+    <div class="card" data-tags="clinical pharmacy" data-name="Druhgs" data-url="https://github.com/robbie-med/druhgs">
+      <div class="card-hd"><div class="card-name">Druhgs</div><div class="card-tag">pharmacy</div></div>
+      <div class="card-desc">Drug reference — dosing, interactions, clinical pharmacology, quick-access on the floor.</div>
+      <div class="card-url">github.com/robbie-med/druhgs</div>
+    </div>
+    <div class="card" data-tags="clinical psychiatry" data-name="Lohns" data-url="https://github.com/robbie-med/lohns">
+      <div class="card-hd"><div class="card-name">Lohns</div><div class="card-tag">psych</div></div>
+      <div class="card-desc">Psychiatric clinical reference — inpatient psych workflows and symptom assessment.</div>
+      <div class="card-url">github.com/robbie-med/lohns</div>
+    </div>
+    <div class="card" data-tags="clinical gi procedures" data-name="PEG-J" data-url="https://github.com/robbie-med/Peg-J">
+      <div class="card-hd"><div class="card-name">PEG-J Reference</div><div class="card-tag">gi · proc</div></div>
+      <div class="card-desc">Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</div>
+      <div class="card-url">github.com/robbie-med/Peg-J</div>
+    </div>
+    <div class="card" data-tags="clinical admin transparency" data-name="SF Price" data-url="https://sfprice.robbiemed.org">
+      <div class="card-hd"><div class="card-name">SF Price</div><div class="card-tag">admin · transparency</div></div>
+      <div class="card-desc">Search and itemize SF hospital chargemaster data — price transparency in practice.</div>
+      <div class="card-url">sfprice.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="clinical admin transparency" data-name="SJ Price" data-url="https://github.com/robbie-med/Sjprice">
+      <div class="card-hd"><div class="card-name">SJ Price</div><div class="card-tag">admin · transparency</div></div>
+      <div class="card-desc">San Jose hospital chargemaster search — sister tool to SF Price.</div>
+      <div class="card-url">github.com/robbie-med/Sjprice</div>
+    </div>
+    <div class="card" data-tags="clinical habits" data-name="Improve" data-url="https://github.com/robbie-med/improve">
+      <div class="card-hd"><div class="card-name">Improve</div><div class="card-tag">habits</div></div>
+      <div class="card-desc">Habit and development tracker. Be always improving your fighting position.</div>
+      <div class="card-url">github.com/robbie-med/improve</div>
+    </div>
+    <div class="card" data-tags="clinical dashboard" data-name="Flightdeck" data-url="https://github.com/robbie-med/Flightdeck">
+      <div class="card-hd"><div class="card-name">Flightdeck</div><div class="card-tag">dashboard</div></div>
+      <div class="card-desc">Flight tracking PWA — parses FlightAware URLs, converts schedules, generates .ics, renders great-circle routes on a Leaflet map.</div>
+      <div class="card-url">github.com/robbie-med/Flightdeck</div>
+    </div>
+    <div class="card" data-tags="clinical evaluation" data-name="Evalue" data-url="https://github.com/robbie-med/evalue">
+      <div class="card-hd"><div class="card-name">Evalue</div><div class="card-tag">evaluation</div></div>
+      <div class="card-desc">Structured competency tracking and evaluation form generator for residency programs.</div>
+      <div class="card-url">github.com/robbie-med/evalue</div>
+    </div>
+    <div class="card" data-tags="clinical addiction new" data-name="EtOH" data-url="https://github.com/robbie-med/EtOH">
+      <div class="card-hd"><div class="card-name">EtOH</div><div class="card-tag">addiction · score</div></div>
+      <div class="card-desc">Alcohol withdrawal assessment — score it, watch it, treat it.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/EtOH</div>
+    </div>
+    <div class="card" data-tags="clinical id new" data-name="FOU" data-url="https://github.com/robbie-med/FOU">
+      <div class="card-hd"><div class="card-name">FOU</div><div class="card-tag">id · workup</div></div>
+      <div class="card-desc">Fever of unknown origin — structured workup framework. Like an IOU, but worse.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/FOU</div>
+    </div>
+    <div class="card" data-tags="clinical utility new" data-name="TahlkTime" data-url="https://github.com/robbie-med/TahlkTime">
+      <div class="card-hd"><div class="card-name">TahlkTime</div><div class="card-tag">utility</div></div>
+      <div class="card-desc">Measure the speech — track who talks and for how long in a conversation or encounter.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/TahlkTime</div>
+    </div>
+    <div class="card" data-tags="clinical emergency new" data-name="EDhelp" data-url="https://github.com/robbie-med/EDhelp">
+      <div class="card-hd"><div class="card-name">EDhelp</div><div class="card-tag">ed · workflow</div></div>
+      <div class="card-desc">Emergency department workflow assistant — fast triage and disposition support.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/EDhelp</div>
+    </div>
+    <div class="card" data-tags="clinical ophth new" data-name="EyeTriahge" data-url="https://github.com/robbie-med/EyeTriahge">
+      <div class="card-hd"><div class="card-name">EyeTriahge</div><div class="card-tag">ophth · triage</div></div>
+      <div class="card-desc">Ophthalmology triage — structured assessment of common eye complaints.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/EyeTriahge</div>
+    </div>
+    <div class="card" data-tags="clinical phr new" data-name="SelfPatientRecord" data-url="https://github.com/robbie-med/SelfPatientRecord">
+      <div class="card-hd"><div class="card-name">SelfPatientRecord</div><div class="card-tag">phr · personal</div></div>
+      <div class="card-desc">A personal health record built for the patient — own your chart.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/SelfPatientRecord</div>
+    </div>
   </div>
-  <div class="tgrid">
 
-```
-<div class="tcard" data-tags="finance personal" data-name="CashFlow" data-url="https://cash.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">CashFlow</div><div class="tcard-tag">finance · salary</div></div>
-  <div class="tcard-desc">Real-time salary tracker with expense management. Visualizes income accumulation to the second and tracks burn rate vs. earnings. For the resident who wants to feel every dollar.</div>
-  <div class="tcard-url">cash.robbiemed.org</div>
-</div>
-
-<div class="tcard" data-tags="finance personal" data-name="LifeOfCash" data-url="https://github.com/robbie-med/lifeofcash">
-  <div class="tcard-hd"><div class="tcard-name">LifeOfCash</div><div class="tcard-tag">finance · lifetime</div></div>
-  <div class="tcard-desc">Lifetime financial flow visualizer. See your entire earning trajectory — not just this paycheck but the full arc of a career in medicine.</div>
-  <div class="tcard-url">github.com/robbie-med/lifeofcash</div>
-</div>
-
-<div class="tcard" data-tags="finance loans medical" data-name="LoanAhlyzer" data-url="https://github.com/robbie-med/LoanAhlyzer">
-  <div class="tcard-hd"><div class="tcard-name">LoanAhlyzer</div><div class="tcard-tag">finance · loans · med school</div></div>
-  <div class="tcard-desc">Medical school loan analysis and repayment planning. Models IBR, PSLF, refinancing, and repayment scenarios for the physician with six-figure debt.</div>
-  <div class="tcard-url">github.com/robbie-med/LoanAhlyzer</div>
-</div>
-
-<div class="tcard" data-tags="finance tracking personal" data-name="MoneyHtrack" data-url="https://github.com/robbie-med/moneyhtrack">
-  <div class="tcard-hd"><div class="tcard-name">MoneyHtrack</div><div class="tcard-tag">finance · android · local</div></div>
-  <div class="tcard-desc">Simple Android expense tracking with local-only data storage. 💰 No subscription, no sync, no surveillance — your spending data stays on your device.</div>
-  <div class="tcard-url">github.com/robbie-med/moneyhtrack</div>
-  <span class="tcard-badge badge-priv">local-only</span>
-</div>
-
-<div class="tcard" data-tags="finance lifeahtlas atlas" data-name="Lifeahtlas" data-url="https://github.com/robbie-med/lifeahtlas">
-  <div class="tcard-hd"><div class="tcard-name">Lifeahtlas</div><div class="tcard-tag">finance · life · planning</div></div>
-  <div class="tcard-desc">Life atlas — visualize your entire life plan across time. Financial, personal, and career milestones mapped on a unified timeline.</div>
-  <div class="tcard-url">github.com/robbie-med/lifeahtlas</div>
-</div>
-```
-
+  <!-- EDU -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--purple)"></div><div class="cname">Education</div><div class="cline"></div><div class="ccount">4 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="edu language" data-name="Kapp" data-url="https://github.com/robbie-med/kapp">
+      <div class="card-hd"><div class="card-name">Kapp</div><div class="card-tag">korean · adaptive</div></div>
+      <div class="card-desc">Personalized Korean language app — adaptive vocabulary and grammar drills.</div>
+      <div class="card-url">github.com/robbie-med/kapp</div>
+    </div>
+    <div class="card" data-tags="edu language new" data-name="Koreancards" data-url="https://github.com/robbie-med/Koreancards">
+      <div class="card-hd"><div class="card-name">Koreancards</div><div class="card-tag">korean · cards</div></div>
+      <div class="card-desc">Korean flashcards — spaced-repetition Hangul vocabulary.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/Koreancards</div>
+    </div>
+    <div class="card" data-tags="edu clinical" data-name="Pahnel" data-url="https://github.com/robbie-med/pahnel">
+      <div class="card-hd"><div class="card-name">Pahnel</div><div class="card-tag">curriculum</div></div>
+      <div class="card-desc">Python-based education panel — curriculum and case panel management for structured teaching.</div>
+      <div class="card-url">github.com/robbie-med/pahnel</div>
+    </div>
+    <div class="card" data-tags="edu cms" data-name="Cmsiphy" data-url="https://github.com/robbie-med/cmsiphy">
+      <div class="card-hd"><div class="card-name">Cmsiphy</div><div class="card-tag">cms · notes</div></div>
+      <div class="card-desc">A local app to CMSify notes — converts structured notes into a browseable content interface.</div>
+      <div class="card-url">github.com/robbie-med/cmsiphy</div>
+    </div>
   </div>
 
-  <!-- ── CATEGORY: PRIVACY & UTILITIES ── -->
-
-  <div class="cat-hd cat-group" data-cat="personal">
-    <div class="cat-dot" style="background:var(--red)"></div>
-    <div class="cat-name">Privacy &amp; Utilities</div>
-    <div class="cat-line"></div>
-    <div class="cat-count">6 tools</div>
+  <!-- LIFE -->
+  <div class="cat cat-group"><div class="cdot" style="background:#d4c87a"></div><div class="cname">Life, Home &amp; Faith</div><div class="cline"></div><div class="ccount">15 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="life faith" data-name="Prhay" data-url="https://prhay.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Prhay</div><div class="card-tag">faith</div></div>
+      <div class="card-desc">Digital prayer notebook — log intentions, track answered prayers, local-first.</div>
+      <div class="card-url">prhay.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="life faith" data-name="Bhible" data-url="https://bhible.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Bhible</div><div class="card-tag">faith · reading</div></div>
+      <div class="card-desc">Bible reading tracker — log progress through plans, build consistency. Local-first.</div>
+      <div class="card-url">bhible.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="life mortality" data-name="Mohri" data-url="https://mohri.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Mohri</div><div class="card-tag">mortality</div></div>
+      <div class="card-desc">Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.</div>
+      <div class="card-url">mohri.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="life calendar" data-name="LihfeCalendar" data-url="https://github.com/robbie-med/lihfecalendar">
+      <div class="card-hd"><div class="card-name">LihfeCalendar</div><div class="card-tag">weeks</div></div>
+      <div class="card-desc">Visualize two lifespans in weeks — joint life-weeks calendar for couples or families.</div>
+      <div class="card-url">github.com/robbie-med/lihfecalendar</div>
+    </div>
+    <div class="card" data-tags="life qs health" data-name="Sehx" data-url="https://sehx.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Sehx</div><div class="card-tag">qs · private</div></div>
+      <div class="card-desc">Quantified-self taken to its logical conclusion. Private, local-first. No cloud, no judgment.</div>
+      <span class="badge b-local">local</span>
+      <div class="card-url">sehx.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="life qs new" data-name="SPEHX" data-url="https://github.com/robbie-med/SPEHX">
+      <div class="card-hd"><div class="card-name">SPEHX</div><div class="card-tag">qs · private</div></div>
+      <div class="card-desc">Companion tracker to Sehx — local-first, private by default.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/SPEHX</div>
+    </div>
+    <div class="card" data-tags="life qs health" data-name="Pehriod" data-url="https://github.com/robbie-med/pehriod">
+      <div class="card-hd"><div class="card-name">Pehriod</div><div class="card-tag">cycle · private</div></div>
+      <div class="card-desc">Privacy-first menstrual cycle tracking. Local-first — no apps sending reproductive data anywhere.</div>
+      <span class="badge b-local">local</span>
+      <div class="card-url">github.com/robbie-med/pehriod</div>
+    </div>
+    <div class="card" data-tags="life home" data-name="Cluhter" data-url="https://github.com/robbie-med/cluhter">
+      <div class="card-hd"><div class="card-name">Cluhter</div><div class="card-tag">home · declutter</div></div>
+      <div class="card-desc">Stewardship in practice — a guided decluttering app with purpose.</div>
+      <div class="card-url">github.com/robbie-med/cluhter</div>
+    </div>
+    <div class="card" data-tags="life home" data-name="HomeOrganihzer" data-url="https://github.com/robbie-med/homeorganihzer">
+      <div class="card-hd"><div class="card-name">HomeOrganihzer</div><div class="card-tag">home · records</div></div>
+      <div class="card-desc">Static household organizer — turns notebook forms into searchable records. No account, no cloud.</div>
+      <div class="card-url">github.com/robbie-med/homeorganihzer</div>
+    </div>
+    <div class="card" data-tags="life pets" data-name="Bohma Tracker" data-url="https://github.com/robbie-med/bohma-tracker">
+      <div class="card-hd"><div class="card-name">Bohma Tracker</div><div class="card-tag">pets · cats</div></div>
+      <div class="card-desc">Cat care tracking — meals, meds, behaviors, vet visits, with pattern recognition.</div>
+      <span class="badge b-ai">AI</span>
+      <div class="card-url">github.com/robbie-med/bohma-tracker</div>
+    </div>
+    <div class="card" data-tags="life memory" data-name="DayhCounter" data-url="https://github.com/robbie-med/dayhcounter">
+      <div class="card-hd"><div class="card-name">DayhCounter</div><div class="card-tag">memory</div></div>
+      <div class="card-desc">Track days since important life moments, with desktop notifications.</div>
+      <div class="card-url">github.com/robbie-med/dayhcounter</div>
+    </div>
+    <div class="card" data-tags="life recipes family" data-name="Souhp" data-url="https://github.com/robbie-med/souhp">
+      <div class="card-hd"><div class="card-name">Souhp</div><div class="card-tag">recipes</div></div>
+      <div class="card-desc">Password-protected family recipe storage with client-side encryption. Encrypted, no subscription.</div>
+      <span class="badge b-local">encrypted</span>
+      <div class="card-url">github.com/robbie-med/souhp</div>
+    </div>
+    <div class="card" data-tags="life family history" data-name="Ancehstral" data-url="https://github.com/robbie-med/Ancehstral">
+      <div class="card-hd"><div class="card-name">Ancehstral</div><div class="card-tag">family · history</div></div>
+      <div class="card-desc">Family ancestry visualization — map your lineage without handing DNA to a corporation.</div>
+      <div class="card-url">github.com/robbie-med/Ancehstral</div>
+    </div>
+    <div class="card" data-tags="life notes" data-name="Analog" data-url="https://github.com/robbie-med/Analog">
+      <div class="card-hd"><div class="card-name">Analog</div><div class="card-tag">notes</div></div>
+      <div class="card-desc">Analog-to-digital bridge for note-taking — capture and organize handwritten notes searchably.</div>
+      <div class="card-url">github.com/robbie-med/Analog</div>
+    </div>
+    <div class="card" data-tags="life decisions new" data-name="Loop Reality Engine" data-url="https://github.com/robbie-med/The-Loop-Reality-Engine">
+      <div class="card-hd"><div class="card-name">Loop Reality Engine</div><div class="card-tag">decisions · local</div></div>
+      <div class="card-desc">Local-first personal operating system for decision-making under real-world constraints.</div>
+      <span class="badge b-new">new</span>
+      <div class="card-url">github.com/robbie-med/The-Loop-Reality-Engine</div>
+    </div>
   </div>
-  <div class="tgrid">
 
-```
-<div class="tcard" data-tags="personal privacy utility" data-name="Encryptor" data-url="https://encryptor.robbiemed.org">
-  <div class="tcard-hd"><div class="tcard-name">Encryptor</div><div class="tcard-tag">privacy · utility</div></div>
-  <div class="tcard-desc">Client-side code block encryption with password. AES encryption entirely in-browser — zero server contact. Paste, encrypt, share safely. Nothing leaves your device.</div>
-  <div class="tcard-url">encryptor.robbiemed.org</div>
-  <span class="tcard-badge badge-priv">zero-server</span>
-</div>
-
-<div class="tcard" data-tags="personal privacy utility bypass" data-name="Bypass" data-url="https://github.com/robbie-med/bypass">
-  <div class="tcard-hd"><div class="tcard-name">Bypass</div><div class="tcard-tag">privacy · utility</div></div>
-  <div class="tcard-desc">Bypass tool for navigating around paywalls and institutional access barriers to knowledge that should be free.</div>
-  <div class="tcard-url">github.com/robbie-med/bypass</div>
-</div>
-
-<div class="tcard" data-tags="personal utility" data-name="WheresGeorge" data-url="https://github.com/robbie-med/wheresgeorge">
-  <div class="tcard-hd"><div class="tcard-name">WheresGeorge</div><div class="tcard-tag">utility · fun</div></div>
-  <div class="tcard-desc">Take a pick, save to WheresGeorge. Bill-tracking companion app for the Where's George currency tracking community.</div>
-  <div class="tcard-url">github.com/robbie-med/wheresgeorge</div>
-</div>
-
-<div class="tcard" data-tags="personal utility ohptimize" data-name="Ohptimize" data-url="https://github.com/robbie-med/ohptimize">
-  <div class="tcard-hd"><div class="tcard-name">Ohptimize</div><div class="tcard-tag">utility · optimization</div></div>
-  <div class="tcard-desc">"Ohptiize...for what?" — A personal optimization tool for identifying and systematically improving high-leverage areas of daily life.</div>
-  <div class="tcard-url">github.com/robbie-med/ohptimize</div>
-</div>
-
-<div class="tcard" data-tags="personal blog writing" data-name="Blog" data-url="https://github.com/robbie-med/blog">
-  <div class="tcard-hd"><div class="tcard-name">Blog</div><div class="tcard-tag">writing · personal</div></div>
-  <div class="tcard-desc">Personal blog and writing platform. Static-site, open-source, no tracking — writing that belongs to the author.</div>
-  <div class="tcard-url">github.com/robbie-med/blog</div>
-</div>
-
-<div class="tcard" data-tags="personal book reading" data-name="Book" data-url="https://github.com/robbie-med/book">
-  <div class="tcard-hd"><div class="tcard-name">Book</div><div class="tcard-tag">personal · reading</div></div>
-  <div class="tcard-desc">Reading log and book tracker. Keep a running record of what you've read, want to read, and are working through — without Goodreads knowing.</div>
-  <div class="tcard-url">github.com/robbie-med/book</div>
-</div>
-```
-
+  <!-- FINANCE -->
+  <div class="cat cat-group"><div class="cdot" style="background:#8ad47a"></div><div class="cname">Finance</div><div class="cline"></div><div class="ccount">5 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="finance salary" data-name="CashFlow" data-url="https://cash.robbiemed.org">
+      <div class="card-hd"><div class="card-name">CashFlow</div><div class="card-tag">salary</div></div>
+      <div class="card-desc">Real-time salary tracker with expense management — earnings to the second, burn rate vs income.</div>
+      <div class="card-url">cash.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="finance lifetime" data-name="LifeOfCash" data-url="https://github.com/robbie-med/lifeofcash">
+      <div class="card-hd"><div class="card-name">LifeOfCash</div><div class="card-tag">lifetime</div></div>
+      <div class="card-desc">Lifetime financial flow visualizer — see the full arc of a career, not just this paycheck.</div>
+      <div class="card-url">github.com/robbie-med/lifeofcash</div>
+    </div>
+    <div class="card" data-tags="finance loans" data-name="LoanAhlyzer" data-url="https://github.com/robbie-med/LoanAhlyzer">
+      <div class="card-hd"><div class="card-name">LoanAhlyzer</div><div class="card-tag">loans</div></div>
+      <div class="card-desc">Med school loan analysis — IBR, PSLF, refinance, and repayment scenario modeling.</div>
+      <div class="card-url">github.com/robbie-med/LoanAhlyzer</div>
+    </div>
+    <div class="card" data-tags="finance android" data-name="MoneyHtrack" data-url="https://github.com/robbie-med/moneyhtrack">
+      <div class="card-hd"><div class="card-name">MoneyHtrack</div><div class="card-tag">android · local</div></div>
+      <div class="card-desc">Android expense tracking with local-only data. No subscription, no sync, no surveillance.</div>
+      <span class="badge b-local">local</span>
+      <div class="card-url">github.com/robbie-med/moneyhtrack</div>
+    </div>
+    <div class="card" data-tags="finance planning" data-name="Lifeahtlas" data-url="https://github.com/robbie-med/lifeahtlas">
+      <div class="card-hd"><div class="card-name">Lifeahtlas</div><div class="card-tag">life · plan</div></div>
+      <div class="card-desc">Life atlas — financial, personal, and career milestones on a unified timeline.</div>
+      <div class="card-url">github.com/robbie-med/lifeahtlas</div>
+    </div>
   </div>
 
-  <!-- no results -->
+  <!-- UTILITY -->
+  <div class="cat cat-group"><div class="cdot" style="background:var(--red)"></div><div class="cname">Utilities &amp; Writing</div><div class="cline"></div><div class="ccount">6 tools</div></div>
+  <div class="grid">
+    <div class="card" data-tags="util privacy" data-name="Encryptor" data-url="https://encryptor.robbiemed.org">
+      <div class="card-hd"><div class="card-name">Encryptor</div><div class="card-tag">crypto</div></div>
+      <div class="card-desc">Client-side code-block encryption with password — AES in-browser, zero server contact.</div>
+      <span class="badge b-local">in-browser</span>
+      <div class="card-url">encryptor.robbiemed.org</div>
+    </div>
+    <div class="card" data-tags="util" data-name="Bypass" data-url="https://github.com/robbie-med/bypass">
+      <div class="card-hd"><div class="card-name">Bypass</div><div class="card-tag">access</div></div>
+      <div class="card-desc">Navigate around paywalls and institutional access barriers to information that should be free.</div>
+      <div class="card-url">github.com/robbie-med/bypass</div>
+    </div>
+    <div class="card" data-tags="util fun" data-name="WheresGeorge" data-url="https://github.com/robbie-med/wheresgeorge">
+      <div class="card-hd"><div class="card-name">WheresGeorge</div><div class="card-tag">fun</div></div>
+      <div class="card-desc">Bill-tracking companion for the Where's George currency community.</div>
+      <div class="card-url">github.com/robbie-med/wheresgeorge</div>
+    </div>
+    <div class="card" data-tags="util" data-name="Ohptimize" data-url="https://github.com/robbie-med/ohptimize">
+      <div class="card-hd"><div class="card-name">Ohptimize</div><div class="card-tag">optimize</div></div>
+      <div class="card-desc">Identify and systematically improve high-leverage areas of daily life.</div>
+      <div class="card-url">github.com/robbie-med/ohptimize</div>
+    </div>
+    <div class="card" data-tags="util writing" data-name="Blog" data-url="https://github.com/robbie-med/blog">
+      <div class="card-hd"><div class="card-name">Blog</div><div class="card-tag">writing</div></div>
+      <div class="card-desc">Static-site personal writing platform. Open-source, no tracking.</div>
+      <div class="card-url">github.com/robbie-med/blog</div>
+    </div>
+    <div class="card" data-tags="util reading" data-name="Book" data-url="https://github.com/robbie-med/book">
+      <div class="card-hd"><div class="card-name">Book</div><div class="card-tag">reading</div></div>
+      <div class="card-desc">Reading log — what you've read, want to read, are working through. Without Goodreads watching.</div>
+      <div class="card-url">github.com/robbie-med/book</div>
+    </div>
+  </div>
 
   <div class="no-results" id="no-results">
-    <span style="color:var(--fg-ghost)">$ find . -name "<span id="search-echo"></span>*" →&nbsp;</span><span style="color:var(--red)">no results found</span>
-  </div>
-
-</section>
-
-<!-- ── COLLABORATE ── -->
-
-<section id="collaborate">
-  <div class="sec-hd">
-    <div class="sec-cmd"><span class="pr">$</span> cat collaborate.md</div>
-    <div class="sec-line"></div>
-    <div class="sec-meta">open to the right projects</div>
-  </div>
-  <div class="collab-grid">
-    <div class="collab-l">
-      <div class="collab-hed">Let's build<br>something<br><span class="acc">worth</span><br>building.</div>
-      <p class="collab-body">
-        I'm a physician who codes. I build clinical tools because I needed them and the ones that existed were <strong>slow, bloated, paywalled, or tracking users.</strong><br><br>
-        If you have a problem in medicine, education, or public health that software could solve — I want to hear about it. Especially interested in projects that <strong>respect patient privacy, reduce cognitive load, or improve access to accurate information.</strong>
-      </p>
-      <a href="#contact" class="btn btn-p" style="width:fit-content;margin-bottom:32px">get in touch →</a>
-      <div class="stitle"><span class="pr">></span> working principles</div>
-      <div class="principles">
-        <div class="prin"><div class="prin-ico">✓</div><div><strong>Open source by default.</strong> Code should be auditable.</div></div>
-        <div class="prin"><div class="prin-ico">✓</div><div><strong>No trackers, no ads.</strong> Non-negotiable.</div></div>
-        <div class="prin"><div class="prin-ico">✓</div><div><strong>Fast and small.</strong> If it needs a 2MB bundle it's probably wrong.</div></div>
-        <div class="prin"><div class="prin-ico">✓</div><div><strong>Nothing here is medical advice.</strong> All tools are educational.</div></div>
-        <div class="prin"><div class="prin-ico">✓</div><div><strong>S.D.G.</strong> — work done for a reason beyond the resume.</div></div>
-      </div>
-    </div>
-    <div class="collab-r">
-      <div class="stitle" style="margin-bottom:16px"><span class="pr">></span> what I'm looking for</div>
-      <div class="collab-items">
-        <div class="ci"><div class="ci-n">01/</div><div><div class="ci-title">Clinical Tool Development</div><div class="ci-desc">Calculator, simulator, decision-support, or patient education resource. I build fast, deploy to GitHub Pages or Vercel. Zero infrastructure cost.</div></div></div>
-        <div class="ci"><div class="ci-n">02/</div><div><div class="ci-title">Medical Education Projects</div><div class="ci-desc">Curriculum supplementation, interactive cases, classroom simulation. Rhesus and CaseRunner are proof of concept — they can be extended.</div></div></div>
-        <div class="ci"><div class="ci-n">03/</div><div><div class="ci-title">Privacy-First Health Tech</div><div class="ci-desc">If your project avoids the surveillance economy, we're already aligned. HIPAA-compliant client-side tools, local-first architecture, no tracking.</div></div></div>
-        <div class="ci"><div class="ci-n">04/</div><div><div class="ci-title">Clinical Accuracy Review</div><div class="ci-desc">Code review for health software. I can assess whether what you've built makes medical sense before it touches patients.</div></div></div>
-        <div class="ci"><div class="ci-n">05/</div><div><div class="ci-title">Collaborative Research Tools</div><div class="ci-desc">Data visualization, clinical informatics, open-access research infrastructure. If it serves patients or clinicians, I'm interested.</div></div></div>
-      </div>
-    </div>
+    <span style="color:var(--fg-ghost)">$ find . -name "<span id="q-echo"></span>*" →&nbsp;</span><span class="red">no matches</span>
   </div>
 </section>
 
-<!-- ── CONTACT ── -->
-
+<!-- CONTACT -->
 <section id="contact">
   <div class="sec-hd">
-    <div class="sec-cmd"><span class="pr">$</span> cat contact.txt && cat privacy.conf</div>
-    <div class="sec-line"></div>
-    <div class="sec-meta">encrypted preferred · S.D.G.</div>
+    <div class="label"><span class="pr">$</span> cat contact</div>
+    <div class="line"></div>
+    <div class="meta">private channels preferred</div>
   </div>
-  <div class="contact-grid">
+  <div class="contact-wrap">
     <div class="contact-l">
       <div class="contact-hed">Reach out.</div>
-      <div class="contact-sub">Use the most private channel you can. SimpleX or Signal for anything sensitive. PGP email if you must. Plaintext email for non-sensitive scheduling only.</div>
+      <div class="contact-sub">Pick the channel that fits the message. SimpleX or Signal for anything sensitive. Email is fine for everything else — encrypt it if you want, and a PGP key is below if you do.</div>
       <div class="channels">
-        <div class="ch pref" onclick="window.open('https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf','_blank')">
-          <div class="ch-l"><div class="ch-ico">⬡</div><div><div class="ch-name">SimpleX Chat</div><div class="ch-handle">anonymous contact — no account needed</div></div></div>
-          <div class="ch-badge cbp">★ preferred</div>
+        <div class="ch pref" onclick="window.open('https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf','_blank','noopener')">
+          <div class="ch-l"><div class="ch-ico">⬡</div><div><div class="ch-name">SimpleX Chat</div><div class="ch-handle">anonymous · no account</div></div></div>
+          <div class="ch-badge cbp">preferred</div>
         </div>
-        <div class="ch pref" onclick="window.open('https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP','_blank')">
+        <div class="ch pref" onclick="window.open('https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP','_blank','noopener')">
           <div class="ch-l"><div class="ch-ico">◎</div><div><div class="ch-name">Signal</div><div class="ch-handle">@robbiemed.01</div></div></div>
-          <div class="ch-badge cbp">★ preferred</div>
+          <div class="ch-badge cbp">preferred</div>
         </div>
         <div class="ch pref">
-          <div class="ch-l"><div class="ch-ico">○</div><div><div class="ch-name">0xchat</div><div class="ch-handle">Nostr-based · anonymous contact</div></div></div>
-          <div class="ch-badge cbp">★ preferred</div>
+          <div class="ch-l"><div class="ch-ico">○</div><div><div class="ch-name">0xchat</div><div class="ch-handle">Nostr-based · anonymous</div></div></div>
+          <div class="ch-badge cbp">preferred</div>
         </div>
-        <div class="ch ok" onclick="window.open('https://cal.robbiemed.org/robbiemed','_blank')">
-          <div class="ch-l"><div class="ch-ico">◷</div><div><div class="ch-name">Book a Meeting</div><div class="ch-handle">cal.robbiemed.org/robbiemed</div></div></div>
+        <div class="ch ok" onclick="window.open('https://cal.robbiemed.org/robbiemed','_blank','noopener')">
+          <div class="ch-l"><div class="ch-ico">◷</div><div><div class="ch-name">Book a meeting</div><div class="ch-handle">cal.robbiemed.org/robbiemed</div></div></div>
           <div class="ch-badge cbo">schedule</div>
         </div>
         <div class="ch ok">
-          <div class="ch-l"><div class="ch-ico">✉</div><div><div class="ch-name">PGP-Encrypted Email</div><div class="ch-handle">fingerprint in privacy panel →</div></div></div>
-          <div class="ch-badge cbo">acceptable</div>
+          <div class="ch-l"><div class="ch-ico">✉</div><div><div class="ch-name">Email</div><div class="ch-handle">PGP key in the panel →</div></div></div>
+          <div class="ch-badge cbo">ok</div>
         </div>
-        <div class="ch ok" onclick="window.open('https://freesuggestionbox.com/pub/mlezyxd','_blank')">
-          <div class="ch-l"><div class="ch-ico">□</div><div><div class="ch-name">Anonymous Feedback</div><div class="ch-handle">Free Suggestion Box · no account · no log</div></div></div>
+        <div class="ch ok" onclick="window.open('https://freesuggestionbox.com/pub/mlezyxd','_blank','noopener')">
+          <div class="ch-l"><div class="ch-ico">□</div><div><div class="ch-name">Anonymous note</div><div class="ch-handle">free suggestion box · no log</div></div></div>
           <div class="ch-badge cbo">anon</div>
         </div>
-        <div class="ch bad">
-          <div class="ch-l"><div class="ch-ico">✗</div><div><div class="ch-name">SMS / Telegram / Plain Email</div><div class="ch-handle">assume data collection — not private</div></div></div>
-          <div class="ch-badge cbb">not private</div>
+        <div class="ch cold">
+          <div class="ch-l"><div class="ch-ico">✗</div><div><div class="ch-name">SMS / Telegram</div><div class="ch-handle">not used for anything sensitive</div></div></div>
+          <div class="ch-badge cbc">skip</div>
         </div>
       </div>
     </div>
     <div class="contact-r">
-      <div class="pgp-box">
-        <div class="pgp-title"><span class="pr">></span> privacy policy (plain language)</div>
-        <div class="pgp-body">
-          This site has <strong>no analytics, no cookies, no trackers.</strong> No database of visitors. No third-party scripts from Google, Meta, or Microsoft.<br><br>
-          I avoid Alphabet, Meta, Microsoft, and Apple products wherever possible. Some tools run on Vercel — migration is in progress.<br><br>
-          For sensitive communication use SimpleX or Signal. If you must email, <strong>encrypt it.</strong>
-          <div class="pgp-key-block">
-            OpenPGP Fingerprint:<br>
-            B632 6718 975C 0D7A 3621<br>09B5 FFEF 0CEB 9BDB 9243
+      <div class="box">
+        <div class="box-t"><span class="pr">&gt;</span> privacy, plainly</div>
+        <div class="box-body">
+          <strong>No analytics. No cookies. No third-party trackers.</strong> No visitor database, no Google / Meta / Microsoft scripts.<br><br>
+          The site is served through <strong>Cloudflare</strong>, which acts as the CDN and TLS terminator — that's the one third party that sees your request. Cloudflare may keep aggregate edge logs for security and abuse handling; I don't run analytics on top of them.<br><br>
+          A few tools still live on Vercel while migration is in progress.
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-t"><span class="pr">&gt;</span> PGP key (optional, for email)</div>
+        <div class="box-body">
+          Use if you want — not required.
+          <div class="key">
+            OpenPGP fingerprint:<br>
+            B632 6718 975C 0D7A 3621<br>
+            09B5 FFEF 0CEB 9BDB 9243
           </div>
         </div>
       </div>
-      <div class="stitle" style="margin-bottom:10px"><span class="pr">></span> decentralized presence</div>
-      <div class="anon-links">
-        <a href="https://github.com/robbie-med" target="_blank" class="al"><span class="al-ico">⌥</span><span>GitHub — robbie-med · 66 repositories</span></a>
-        <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" class="al"><span class="al-ico">⬡</span><span>Nostr — iris.to</span></a>
-        <a href="https://mastodon.social/@robbiemed" target="_blank" class="al"><span class="al-ico">◎</span><span>Mastodon — @robbiemed@mastodon.social</span></a>
-        <a href="https://t.me/robbiemed" target="_blank" class="al" style="opacity:.4"><span class="al-ico" style="color:var(--fg-ghost)">✗</span><span style="text-decoration:line-through">Telegram — @robbiemed (not private)</span></a>
+      <div class="box">
+        <div class="box-t"><span class="pr">&gt;</span> elsewhere</div>
+        <div class="elsewhere">
+          <a href="https://github.com/robbie-med" target="_blank" rel="noopener"><span class="ico">⌥</span><span>GitHub — robbie-med</span></a>
+          <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener"><span class="ico">⬡</span><span>Nostr — iris.to</span></a>
+          <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener"><span class="ico">◎</span><span>Mastodon — @robbiemed@mastodon.social</span></a>
+          <a href="https://t.me/robbiemed" target="_blank" rel="noopener" class="struck"><span class="ico" style="color:var(--fg-ghost)">✗</span><span>Telegram — @robbiemed</span></a>
+        </div>
       </div>
-      <div class="pay-box">
-        <div class="pay-title"><span class="pr">></span> support / payment</div>
+      <div class="box">
+        <div class="box-t"><span class="pr">&gt;</span> support / tip jar</div>
         <div class="pay-body">
           Venmo: <span class="pay-val">@robbie-med</span><br>
           Cash App: <span class="pay-val">$robbiemedcash</span><br>
-          BTC: <span class="pay-val" style="font-size:9px">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</span><br>
-          ETH: <span class="pay-val" style="font-size:9px">0x78364f80CF725c947Bd97A3669c5240f07ec78b0</span><br>
-          XMR: <span class="pay-val" style="font-size:9px">88WUyTE4... <span style="color:var(--fg-ghost)">[available on request]</span></span>
+          BTC: <span class="pay-val tiny">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</span><br>
+          ETH: <span class="pay-val tiny">0x78364f80CF725c947Bd97A3669c5240f07ec78b0</span><br>
+          XMR: <span class="pay-val tiny">on request</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div class="footer-brand">robbie<span>.med</span></div>
-    <div class="footer-meta">robbiemed.org · A.D. 2025</div>
+  <div class="f-l">
+    <div class="f-brand">robbie<span>.med</span></div>
+    <div class="f-meta">A.D. 2026 · not medical advice</div>
   </div>
-  <div class="footer-links">
-    <a href="https://github.com/robbie-med" target="_blank">github</a>
+  <div class="f-links">
     <a href="#tools">tools</a>
-    <a href="#collaborate">collaborate</a>
     <a href="#contact">contact</a>
-    <a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank">feedback</a>
+    <a href="https://github.com/robbie-med" target="_blank" rel="noopener">github</a>
+    <a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">feedback</a>
   </div>
-  <div class="footer-sdg"><strong>S.D.G.</strong> — nothing here is medical advice.</div>
 </footer>
 
 <script>
-// ── THEME ──
-const toggle = document.getElementById('theme-toggle');
-let theme = 'dark';
-toggle.addEventListener('click', () => {
-  theme = theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  toggle.textContent = theme === 'dark' ? '◐' : '◑';
-});
-
-// ── SEARCH + FILTER ──
-const searchEl = document.getElementById('tsearch');
-const cards    = document.querySelectorAll('.tcard');
-const fbtns    = document.querySelectorAll('.fbtn');
-const countEl  = document.getElementById('tcount');
-const catHds   = document.querySelectorAll('.cat-hd');
-const noRes    = document.getElementById('no-results');
-const secEcho  = document.getElementById('search-echo');
-let activeFilter = 'all';
-
-function update() {
-  const q = searchEl.value.toLowerCase().trim();
-  secEcho.textContent = q;
-  let visible = 0;
-
-  cards.forEach(card => {
-    const name = card.dataset.name.toLowerCase();
-    const tags = card.dataset.tags.toLowerCase();
-    const desc = card.querySelector('.tcard-desc')?.textContent.toLowerCase() || '';
-    const matchQ = !q || name.includes(q) || tags.includes(q) || desc.includes(q);
-    const matchF = activeFilter === 'all' || tags.includes(activeFilter);
-    if (matchQ && matchF) { card.classList.remove('hidden'); visible++; }
-    else { card.classList.add('hidden'); }
+(function(){
+  // theme
+  var toggle = document.getElementById('theme-toggle');
+  var stored = null;
+  try { stored = localStorage.getItem('rm-theme'); } catch(e){}
+  if (stored === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    toggle.textContent = '◑';
+  }
+  toggle.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '◐' : '◑';
+    try { localStorage.setItem('rm-theme', next); } catch(e){}
   });
 
-  // hide/show category headers when all their cards hidden
-  catHds.forEach(hd => {
-    const grid = hd.nextElementSibling;
-    if (!grid) return;
-    const visibleInCat = grid.querySelectorAll('.tcard:not(.hidden)').length;
-    hd.style.display = visibleInCat === 0 ? 'none' : '';
-    grid.style.display = visibleInCat === 0 ? 'none' : '';
+  // search + filter
+  var qEl     = document.getElementById('q');
+  var qEcho   = document.getElementById('q-echo');
+  var cards   = document.querySelectorAll('.card');
+  var fbtns   = document.querySelectorAll('.fbtn');
+  var cats    = document.querySelectorAll('.cat-group');
+  var noRes   = document.getElementById('no-results');
+  var countEl = document.getElementById('count');
+  var metaEl  = document.getElementById('meta-count');
+  var active  = 'all';
+
+  function update(){
+    var q = qEl.value.toLowerCase().trim();
+    qEcho.textContent = q;
+    var visible = 0;
+    cards.forEach(function(card){
+      var name = (card.dataset.name||'').toLowerCase();
+      var tags = (card.dataset.tags||'').toLowerCase();
+      var desc = (card.querySelector('.card-desc')?.textContent || '').toLowerCase();
+      var matchQ = !q || name.indexOf(q)>=0 || tags.indexOf(q)>=0 || desc.indexOf(q)>=0;
+      var matchF = active === 'all' || tags.split(/\s+/).indexOf(active) >= 0;
+      if (matchQ && matchF){ card.classList.remove('hidden'); visible++; }
+      else { card.classList.add('hidden'); }
+    });
+    cats.forEach(function(cat){
+      var grid = cat.nextElementSibling;
+      if (!grid) return;
+      var vis = grid.querySelectorAll('.card:not(.hidden)').length;
+      cat.style.display = vis === 0 ? 'none' : '';
+      grid.style.display = vis === 0 ? 'none' : '';
+    });
+    countEl.textContent = visible + (visible === 1 ? ' tool' : ' tools');
+    noRes.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  qEl.addEventListener('input', update);
+  fbtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      fbtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      active = btn.dataset.filter;
+      update();
+    });
   });
 
-  countEl.textContent = visible + (visible === 1 ? ' tool' : ' tools');
-  noRes.style.display = visible === 0 ? 'block' : 'none';
-}
-
-searchEl.addEventListener('input', update);
-fbtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    fbtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    update();
+  // cards open URLs
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var url = card.dataset.url;
+      if (!url) return;
+      window.open(url.indexOf('http') === 0 ? url : 'https://' + url, '_blank', 'noopener');
+    });
   });
-});
 
-// ── CARD CLICK → OPEN URL ──
-cards.forEach(card => {
-  card.addEventListener('click', () => {
-    const url = card.dataset.url;
-    if (url) window.open(url.startsWith('http') ? url : 'https://' + url, '_blank');
-  });
-});
+  // counts
+  metaEl.textContent = cards.length + ' entries · ' + cats.length + ' categories';
+  countEl.textContent = cards.length + ' tools';
 
-// ── ACTIVE NAV ──
-const sections = document.querySelectorAll('section[id]');
-const navAs = document.querySelectorAll('.nav-links a');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting)
-      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-  });
-}, { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => obs.observe(s));
+  // active nav
+  var sections = document.querySelectorAll('section[id]');
+  var navAs = document.querySelectorAll('.nav a');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        navAs.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(function(s){ obs.observe(s); });
+})();
 </script>
 
 </body>
