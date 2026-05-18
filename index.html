@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>robbie.med</title>
 <link rel="icon" href="/favicon.ico">
-<meta name="description" content="Open tools — clinical, calculators, life. No trackers. No ads.">
+<meta name="description" content="Open tools—clinical, calculators, life. No trackers. No ads.">
 <style>
 :root {
   --bg: #0f0f0f;
@@ -49,13 +49,35 @@ h2 {
   margin: 2.5rem 0 0.8rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+h2 .cat-count {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  opacity: 0.6;
 }
 p { margin-bottom: 1rem; }
 ul { list-style: none; padding: 0; }
-li.tool { margin-bottom: 0.55rem; }
-li.tool a { text-decoration: none; font-weight: bold; }
+li.tool {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0.45rem;
+}
+li.tool a {
+  text-decoration: none;
+  font-weight: bold;
+  flex: 0 0 14rem;
+  padding-right: 1rem;
+}
 li.tool a:hover { text-decoration: underline; }
-.desc { color: var(--dim); font-size: 0.85rem; }
+.desc { color: var(--dim); font-size: 0.85rem; flex: 1; }
+@media (max-width: 540px) {
+  li.tool { flex-direction: column; gap: 0.1rem; margin-bottom: 0.8rem; }
+  li.tool a { flex: none; padding-right: 0; }
+}
 .lede { color: var(--dim); margin-bottom: 2rem; font-size: 0.95rem; }
 header { margin-bottom: 0.5rem; position: relative; }
 #theme-btn {
@@ -119,7 +141,7 @@ footer a:hover { color: var(--fg); }
   <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">◐</button>
   <h1>robbie.med</h1>
 </header>
-<p class="lede">Open tools — clinical, calculators, life.<br>No trackers. No ads. No accounts.</p>
+<p class="lede">Open tools—clinical, calculators, life.<br>No trackers. No ads. No accounts.</p>
 
 <input type="text" id="q" placeholder="search…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)">
 
@@ -127,9 +149,9 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Simulation &amp; Cases</h2>
   <ul>
-    <li class="tool" data-s="rhesus sim ai virtual patient cases clinical edu"><a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener">Rhesus</a> <span class="desc">— Virtual patient simulator. Order labs, meds, imaging; get scored on each decision.</span></li>
-    <li class="tool" data-s="abxahbs antibiotic armory drill id pharmacy"><a href="https://abxahbs.robbiemed.org" target="_blank" rel="noopener">AbxAhbs</a> <span class="desc">— Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose/interval/route, beat the timer.</span></li>
-    <li class="tool" data-s="antibiotic armory id sim pharmacy game"><a href="https://ahntibioticarmory.robbiemed.org" target="_blank" rel="noopener">Antibiotic Armory</a> <span class="desc">— Timed ID prescribing simulator — inpatient and outpatient, scored on coverage, safety, stewardship, and speed.</span></li>
+    <li class="tool" data-s="rhesus sim ai virtual patient cases clinical edu"><a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener">Rhesus</a> <span class="desc">Virtual patient simulator. Order labs, meds, imaging; get scored on each decision.</span></li>
+    <li class="tool" data-s="abxahbs antibiotic armory drill id pharmacy"><a href="https://abxahbs.robbiemed.org" target="_blank" rel="noopener">AbxAhbs</a> <span class="desc">Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose/interval/route, beat the timer.</span></li>
+    <li class="tool" data-s="antibiotic armory id sim pharmacy game"><a href="https://ahntibioticarmory.robbiemed.org" target="_blank" rel="noopener">Antibiotic Armory</a> <span class="desc">Timed ID prescribing simulator—inpatient and outpatient, scored on coverage, safety, stewardship, and speed.</span></li>
   </ul>
 </div>
 
@@ -137,8 +159,9 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Cardiology</h2>
   <ul>
-    <li class="tool" data-s="ekhayg ecg 12-lead cards clinical edu"><a href="https://ekhayg.robbiemed.org" target="_blank" rel="noopener">EkhayG</a> <span class="desc">— ECG interpretation tool. 12-lead analysis at the bedside.</span></li>
-    <li class="tool" data-s="ezekg ekg systematic read ecg cards learn"><a href="https://ezekg.robbiemed.org" target="_blank" rel="noopener">EKG Systematic Read</a> <span class="desc">— Structured walkthrough for 12-lead interpretation — rate, rhythm, axis, intervals, morphology, in order.</span></li>
+    <li class="tool" data-s="ekhayg ecg 12-lead cards clinical edu"><a href="https://ekhayg.robbiemed.org" target="_blank" rel="noopener">EkhayG</a> <span class="desc">ECG interpretation tool. 12-lead analysis at the bedside.</span></li>
+    <li class="tool" data-s="ezekg ekg systematic read ecg cards learn"><a href="https://ezekg.robbiemed.org" target="_blank" rel="noopener">EKG Systematic Read</a> <span class="desc">Structured walkthrough for 12-lead interpretation—rate, rhythm, axis, intervals, morphology, in order.</span></li>
+    <li class="tool" data-s="elektrolang ekg ecg step by step reader 12-lead systematic cards"><a href="https://elektrolang.robbiemed.org" target="_blank" rel="noopener">Elektrolang</a> <span class="desc">Step-by-step EKG reader. Walk through 12-lead interpretation systematically.</span></li>
   </ul>
 </div>
 
@@ -146,11 +169,11 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>OB / Labor &amp; Delivery</h2>
   <ul>
-    <li class="tool" data-s="labor curve ob clinical tracker delivery friedman"><a href="https://laborlog.robbiemed.org" target="_blank" rel="noopener">Labor Curve</a> <span class="desc">— Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.</span></li>
-    <li class="tool" data-s="myob ob reference clinical obstetric"><a href="https://myob.robbiemed.org" target="_blank" rel="noopener">MyOB</a> <span class="desc">— Quick-access obstetric calculations and clinical decision support for the labor deck.</span></li>
-    <li class="tool" data-s="rhisk gyn screening cervical cancer asccp colposcopy"><a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener">Rhisk</a> <span class="desc">— Cervical cancer screening risk calculator and colposcopy management — ASCCP-aligned.</span></li>
-    <li class="tool" data-s="prehgtime pregnancy timeline ob prenatal screening gestational"><a href="https://prehghx.robbiemed.org" target="_blank" rel="noopener">Pregnancy Clinical Timeline</a> <span class="desc">— Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.</span></li>
-    <li class="tool" data-s="nheonatal neonatal neo bilirubin kp kaiser sepsis calculator nursery"><a href="https://nheonatal.robbiemed.org" target="_blank" rel="noopener">Nheonatal</a> <span class="desc">— KP neonatal sepsis calculator + bilirubin risk, all in one.</span></li>
+    <li class="tool" data-s="labor curve ob clinical tracker delivery friedman"><a href="https://laborlog.robbiemed.org" target="_blank" rel="noopener">Labor Curve</a> <span class="desc">Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.</span></li>
+    <li class="tool" data-s="myob ob pregnancy handbook mothers digital tools storage local"><a href="https://myob.robbiemed.org" target="_blank" rel="noopener">MyOB</a> <span class="desc">Digital handbook for mothers-to-be. Tools, records, and storage—local-first.</span></li>
+    <li class="tool" data-s="rhisk gyn screening cervical cancer asccp colposcopy"><a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener">Rhisk</a> <span class="desc">Cervical cancer screening risk calculator and colposcopy management—ASCCP-aligned.</span></li>
+    <li class="tool" data-s="prehgtime pregnancy timeline ob prenatal screening gestational"><a href="https://prehghx.robbiemed.org" target="_blank" rel="noopener">Pregnancy Clinical Timeline</a> <span class="desc">Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.</span></li>
+    <li class="tool" data-s="nheonatal neonatal neo bilirubin kp kaiser sepsis calculator nursery"><a href="https://nheonatal.robbiemed.org" target="_blank" rel="noopener">Nheonatal</a> <span class="desc">KP neonatal sepsis calculator + bilirubin risk, all in one.</span></li>
   </ul>
 </div>
 
@@ -158,9 +181,9 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Pediatrics</h2>
   <ul>
-    <li class="tool" data-s="petahamr peds vitals drill spaced repetition"><a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener">PetaHamr</a> <span class="desc">— Spaced-repetition peds vitals drill.</span></li>
-    <li class="tool" data-s="khaycal peds nutrition calorie ivf enteral feeds"><a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener">Khaycal</a> <span class="desc">— Pediatric shift intake calorie calculator — IVF, enteral feeds, meds. Hourly and shift totals per kg.</span></li>
-    <li class="tool" data-s="asthma action plan peds resp printable green yellow red"><a href="https://asthma.robbiemed.org" target="_blank" rel="noopener">Asthma Action Plan</a> <span class="desc">— Printable green/yellow/red zone plans with patient-specific medication instructions.</span></li>
+    <li class="tool" data-s="petahamr peds vitals drill spaced repetition"><a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener">PetaHamr</a> <span class="desc">Spaced-repetition peds vitals drill.</span></li>
+    <li class="tool" data-s="khaycal peds nutrition calorie ivf enteral feeds"><a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener">Khaycal</a> <span class="desc">Pediatric shift intake calorie calculator—IVF, enteral feeds, meds. Hourly and shift totals per kg.</span></li>
+    <li class="tool" data-s="asthma action plan peds resp printable green yellow red"><a href="https://asthma.robbiemed.org" target="_blank" rel="noopener">Asthma Action Plan</a> <span class="desc">Printable green/yellow/red zone plans with patient-specific medication instructions.</span></li>
   </ul>
 </div>
 
@@ -168,12 +191,12 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Labs &amp; Calculators</h2>
   <ul>
-    <li class="tool" data-s="rcv analyzer reference change value lab stats noise"><a href="https://rcv.robbiemed.org" target="_blank" rel="noopener">RCV Analyzer</a> <span class="desc">— Is the change real? Distinguishes physiologic change from biological/analytical noise.</span></li>
-    <li class="tool" data-s="nabxcalc sodium antibiotic iv lab electrolytes fluid restricted"><a href="https://nabxcalc.robbiemed.org" target="_blank" rel="noopener">NaBXCalc</a> <span class="desc">— Estimates sodium load from IV antibiotic infusions. Critical for Na-restricted patients.</span></li>
-    <li class="tool" data-s="hanemia anemia phlebotomy blood loss heme hospital"><a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener">Hanemia</a> <span class="desc">— Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.</span></li>
-    <li class="tool" data-s="rhefeed refeeding syndrome electrolyte nutrition risk"><a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener">Rhefeed</a> <span class="desc">— Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.</span></li>
-    <li class="tool" data-s="rhetrain oral intake retraining npo tube feed gi nutrition"><a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener">Rhetrain</a> <span class="desc">— Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.</span></li>
-    <li class="tool" data-s="step 3 biostats evidence interpreter usmle boards edu stats"><a href="https://step-3-biostats.robbiemed.org" target="_blank" rel="noopener">Step 3 Evidence Interpreter</a> <span class="desc">— Practice interpreting biostatistics and study design questions for USMLE Step 3.</span></li>
+    <li class="tool" data-s="rcv analyzer reference change value lab stats noise"><a href="https://rcv.robbiemed.org" target="_blank" rel="noopener">RCV Analyzer</a> <span class="desc">Is the change real? Distinguishes physiologic change from biological/analytical noise.</span></li>
+    <li class="tool" data-s="nabxcalc sodium antibiotic iv lab electrolytes fluid restricted"><a href="https://nabxcalc.robbiemed.org" target="_blank" rel="noopener">NaBXCalc</a> <span class="desc">Estimates sodium load from IV antibiotic infusions. Critical for Na-restricted patients.</span></li>
+    <li class="tool" data-s="hanemia anemia phlebotomy blood loss heme hospital"><a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener">Hanemia</a> <span class="desc">Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.</span></li>
+    <li class="tool" data-s="rhefeed refeeding syndrome electrolyte nutrition risk"><a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener">Rhefeed</a> <span class="desc">Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.</span></li>
+    <li class="tool" data-s="etoh alcohol withdrawal ciwa phenobarb pwa offline addiction"><a href="https://etoh.robbiemed.org" target="_blank" rel="noopener">EtOH WD</a> <span class="desc">Alcohol withdrawal at the bedside—CIWA, severe-withdrawal prediction, phenobarb/dex/ketamine dosing. Works offline.</span></li>
+    <li class="tool" data-s="fou fuo fever unknown origin id ddx differential exposure geography"><a href="https://fou.robbiemed.org" target="_blank" rel="noopener">FUO Workup</a> <span class="desc">Fever of unknown origin—exposure-driven differential generator. 68 diseases scored in real time.</span></li>
   </ul>
 </div>
 
@@ -181,15 +204,13 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Clinical Workflow &amp; Reference</h2>
   <ul>
-    <li class="tool" data-s="ohbtracker rounding team handoff dashboard clinical workflow"><a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener">OhbTracker</a> <span class="desc">— Patient data into a visual dashboard. Minimal-friction rounding and team handoff.</span></li>
-    <li class="tool" data-s="roundingos rounding inpatient tablet pwa dka copd sepsis note templates"><a href="https://rhoundos.robbiemed.org" target="_blank" rel="noopener">RoundingOS</a> <span class="desc">— Tablet-first inpatient rounding. Assessment-first A&amp;P, clinical mannequin, drag-drop med linking, dynamic note export. 14+ templates.</span></li>
-    <li class="tool" data-s="bhillit em coding e/m medical decision making cpt 2026 pwa offline"><a href="https://bhillit.robbiemed.org" target="_blank" rel="noopener">Bhillit</a> <span class="desc">— Offline 2026 E/M visit coder. Move through your visit, code with confidence.</span></li>
-    <li class="tool" data-s="by8 note signing compliance admin stats"><a href="https://by8.robbiemed.org" target="_blank" rel="noopener">By8</a> <span class="desc">— Cold hard stats on your note-signing compliance. Sign 'em by eight.</span></li>
-    <li class="tool" data-s="pegj peg-j gi procedures gastrojejunostomy care patient education"><a href="https://pegj.robbiemed.org" target="_blank" rel="noopener">PEG-J Reference</a> <span class="desc">— Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</span></li>
-    <li class="tool" data-s="sf price hospital chargemaster transparency san francisco"><a href="https://sfprice.robbiemed.org" target="_blank" rel="noopener">SF Price</a> <span class="desc">— Search SF hospital chargemaster data. Price transparency in practice.</span></li>
-    <li class="tool" data-s="sj price hospital chargemaster transparency san jose"><a href="https://sjprice.robbiemed.org" target="_blank" rel="noopener">SJ Price</a> <span class="desc">— San Jose hospital chargemaster search.</span></li>
-    <li class="tool" data-s="etoh alcohol withdrawal ciwa phenobarb pwa offline addiction"><a href="https://etoh.robbiemed.org" target="_blank" rel="noopener">EtOH WD</a> <span class="desc">— Alcohol withdrawal at the bedside — CIWA, severe-withdrawal prediction, phenobarb/dex/ketamine dosing. Works offline.</span></li>
-    <li class="tool" data-s="fou fuo fever unknown origin id ddx differential exposure geography"><a href="https://fou.robbiemed.org" target="_blank" rel="noopener">FUO Workup</a> <span class="desc">— Fever of unknown origin — exposure-driven differential generator. 68 diseases scored in real time.</span></li>
+    <li class="tool" data-s="ohbtracker rounding team handoff dashboard clinical workflow"><a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener">OhbTracker</a> <span class="desc">Patient data into a visual dashboard. Minimal-friction rounding and team handoff.</span></li>
+    <li class="tool" data-s="roundingos rounding inpatient tablet pwa dka copd sepsis note templates"><a href="https://rhoundos.robbiemed.org" target="_blank" rel="noopener">RoundingOS</a> <span class="desc">Tablet-first inpatient rounding. Assessment-first A&amp;P, clinical mannequin, drag-drop med linking, dynamic note export. 14+ templates.</span></li>
+    <li class="tool" data-s="bhillit em coding e/m medical decision making cpt 2026 pwa offline"><a href="https://bhillit.robbiemed.org" target="_blank" rel="noopener">Bhillit</a> <span class="desc">Offline 2026 E/M visit coder. Move through your visit, code with confidence.</span></li>
+    <li class="tool" data-s="by8 note signing compliance admin stats"><a href="https://by8.robbiemed.org" target="_blank" rel="noopener">By8</a> <span class="desc">Cold hard stats on your note-signing compliance. Sign 'em by eight.</span></li>
+    <li class="tool" data-s="pegj peg-j gi procedures gastrojejunostomy care patient education"><a href="https://pegj.robbiemed.org" target="_blank" rel="noopener">PEG-J Reference</a> <span class="desc">Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</span></li>
+    <li class="tool" data-s="sf price hospital chargemaster transparency san francisco"><a href="https://sfprice.robbiemed.org" target="_blank" rel="noopener">SF Price</a> <span class="desc">Search SF hospital chargemaster data. Price transparency in practice.</span></li>
+    <li class="tool" data-s="sj price hospital chargemaster transparency san jose"><a href="https://sjprice.robbiemed.org" target="_blank" rel="noopener">SJ Price</a> <span class="desc">Search SJ hospital chargemaster data. Price transparency in practice.</span></li>
   </ul>
 </div>
 
@@ -197,9 +218,11 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Education &amp; Language</h2>
   <ul>
-    <li class="tool" data-s="kapp korean language adaptive vocabulary grammar drills"><a href="https://kapp.robbiemed.org" target="_blank" rel="noopener">Kapp</a> <span class="desc">— Personalized Korean language app — adaptive vocabulary and grammar drills.</span></li>
-    <li class="tool" data-s="spehx spex practice test boards edu re-licensure exam"><a href="https://spehx.robbiemed.org" target="_blank" rel="noopener">SPEX Practice Test</a> <span class="desc">— Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.</span></li>
-    <li class="tool" data-s="elektrolang ekg ecg step by step reader 12-lead systematic cards"><a href="https://elektrolang.robbiemed.org" target="_blank" rel="noopener">Elektrolang</a> <span class="desc">— Step-by-step EKG reader. Walk through 12-lead interpretation systematically.</span></li>
+    <li class="tool" data-s="kapp korean language adaptive vocabulary grammar drills"><a href="https://kapp.robbiemed.org" target="_blank" rel="noopener">Kapp</a> <span class="desc">Personalized Korean language app—adaptive vocabulary and grammar drills.</span></li>
+    <li class="tool" data-s="spehx spex practice test boards edu re-licensure exam"><a href="https://spehx.robbiemed.org" target="_blank" rel="noopener">SPEX Practice Test</a> <span class="desc">Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.</span></li>
+    <li class="tool" data-s="step 3 biostats evidence interpreter usmle boards edu stats"><a href="https://step-3-biostats.robbiemed.org" target="_blank" rel="noopener">Step 3 Evidence Interpreter</a> <span class="desc">Practice interpreting biostatistics and study design questions for USMLE Step 3.</span></li>
+    <li class="tool" data-s="rhetrain oral intake retraining npo tube feed gi nutrition"><a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener">Rhetrain</a> <span class="desc">Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.</span></li>
+    <li class="tool" data-s="wheed cannabis marijuana weed mary jane tracking"><a href="https://wheed.robbiemed.org" target="_blank" rel="noopener">Wheed</a> <span class="desc">Cannabis companion app. Local-first, no judgment.</span></li>
   </ul>
 </div>
 
@@ -207,14 +230,13 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Life, Home &amp; Faith</h2>
   <ul>
-    <li class="tool" data-s="prhay prayer notebook faith log intentions answered local"><a href="https://prhay.robbiemed.org" target="_blank" rel="noopener">Prhay</a> <span class="desc">— Digital prayer notebook — log intentions, track answered prayers. Local-first.</span></li>
-    <li class="tool" data-s="bhible bible reading tracker faith plans local"><a href="https://bhible.robbiemed.org" target="_blank" rel="noopener">Bhible</a> <span class="desc">— Bible reading tracker — log progress through plans, build consistency. Local-first.</span></li>
-    <li class="tool" data-s="mohri mortality actuarial memento mori time remaining loved ones"><a href="https://mohri.robbiemed.org" target="_blank" rel="noopener">Mohri</a> <span class="desc">— Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.</span></li>
-    <li class="tool" data-s="sehx quantified self qs health private local"><a href="https://sehx.robbiemed.org" target="_blank" rel="noopener">Sehx</a> <span class="desc">— Quantified self taken to its logical conclusion. Private, local-first.</span></li>
-    <li class="tool" data-s="pehriod menstrual cycle tracking privacy local reproductive"><a href="https://pehriod.robbiemed.org" target="_blank" rel="noopener">Pehriod</a> <span class="desc">— Privacy-first menstrual cycle tracking. No apps sending reproductive data anywhere.</span></li>
-    <li class="tool" data-s="dayhcounter days counter memory life moments notifications"><a href="https://days.robbiemed.org" target="_blank" rel="noopener">DayhCounter</a> <span class="desc">— Track days since important life moments, with desktop notifications.</span></li>
-    <li class="tool" data-s="flightdeck flight tracking pwa ics great circle leaflet map"><a href="https://flightdeck.robbiemed.org" target="_blank" rel="noopener">Flightdeck</a> <span class="desc">— Flight tracking PWA — parses FlightAware URLs, generates .ics, renders great-circle routes on a map.</span></li>
-    <li class="tool" data-s="wheed cannabis marijuana weed mary jane tracking"><a href="https://wheed.robbiemed.org" target="_blank" rel="noopener">Wheed</a> <span class="desc">— Cannabis companion app. Local-first, no judgment.</span></li>
+    <li class="tool" data-s="prhay prayer notebook faith log intentions answered local"><a href="https://prhay.robbiemed.org" target="_blank" rel="noopener">Prhay</a> <span class="desc">Digital prayer notebook—log intentions, track answered prayers. Local-first.</span></li>
+    <li class="tool" data-s="bhible bible reading tracker faith plans local"><a href="https://bhible.robbiemed.org" target="_blank" rel="noopener">Bhible</a> <span class="desc">Bible reading tracker—log progress through plans, build consistency. Local-first.</span></li>
+    <li class="tool" data-s="mohri mortality actuarial memento mori time remaining loved ones"><a href="https://mohri.robbiemed.org" target="_blank" rel="noopener">Mohri</a> <span class="desc">Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.</span></li>
+    <li class="tool" data-s="sehx quantified self qs health private local"><a href="https://sehx.robbiemed.org" target="_blank" rel="noopener">Sehx</a> <span class="desc">Quantified self taken to its logical conclusion. Private, local-first.</span></li>
+    <li class="tool" data-s="pehriod menstrual cycle tracking privacy local reproductive"><a href="https://pehriod.robbiemed.org" target="_blank" rel="noopener">Pehriod</a> <span class="desc">Privacy-first menstrual cycle tracking. No apps sending reproductive data anywhere.</span></li>
+    <li class="tool" data-s="dayhcounter days counter memory life moments notifications"><a href="https://days.robbiemed.org" target="_blank" rel="noopener">DayhCounter</a> <span class="desc">Track days since important life moments, with desktop notifications.</span></li>
+    <li class="tool" data-s="flightdeck flight tracking pwa ics great circle leaflet map"><a href="https://flightdeck.robbiemed.org" target="_blank" rel="noopener">Flightdeck</a> <span class="desc">Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.</span></li>
   </ul>
 </div>
 
@@ -222,9 +244,9 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Finance</h2>
   <ul>
-    <li class="tool" data-s="cashflow salary tracker real-time expense burn rate income finance"><a href="https://cash.robbiemed.org" target="_blank" rel="noopener">CashFlow</a> <span class="desc">— Real-time salary tracker with expense management — earnings to the second.</span></li>
-    <li class="tool" data-s="lifeofcash lifetime financial flow career visualizer finance"><a href="https://lifeofcash.robbiemed.org" target="_blank" rel="noopener">LifeOfCash</a> <span class="desc">— Lifetime financial flow visualizer — the full arc of a career, not just this paycheck.</span></li>
-    <li class="tool" data-s="lifeahtlas life atlas financial personal career milestones timeline finance planning"><a href="https://lifeahtlas.robbiemed.org" target="_blank" rel="noopener">Lifeahtlas</a> <span class="desc">— Financial, personal, and career milestones on a unified timeline.</span></li>
+    <li class="tool" data-s="cashflow salary tracker real-time expense burn rate income finance"><a href="https://cash.robbiemed.org" target="_blank" rel="noopener">CashFlow</a> <span class="desc">Real-time salary tracker with expense management—earnings to the second.</span></li>
+    <li class="tool" data-s="lifeofcash lifetime financial flow career visualizer finance"><a href="https://lifeofcash.robbiemed.org" target="_blank" rel="noopener">LifeOfCash</a> <span class="desc">Lifetime financial flow visualizer—the full arc of a career, not just this paycheck.</span></li>
+    <li class="tool" data-s="lifeahtlas life atlas financial personal career milestones timeline finance planning"><a href="https://lifeahtlas.robbiemed.org" target="_blank" rel="noopener">Lifeahtlas</a> <span class="desc">Financial, personal, and career milestones on a unified timeline.</span></li>
   </ul>
 </div>
 
@@ -232,8 +254,8 @@ footer a:hover { color: var(--fg); }
 <div class="cat" data-cat>
   <h2>Utilities</h2>
   <ul>
-    <li class="tool" data-s="encryptor aes encryption client-side browser password privacy"><a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener">Encryptor</a> <span class="desc">— Client-side code-block encryption with password — AES in-browser, zero server contact.</span></li>
-    <li class="tool" data-s="chlaudehelpme claude ai assistant tool util"><a href="https://chlaudehelpme.robbiemed.org" target="_blank" rel="noopener">ChlaudeHelpMe</a> <span class="desc">— AI-powered tool. What CAN'T it do?</span></li>
+    <li class="tool" data-s="encryptor aes encryption client-side browser password privacy"><a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener">Encryptor</a> <span class="desc">Client-side code-block encryption with password—AES in-browser, zero server contact.</span></li>
+    <li class="tool" data-s="chlaudehelpme claude ai assistant tool util"><a href="https://chlaudehelpme.robbiemed.org" target="_blank" rel="noopener">ChlaudeHelpMe</a> <span class="desc">AI-powered tool. What CAN'T it do?</span></li>
   </ul>
 </div>
 
@@ -247,12 +269,12 @@ footer a:hover { color: var(--fg); }
 </p>
 
 <ul style="list-style:none;padding:0;">
-  <li class="contact-row"><a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener">SimpleX Chat</a> — anonymous, no account <span class="contact-badge">preferred</span></li>
-  <li class="contact-row"><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a> — @robbiemed.01 <span class="contact-badge">preferred</span></li>
-  <li class="contact-row">0xchat — Nostr-based, anonymous <span class="contact-badge">preferred</span></li>
+  <li class="contact-row"><a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener">SimpleX Chat</a>—anonymous, no account <span class="contact-badge">preferred</span></li>
+  <li class="contact-row"><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a>—@robbiemed.01 <span class="contact-badge">preferred</span></li>
+  <li class="contact-row">0xchat—Nostr-based, anonymous <span class="contact-badge">preferred</span></li>
   <li class="contact-row"><a href="https://cal.robbiemed.org/robbiemed" target="_blank" rel="noopener">Book a meeting</a></li>
-  <li class="contact-row">Email — PGP key below</li>
-  <li class="contact-row"><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">Anonymous note</a> — no log</li>
+  <li class="contact-row">Email—PGP key below</li>
+  <li class="contact-row"><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">Anonymous note</a>—no log</li>
 </ul>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
@@ -290,6 +312,16 @@ function toggleTheme() {
   document.getElementById('theme-btn').textContent = next === 'dark' ? '◐' : '◑';
   try { localStorage.setItem('rm-theme', next); } catch (e) {}
 }
+
+// inject section counts
+document.querySelectorAll('[data-cat]').forEach(function(sec) {
+  var h2 = sec.querySelector('h2');
+  var n = sec.querySelectorAll('.tool').length;
+  var span = document.createElement('span');
+  span.className = 'cat-count';
+  span.textContent = '· ' + n;
+  h2.appendChild(span);
+});
 
 function doSearch(val) {
   var q = val.toLowerCase().trim();
