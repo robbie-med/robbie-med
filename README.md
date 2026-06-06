@@ -1,7 +1,5 @@
-- 👋 Hi, I’m @robbie-med
-- 👀 I’m interested in the human body
-- 🌱 I’m currently learning a lot of things
-- 📫 Reach me at robbiemed.org
+I’m @robbie-med. Interested in making tools. Tools should help people do more, better work faster. Most of my tools only do one of these. 
+See my polished tools and reach me at robbiemed.org
 
 <!---
 robbie-med/robbie-med is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
