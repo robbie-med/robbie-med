@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>robbie.med</title>
 <link rel="icon" href="/favicon.ico">
-<meta name="description" content="Open tools—clinical, calculators, life. No trackers. No ads.">
+<meta name="description" content="Open tools: clinical, calculators, life. No trackers. No ads.">
 <style>
 :root {
   --bg: #0f0f0f;
@@ -118,16 +118,29 @@ footer {
 }
 footer a { color: var(--dim); }
 footer a:hover { color: var(--fg); }
-.contact-row { margin-bottom: 0.4rem; }
-.contact-badge {
-  font-size: 0.7rem;
-  font-family: monospace;
-  padding: 0.1rem 0.4rem;
-  border: 1px solid var(--rule);
-  color: var(--dim);
-  margin-left: 0.4rem;
-  vertical-align: middle;
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
 }
+.contact-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+.contact-table td:first-child { padding-left: 0; white-space: nowrap; font-weight: bold; }
+.contact-table td:nth-child(2) { color: var(--dim); font-size: 0.82rem; }
+.contact-table td:last-child { text-align: right; padding-right: 0; }
+.badge-pref, .badge-ok {
+  font-size: 0.68rem;
+  font-family: monospace;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.badge-pref { color: var(--link); border-color: var(--link); }
+.badge-ok { color: var(--dim); border-color: var(--rule); }
 .pay { margin-top: 0.3rem; font-size: 0.82rem; word-break: break-all; }
 @media (max-width: 480px) {
   html { font-size: 16px; }
@@ -141,7 +154,7 @@ footer a:hover { color: var(--fg); }
   <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">◐</button>
   <h1>robbie.med</h1>
 </header>
-<p class="lede">Open tools—clinical, calculators, life.<br>No trackers. No ads. No accounts.</p>
+<p class="lede">Open tools: clinical, calculators, life.<br>No trackers. No ads. No accounts.</p>
 
 <input type="text" id="q" placeholder="search…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)">
 
@@ -273,14 +286,37 @@ footer a:hover { color: var(--fg); }
   For sensitive topics use SimpleX, Signal, or 0xchat. Email is fine for everything else.
 </p>
 
-<ul style="list-style:none;padding:0;">
-  <li class="contact-row"><a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener">SimpleX Chat</a>—anonymous, no account <span class="contact-badge">preferred</span></li>
-  <li class="contact-row"><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a>—@robbiemed.01 <span class="contact-badge">preferred</span></li>
-  <li class="contact-row">0xchat—Nostr-based, anonymous <span class="contact-badge">preferred</span></li>
-  <li class="contact-row"><a href="https://cal.robbiemed.org/robbiemed" target="_blank" rel="noopener">Book a meeting</a></li>
-  <li class="contact-row"><a href="mailto:talk@robbiemed.org">Email</a>—talk@robbiemed.org, PGP key below</li>
-  <li class="contact-row"><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">Anonymous note</a>—no log</li>
-</ul>
+<table class="contact-table">
+  <tr>
+    <td><a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener">SimpleX Chat</a></td>
+    <td>anonymous, no account</td>
+    <td><span class="badge-pref">preferred</span></td>
+  </tr>
+  <tr>
+    <td><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a></td>
+    <td>@robbiemed.01</td>
+    <td><span class="badge-pref">preferred</span></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.0xchat.com/" target="_blank" rel="noopener">0xchat</a></td>
+    <td>Nostr DM; npub below</td>
+    <td><span class="badge-pref">preferred</span></td>
+  </tr>
+  <tr>
+    <td><a href="mailto:talk@robbiemed.org">Email</a></td>
+    <td>talk@robbiemed.org; PGP key below</td>
+    <td><span class="badge-ok">ok</span></td>
+  </tr>
+  <tr>
+    <td><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">Anonymous note</a></td>
+    <td>suggestion box; no log</td>
+    <td><span class="badge-ok">anon</span></td>
+  </tr>
+</table>
+
+<p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
+  npub: <span style="font-family:monospace;font-size:0.75rem;word-break:break-all;">npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy</span>
+</p>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
   PGP fingerprint: <span style="font-family:monospace;">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</span>
