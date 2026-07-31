@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>robbie.med</title>
 <link rel="icon" href="/favicon.ico">
-<meta name="description" content="Open tools: clinical, calculators, life. No trackers. No ads.">
+<meta name="description" content="Tools I built because I needed them. Free, no trackers, no ads, no accounts.">
 <style>
 :root {
   --bg: #0f0f0f;
@@ -13,6 +13,11 @@
   --dim: #777;
   --link: #9ec89e;
   --rule: #222;
+  /* FOSS-only stacks. No Google/Apple/Microsoft/Meta fonts, nothing fetched
+     over the network. Generic `serif`/`monospace` resolve to whatever libre
+     face the system ships (DejaVu, Liberation, Nimbus, FreeSerif, Noto CJK…). */
+  --serif: 'DejaVu Serif', 'Liberation Serif', 'Nimbus Roman', 'FreeSerif', serif;
+  --mono: 'DejaVu Sans Mono', 'Liberation Mono', 'FreeMono', monospace;
 }
 [data-theme="light"] {
   --bg: #fff;
@@ -26,7 +31,7 @@ html { font-size: 18px; }
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--serif);
   line-height: 1.65;
   max-width: 720px;
   margin: 0 auto;
@@ -52,12 +57,14 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 1rem;
 }
 h2 .cat-count {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   color: var(--dim);
   opacity: 0.6;
+  flex-shrink: 0;
 }
 p { margin-bottom: 1rem; }
 ul { list-style: none; padding: 0; }
@@ -70,20 +77,20 @@ li.tool a {
   text-decoration: none;
   font-weight: bold;
   flex: 0 0 14rem;
-  padding-right: 1rem;
+  padding-inline-end: 1rem;
 }
 li.tool a:hover { text-decoration: underline; }
 .desc { color: var(--dim); font-size: 0.85rem; flex: 1; }
 @media (max-width: 540px) {
   li.tool { flex-direction: column; gap: 0.1rem; margin-bottom: 0.8rem; }
-  li.tool a { flex: none; padding-right: 0; }
+  li.tool a { flex: none; padding-inline-end: 0; }
 }
 .lede { color: var(--dim); margin-bottom: 2rem; font-size: 0.95rem; }
 header { margin-bottom: 0.5rem; position: relative; }
 #theme-btn {
   position: absolute;
   top: 0.3rem;
-  right: 0;
+  inset-inline-end: 0;
   background: none;
   border: 1px solid var(--rule);
   color: var(--dim);
@@ -91,9 +98,36 @@ header { margin-bottom: 0.5rem; position: relative; }
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   cursor: pointer;
-  font-family: monospace;
+  font-family: var(--mono);
 }
 #theme-btn:hover { color: var(--fg); border-color: var(--dim); }
+
+/* language selector */
+#langbar {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+#langbar button {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.1rem 0.3rem;
+  cursor: pointer;
+  color: var(--dim);
+  line-height: 0;
+  opacity: 0.5;
+  transition: opacity 0.15s, color 0.15s;
+  border-bottom: 1px solid transparent;
+}
+#langbar button:hover { opacity: 0.9; color: var(--fg); }
+#langbar button.on {
+  opacity: 1;
+  color: var(--fg);
+  border-bottom-color: var(--link);
+}
+#langbar svg { width: 29px; height: 19px; display: block; }
+
 #q {
   width: 100%;
   background: none;
@@ -103,12 +137,11 @@ header { margin-bottom: 0.5rem; position: relative; }
   font: inherit;
   font-size: 0.95rem;
   padding: 0.5rem 0;
-  margin: 1.8rem 0 0.5rem;
+  margin: 0 0 0.5rem;
   outline: none;
 }
 #q::placeholder { color: var(--dim); }
 .hidden { display: none !important; }
-.cat { }
 footer {
   margin-top: 4rem;
   padding-top: 1.5rem;
@@ -128,12 +161,12 @@ footer a:hover { color: var(--fg); }
   border-bottom: 1px solid var(--rule);
   vertical-align: baseline;
 }
-.contact-table td:first-child { padding-left: 0; white-space: nowrap; font-weight: bold; }
+.contact-table td:first-child { padding-inline-start: 0; white-space: nowrap; font-weight: bold; }
 .contact-table td:nth-child(2) { color: var(--dim); font-size: 0.82rem; }
-.contact-table td:last-child { text-align: right; padding-right: 0; }
+.contact-table td:last-child { text-align: end; padding-inline-end: 0; }
 .badge-pref, .badge-ok {
   font-size: 0.68rem;
-  font-family: monospace;
+  font-family: var(--mono);
   letter-spacing: 0.06em;
   padding: 0.1rem 0.45rem;
   border: 1px solid;
@@ -141,7 +174,6 @@ footer a:hover { color: var(--fg); }
 }
 .badge-pref { color: var(--link); border-color: var(--link); }
 .badge-ok { color: var(--dim); border-color: var(--rule); }
-.pay { margin-top: 0.3rem; font-size: 0.82rem; word-break: break-all; }
 @media (max-width: 480px) {
   html { font-size: 16px; }
   body { padding: 2rem 1.2rem 5rem; }
@@ -154,192 +186,193 @@ footer a:hover { color: var(--fg); }
   <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">◐</button>
   <h1>robbie.med</h1>
 </header>
-<p class="lede">Open tools: clinical, calculators, life.<br>No trackers. No ads. No accounts.</p>
+<p class="lede"><span data-t="lede1">필요해서 직접 만든 도구들입니다.</span><br><span data-t="lede2">무료. 추적 없음, 광고 없음, 계정 없음.</span></p>
 
-<input type="text" id="q" placeholder="search…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)">
+<nav id="langbar" aria-label="Language"></nav>
+
+<input type="text" id="q" placeholder="검색…" autocomplete="off" spellcheck="false" oninput="doSearch(this.value)">
 
 <!-- SIMULATION -->
 <div class="cat" data-cat>
-  <h2>Simulation &amp; Cases</h2>
+  <h2><span data-t="cat.sim">시뮬레이션 및 증례</span></h2>
   <ul>
-    <li class="tool" data-s="rhesus sim ai virtual patient cases clinical edu"><a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener">Rhesus</a> <span class="desc">Virtual patient simulator. Order labs, meds, imaging; get scored on each decision.</span></li>
-    <li class="tool" data-s="abxahbs antibiotic armory drill id pharmacy"><a href="https://abxahbs.robbiemed.org" target="_blank" rel="noopener">AbxAhbs</a> <span class="desc">Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose/interval/route, beat the timer.</span></li>
-    <li class="tool" data-s="antibiotic armory id sim pharmacy game"><a href="https://ahntibioticarmory.robbiemed.org" target="_blank" rel="noopener">Antibiotic Armory</a> <span class="desc">Timed ID prescribing simulator—inpatient and outpatient, scored on coverage, safety, stewardship, and speed.</span></li>
-    <li class="tool" data-s="scahn ultrasound simulator phone probe pocus foss open source"><a href="https://scahn.robbiemed.org" target="_blank" rel="noopener">Scahn</a> <span class="desc">The world's first FOSS web-based human ultrasound simulator—use your phone as the probe.</span></li>
+    <li class="tool" data-k="rhesus" data-s="rhesus sim ai virtual patient cases clinical edu"><a href="https://rhesus.robbiemed.org" target="_blank" rel="noopener">Rhesus</a> <span class="desc"></span></li>
+    <li class="tool" data-k="abxahbs" data-s="abxahbs antibiotic armory drill id pharmacy"><a href="https://abxahbs.robbiemed.org" target="_blank" rel="noopener">AbxAhbs</a> <span class="desc"></span></li>
+    <li class="tool" data-k="armory" data-s="antibiotic armory id sim pharmacy game"><a href="https://ahntibioticarmory.robbiemed.org" target="_blank" rel="noopener">Antibiotic Armory</a> <span class="desc"></span></li>
+    <li class="tool" data-k="scahn" data-s="scahn ultrasound simulator phone probe pocus foss open source"><a href="https://scahn.robbiemed.org" target="_blank" rel="noopener">Scahn</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- CARDIOLOGY -->
 <div class="cat" data-cat>
-  <h2>Cardiology</h2>
+  <h2><span data-t="cat.cards">순환기</span></h2>
   <ul>
-    <li class="tool" data-s="ekhayg ecg 12-lead cards clinical edu"><a href="https://ekhayg.robbiemed.org" target="_blank" rel="noopener">EkhayG</a> <span class="desc">ECG interpretation tool. 12-lead analysis at the bedside.</span></li>
-    <li class="tool" data-s="ezekg ekg systematic read ecg cards learn"><a href="https://ezekg.robbiemed.org" target="_blank" rel="noopener">EKG Systematic Read</a> <span class="desc">Structured walkthrough for 12-lead interpretation—rate, rhythm, axis, intervals, morphology, in order.</span></li>
-    <li class="tool" data-s="elektrolang ekg ecg step by step reader 12-lead systematic cards"><a href="https://elektrolang.robbiemed.org" target="_blank" rel="noopener">Elektrolang</a> <span class="desc">Step-by-step EKG reader. Walk through 12-lead interpretation systematically.</span></li>
+    <li class="tool" data-k="ekhayg" data-s="ekhayg ecg 12-lead cards clinical edu"><a href="https://ekhayg.robbiemed.org" target="_blank" rel="noopener">EkhayG</a> <span class="desc"></span></li>
+    <li class="tool" data-k="ezekg" data-s="ezekg ekg systematic read ecg cards learn"><a href="https://ezekg.robbiemed.org" target="_blank" rel="noopener">EKG Systematic Read</a> <span class="desc"></span></li>
+    <li class="tool" data-k="elektrolang" data-s="elektrolang ekg ecg step by step reader 12-lead systematic cards"><a href="https://elektrolang.robbiemed.org" target="_blank" rel="noopener">Elektrolang</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- OB -->
 <div class="cat" data-cat>
-  <h2>OB / Labor &amp; Delivery</h2>
+  <h2><span data-t="cat.ob">산과 / 분만</span></h2>
   <ul>
-    <li class="tool" data-s="labor curve ob clinical tracker delivery friedman"><a href="https://laborlog.robbiemed.org" target="_blank" rel="noopener">Labor Curve</a> <span class="desc">Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.</span></li>
-    <li class="tool" data-s="myob ob pregnancy handbook mothers digital tools storage local"><a href="https://myob.robbiemed.org" target="_blank" rel="noopener">MyOB</a> <span class="desc">Digital handbook for mothers-to-be. Tools, records, and storage—local-first.</span></li>
-    <li class="tool" data-s="rhisk gyn screening cervical cancer asccp colposcopy"><a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener">Rhisk</a> <span class="desc">Cervical cancer screening risk calculator and colposcopy management—ASCCP-aligned.</span></li>
-    <li class="tool" data-s="prehgtime pregnancy timeline ob prenatal screening gestational"><a href="https://prehghx.robbiemed.org" target="_blank" rel="noopener">Pregnancy Clinical Timeline</a> <span class="desc">Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.</span></li>
-    <li class="tool" data-s="nheonatal neonatal neo bilirubin kp kaiser sepsis calculator nursery"><a href="https://nheonatal.robbiemed.org" target="_blank" rel="noopener">Nheonatal</a> <span class="desc">KP neonatal sepsis calculator + bilirubin risk, all in one.</span></li>
+    <li class="tool" data-k="laborcurve" data-s="labor curve ob clinical tracker delivery friedman"><a href="https://laborlog.robbiemed.org" target="_blank" rel="noopener">Labor Curve</a> <span class="desc"></span></li>
+    <li class="tool" data-k="myob" data-s="myob ob pregnancy handbook mothers digital tools storage local"><a href="https://myob.robbiemed.org" target="_blank" rel="noopener">MyOB</a> <span class="desc"></span></li>
+    <li class="tool" data-k="rhisk" data-s="rhisk gyn screening cervical cancer asccp colposcopy"><a href="https://rhisk.robbiemed.org" target="_blank" rel="noopener">Rhisk</a> <span class="desc"></span></li>
+    <li class="tool" data-k="prehgtime" data-s="prehgtime pregnancy timeline ob prenatal screening gestational"><a href="https://prehghx.robbiemed.org" target="_blank" rel="noopener">Pregnancy Clinical Timeline</a> <span class="desc"></span></li>
+    <li class="tool" data-k="nheonatal" data-s="nheonatal neonatal neo bilirubin kp kaiser sepsis calculator nursery"><a href="https://nheonatal.robbiemed.org" target="_blank" rel="noopener">Nheonatal</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- PEDS -->
 <div class="cat" data-cat>
-  <h2>Pediatrics</h2>
+  <h2><span data-t="cat.peds">소아과</span></h2>
   <ul>
-    <li class="tool" data-s="petahamr peds vitals drill spaced repetition"><a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener">PetaHamr</a> <span class="desc">Spaced-repetition peds vitals drill.</span></li>
-    <li class="tool" data-s="khaycal peds nutrition calorie ivf enteral feeds"><a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener">Khaycal</a> <span class="desc">Pediatric shift intake calorie calculator—IVF, enteral feeds, meds. Hourly and shift totals per kg.</span></li>
-    <li class="tool" data-s="rhehydrate rehydration dehydration pediatric ors who cds pwa offline"><a href="https://prhehydrate.robbiemed.org" target="_blank" rel="noopener">PRhehydrate</a> <span class="desc">Evidence-based pediatric dehydration severity and rehydration protocol calculator. WHO Plan A/B/C, CDS scoring, Holliday–Segar maintenance. Offline PWA.</span></li>
-    <li class="tool" data-s="ghrow growth charts pediatric plot weight height percentile z score over time"><a href="https://ghrow.robbiemed.org" target="_blank" rel="noopener">Ghrow</a> <span class="desc">Pediatric growth charts with longitudinal plotting and Z-score calculation. The only free tool on the internet that does both.</span></li>
-    <li class="tool" data-s="asthma action plan peds resp printable green yellow red"><a href="https://asthma.robbiemed.org" target="_blank" rel="noopener">Asthma Action Plan</a> <span class="desc">Printable green/yellow/red zone plans with patient-specific medication instructions.</span></li>
+    <li class="tool" data-k="petahamr" data-s="petahamr peds vitals drill spaced repetition"><a href="https://petalhamr.robbiemed.org" target="_blank" rel="noopener">PetaHamr</a> <span class="desc"></span></li>
+    <li class="tool" data-k="khaycal" data-s="khaycal peds nutrition calorie ivf enteral feeds"><a href="https://khaycal.robbiemed.org" target="_blank" rel="noopener">Khaycal</a> <span class="desc"></span></li>
+    <li class="tool" data-k="prhehydrate" data-s="rhehydrate rehydration dehydration pediatric ors who cds pwa offline"><a href="https://prhehydrate.robbiemed.org" target="_blank" rel="noopener">PRhehydrate</a> <span class="desc"></span></li>
+    <li class="tool" data-k="ghrow" data-s="ghrow growth charts pediatric plot weight height percentile z score over time"><a href="https://ghrow.robbiemed.org" target="_blank" rel="noopener">Ghrow</a> <span class="desc"></span></li>
+    <li class="tool" data-k="asthma" data-s="asthma action plan peds resp printable green yellow red"><a href="https://asthma.robbiemed.org" target="_blank" rel="noopener">Asthma Action Plan</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- LABS -->
 <div class="cat" data-cat>
-  <h2>Labs &amp; Calculators</h2>
+  <h2><span data-t="cat.labs">검사 및 계산기</span></h2>
   <ul>
-    <li class="tool" data-s="rcv analyzer reference change value lab stats noise"><a href="https://rcv.robbiemed.org" target="_blank" rel="noopener">RCV Analyzer</a> <span class="desc">Is the change real? Distinguishes physiologic change from biological/analytical noise.</span></li>
-    <li class="tool" data-s="nabxcalc sodium antibiotic iv lab electrolytes fluid restricted"><a href="https://nabxcalc.robbiemed.org" target="_blank" rel="noopener">NaBXCalc</a> <span class="desc">Estimates sodium load from IV antibiotic infusions. Critical for Na-restricted patients.</span></li>
-    <li class="tool" data-s="hanemia anemia phlebotomy blood loss heme hospital"><a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener">Hanemia</a> <span class="desc">Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.</span></li>
-    <li class="tool" data-s="rhefeed refeeding syndrome electrolyte nutrition risk"><a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener">Rhefeed</a> <span class="desc">Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.</span></li>
-    <li class="tool" data-s="ehvidence evidence medical analysis forest plot nnt nnh rr ci pooled meta-analysis clinical"><a href="https://ehvidence.robbiemed.org" target="_blank" rel="noopener">Ehvidence</a> <span class="desc">Real-time medical evidence analysis; forest plots, NNT/NNH, RR, 95% CI, and random-effects pooling across clinical topics.</span></li>
-    <li class="tool" data-s="mme opioid morphine milligram equivalent converter calculator pain fentanyl methadone cdc pca mar"><a href="https://mmhe.robbiemed.org" target="_blank" rel="noopener">MME Calculator</a> <span class="desc">Convert any opioid regimen—scheduled, PRN, PCA, transdermal—into a single daily MME, with target-opioid conversion and CDC-aligned risk flags.</span></li>
-    <li class="tool" data-s="etoh alcohol withdrawal ciwa phenobarb pwa offline addiction"><a href="https://etoh.robbiemed.org" target="_blank" rel="noopener">EtOH WD</a> <span class="desc">Alcohol withdrawal at the bedside—CIWA, severe-withdrawal prediction, phenobarb/dex/ketamine dosing. Works offline.</span></li>
-    <li class="tool" data-s="fou fuo fever unknown origin id ddx differential exposure geography"><a href="https://fou.robbiemed.org" target="_blank" rel="noopener">FUO Workup</a> <span class="desc">Fever of unknown origin—exposure-driven differential generator. 68 diseases scored in real time.</span></li>
+    <li class="tool" data-k="rcv" data-s="rcv analyzer reference change value lab stats noise"><a href="https://rcv.robbiemed.org" target="_blank" rel="noopener">RCV Analyzer</a> <span class="desc"></span></li>
+    <li class="tool" data-k="nabxcalc" data-s="nabxcalc sodium antibiotic iv lab electrolytes fluid restricted"><a href="https://nabxcalc.robbiemed.org" target="_blank" rel="noopener">NaBXCalc</a> <span class="desc"></span></li>
+    <li class="tool" data-k="hanemia" data-s="hanemia anemia phlebotomy blood loss heme hospital"><a href="https://hanemia.robbiemed.org" target="_blank" rel="noopener">Hanemia</a> <span class="desc"></span></li>
+    <li class="tool" data-k="rhefeed" data-s="rhefeed refeeding syndrome electrolyte nutrition risk"><a href="https://rhefeed.robbiemed.org" target="_blank" rel="noopener">Rhefeed</a> <span class="desc"></span></li>
+    <li class="tool" data-k="ehvidence" data-s="ehvidence evidence medical analysis forest plot nnt nnh rr ci pooled meta-analysis clinical"><a href="https://ehvidence.robbiemed.org" target="_blank" rel="noopener">Ehvidence</a> <span class="desc"></span></li>
+    <li class="tool" data-k="mme" data-s="mme opioid morphine milligram equivalent converter calculator pain fentanyl methadone cdc pca mar"><a href="https://mmhe.robbiemed.org" target="_blank" rel="noopener">MME Calculator</a> <span class="desc"></span></li>
+    <li class="tool" data-k="etoh" data-s="etoh alcohol withdrawal ciwa phenobarb pwa offline addiction"><a href="https://etoh.robbiemed.org" target="_blank" rel="noopener">EtOH WD</a> <span class="desc"></span></li>
+    <li class="tool" data-k="fou" data-s="fou fuo fever unknown origin id ddx differential exposure geography"><a href="https://fou.robbiemed.org" target="_blank" rel="noopener">FUO Workup</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- CLINICAL -->
 <div class="cat" data-cat>
-  <h2>Clinical Workflow &amp; Reference</h2>
+  <h2><span data-t="cat.clin">임상 워크플로 및 참고자료</span></h2>
   <ul>
-    <li class="tool" data-s="ohbtracker rounding team handoff dashboard clinical workflow"><a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener">OhbTracker</a> <span class="desc">Patient data into a visual dashboard. Minimal-friction rounding and team handoff.</span></li>
-    <li class="tool" data-s="roundingos rounding inpatient tablet pwa dka copd sepsis note templates"><a href="https://rhoundos.robbiemed.org" target="_blank" rel="noopener">RoundingOS</a> <span class="desc">Tablet-first inpatient rounding. Assessment-first A&amp;P, clinical mannequin, drag-drop med linking, dynamic note export. 14+ templates.</span></li>
-    <li class="tool" data-s="bhillit em coding e/m medical decision making cpt 2026 pwa offline"><a href="https://bhillit.robbiemed.org" target="_blank" rel="noopener">Bhillit</a> <span class="desc">Offline 2026 E/M visit coder. Move through your visit, code with confidence.</span></li>
-    <li class="tool" data-s="by8 note signing compliance admin stats"><a href="https://by8.robbiemed.org" target="_blank" rel="noopener">By8</a> <span class="desc">Cold hard stats on your note-signing compliance. Sign 'em by eight.</span></li>
-    <li class="tool" data-s="pegj peg-j gi procedures gastrojejunostomy care patient education"><a href="https://pegj.robbiemed.org" target="_blank" rel="noopener">PEG-J Reference</a> <span class="desc">Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.</span></li>
-    <li class="tool" data-s="sf price hospital chargemaster transparency san francisco"><a href="https://sfprice.robbiemed.org" target="_blank" rel="noopener">SF Price</a> <span class="desc">Search SF hospital chargemaster data. Price transparency in practice.</span></li>
-    <li class="tool" data-s="sj price hospital chargemaster transparency san jose"><a href="https://sjprice.robbiemed.org" target="_blank" rel="noopener">SJ Price</a> <span class="desc">Search SJ hospital chargemaster data. Price transparency in practice.</span></li>
+    <li class="tool" data-k="ohbtracker" data-s="ohbtracker rounding team handoff dashboard clinical workflow"><a href="https://ohbtracker.robbiemed.org" target="_blank" rel="noopener">OhbTracker</a> <span class="desc"></span></li>
+    <li class="tool" data-k="roundingos" data-s="roundingos rounding inpatient tablet pwa dka copd sepsis note templates"><a href="https://rhoundos.robbiemed.org" target="_blank" rel="noopener">RoundingOS</a> <span class="desc"></span></li>
+    <li class="tool" data-k="bhillit" data-s="bhillit em coding e/m medical decision making cpt 2026 pwa offline"><a href="https://bhillit.robbiemed.org" target="_blank" rel="noopener">Bhillit</a> <span class="desc"></span></li>
+    <li class="tool" data-k="by8" data-s="by8 note signing compliance admin stats"><a href="https://by8.robbiemed.org" target="_blank" rel="noopener">By8</a> <span class="desc"></span></li>
+    <li class="tool" data-k="pegj" data-s="pegj peg-j gi procedures gastrojejunostomy care patient education"><a href="https://pegj.robbiemed.org" target="_blank" rel="noopener">PEG-J Reference</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- EDU -->
 <div class="cat" data-cat>
-  <h2>Education &amp; Language</h2>
+  <h2><span data-t="cat.edu">교육 및 언어</span></h2>
   <ul>
-    <li class="tool" data-s="kapp korean language adaptive vocabulary grammar drills"><a href="https://kapp.robbiemed.org" target="_blank" rel="noopener">Kapp</a> <span class="desc">Personalized Korean language app—adaptive vocabulary and grammar drills.</span></li>
-    <li class="tool" data-s="spehx spex practice test boards edu re-licensure exam"><a href="https://spehx.robbiemed.org" target="_blank" rel="noopener">SPEX Practice Test</a> <span class="desc">Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.</span></li>
-    <li class="tool" data-s="step 3 biostats evidence interpreter usmle boards edu stats"><a href="https://step-3-biostats.robbiemed.org" target="_blank" rel="noopener">Step 3 Evidence Interpreter</a> <span class="desc">Practice interpreting biostatistics and study design questions for USMLE Step 3.</span></li>
-    <li class="tool" data-s="rhetrain oral intake retraining npo tube feed gi nutrition"><a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener">Rhetrain</a> <span class="desc">Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.</span></li>
-    <li class="tool" data-s="wheed cannabis marijuana weed mary jane tracking"><a href="https://wheed.robbiemed.org" target="_blank" rel="noopener">Wheed</a> <span class="desc">Cannabis companion app. Local-first, no judgment.</span></li>
+    <li class="tool" data-k="kapp" data-s="kapp korean language adaptive vocabulary grammar drills"><a href="https://kapp.robbiemed.org" target="_blank" rel="noopener">Kapp</a> <span class="desc"></span></li>
+    <li class="tool" data-k="spehx" data-s="spehx spex practice test boards edu re-licensure exam"><a href="https://spehx.robbiemed.org" target="_blank" rel="noopener">SPEX Practice Test</a> <span class="desc"></span></li>
+    <li class="tool" data-k="step3" data-s="step 3 biostats evidence interpreter usmle boards edu stats"><a href="https://step-3-biostats.robbiemed.org" target="_blank" rel="noopener">Step 3 Evidence Interpreter</a> <span class="desc"></span></li>
+    <li class="tool" data-k="rhetrain" data-s="rhetrain oral intake retraining npo tube feed gi nutrition"><a href="https://rhetrain.robbiemed.org" target="_blank" rel="noopener">Rhetrain</a> <span class="desc"></span></li>
+    <li class="tool" data-k="wheed" data-s="wheed cannabis marijuana weed mary jane tracking"><a href="https://wheed.robbiemed.org" target="_blank" rel="noopener">Wheed</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- LIFE -->
 <div class="cat" data-cat>
-  <h2>Life, Home &amp; Faith</h2>
+  <h2><span data-t="cat.life">생활, 가정, 신앙</span></h2>
   <ul>
-    <li class="tool" data-s="prhay prayer notebook faith log intentions answered local"><a href="https://prhay.robbiemed.org" target="_blank" rel="noopener">Prhay</a> <span class="desc">Digital prayer notebook—log intentions, track answered prayers. Local-first.</span></li>
-    <li class="tool" data-s="bhible bible reading tracker faith plans local"><a href="https://bhible.robbiemed.org" target="_blank" rel="noopener">Bhible</a> <span class="desc">Bible reading tracker—log progress through plans, build consistency. Local-first.</span></li>
-    <li class="tool" data-s="mehmorize scripture memorization bilingual esv korean klb spaced repetition pwa offline faith"><a href="https://mehmorize.robbiemed.org" target="_blank" rel="noopener">Mehmorize</a> <span class="desc">Bilingual scripture memorization PWA; English ESV + Korean KLB, spaced repetition, letter-drip practice, printable worksheets. Works offline.</span></li>
-    <li class="tool" data-s="mohri mortality actuarial memento mori time remaining loved ones"><a href="https://mohri.robbiemed.org" target="_blank" rel="noopener">Mohri</a> <span class="desc">Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.</span></li>
-    <li class="tool" data-s="pehriod menstrual cycle tracking privacy local reproductive"><a href="https://pehriod.robbiemed.org" target="_blank" rel="noopener">Pehriod</a> <span class="desc">Privacy-first menstrual cycle tracking. No apps sending reproductive data anywhere.</span></li>
-    <li class="tool" data-s="cihrcletime circle time circular planner day year lifetime clock wedge events local"><a href="https://cihrcletime.robbiemed.org" target="_blank" rel="noopener">Cihrcletime</a> <span class="desc">Your day, year, or lifetime as a clock face. Events as colored wedges; travel-time warnings, print to page, local storage.</span></li>
-    <li class="tool" data-s="dayhcounter days counter memory life moments notifications"><a href="https://days.robbiemed.org" target="_blank" rel="noopener">DayhCounter</a> <span class="desc">Track days since important life moments, with desktop notifications.</span></li>
-    <li class="tool" data-s="flightdeck flight tracking pwa ics great circle leaflet map"><a href="https://flightdeck.robbiemed.org" target="_blank" rel="noopener">Flightdeck</a> <span class="desc">Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.</span></li>
+    <li class="tool" data-k="prhay" data-s="prhay prayer notebook faith log intentions answered local"><a href="https://prhay.robbiemed.org" target="_blank" rel="noopener">Prhay</a> <span class="desc"></span></li>
+    <li class="tool" data-k="bhible" data-s="bhible bible reading tracker faith plans local"><a href="https://bhible.robbiemed.org" target="_blank" rel="noopener">Bhible</a> <span class="desc"></span></li>
+    <li class="tool" data-k="mehmorize" data-s="mehmorize scripture memorization bilingual esv korean klb spaced repetition pwa offline faith"><a href="https://mehmorize.robbiemed.org" target="_blank" rel="noopener">Mehmorize</a> <span class="desc"></span></li>
+    <li class="tool" data-k="mohri" data-s="mohri mortality actuarial memento mori time remaining loved ones"><a href="https://mohri.robbiemed.org" target="_blank" rel="noopener">Mohri</a> <span class="desc"></span></li>
+    <li class="tool" data-k="pehriod" data-s="pehriod menstrual cycle tracking privacy local reproductive"><a href="https://pehriod.robbiemed.org" target="_blank" rel="noopener">Pehriod</a> <span class="desc"></span></li>
+    <li class="tool" data-k="cihrcletime" data-s="cihrcletime circle time circular planner day year lifetime clock wedge events local"><a href="https://cihrcletime.robbiemed.org" target="_blank" rel="noopener">Cihrcletime</a> <span class="desc"></span></li>
+    <li class="tool" data-k="dayhcounter" data-s="dayhcounter days counter memory life moments notifications"><a href="https://days.robbiemed.org" target="_blank" rel="noopener">DayhCounter</a> <span class="desc"></span></li>
+    <li class="tool" data-k="flightdeck" data-s="flightdeck flight tracking pwa ics great circle leaflet map"><a href="https://flightdeck.robbiemed.org" target="_blank" rel="noopener">Flightdeck</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- FINANCE -->
 <div class="cat" data-cat>
-  <h2>Finance</h2>
+  <h2><span data-t="cat.fin">재무</span></h2>
   <ul>
-    <li class="tool" data-s="cashflow salary tracker real-time expense burn rate income finance"><a href="https://cash.robbiemed.org" target="_blank" rel="noopener">CashFlow</a> <span class="desc">Real-time salary tracker with expense management—earnings to the second.</span></li>
-    <li class="tool" data-s="lifeofcash lifetime financial flow career visualizer finance"><a href="https://lifeofcash.robbiemed.org" target="_blank" rel="noopener">LifeOfCash</a> <span class="desc">Lifetime financial flow visualizer—the full arc of a career, not just this paycheck.</span></li>
-    <li class="tool" data-s="lifeahtlas life atlas financial personal career milestones timeline finance planning"><a href="https://lifeahtlas.robbiemed.org" target="_blank" rel="noopener">Lifeahtlas</a> <span class="desc">Financial, personal, and career milestones on a unified timeline.</span></li>
+    <li class="tool" data-k="cashflow" data-s="cashflow salary tracker real-time expense burn rate income finance"><a href="https://cash.robbiemed.org" target="_blank" rel="noopener">CashFlow</a> <span class="desc"></span></li>
+    <li class="tool" data-k="lifeofcash" data-s="lifeofcash lifetime financial flow career visualizer finance"><a href="https://lifeofcash.robbiemed.org" target="_blank" rel="noopener">LifeOfCash</a> <span class="desc"></span></li>
+    <li class="tool" data-k="lifeahtlas" data-s="lifeahtlas life atlas financial personal career milestones timeline finance planning"><a href="https://lifeahtlas.robbiemed.org" target="_blank" rel="noopener">Lifeahtlas</a> <span class="desc"></span></li>
   </ul>
 </div>
 
 <!-- UTILITIES -->
 <div class="cat" data-cat>
-  <h2>Utilities</h2>
+  <h2><span data-t="cat.util">유틸리티</span></h2>
   <ul>
-    <li class="tool" data-s="ghlobe globe truesize country size compare 3d mercator geography interactive"><a href="https://ghlobe.robbiemed.org" target="_blank" rel="noopener">Ghlobe</a> <span class="desc">Drag any country or state onto a true 3D globe and compare real-world sizes. Flat maps lie; this one doesn't.</span></li>
-    <li class="tool" data-s="encryptor aes encryption client-side browser password privacy"><a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener">Encryptor</a> <span class="desc">Client-side code-block encryption with password—AES in-browser, zero server contact.</span></li>
+    <li class="tool" data-k="ghlobe" data-s="ghlobe globe truesize country size compare 3d mercator geography interactive"><a href="https://ghlobe.robbiemed.org" target="_blank" rel="noopener">Ghlobe</a> <span class="desc"></span></li>
+    <li class="tool" data-k="encryptor" data-s="encryptor aes encryption client-side browser password privacy"><a href="https://encryptor.robbiemed.org" target="_blank" rel="noopener">Encryptor</a> <span class="desc"></span></li>
   </ul>
 </div>
 
-<div id="no-results" class="hidden" style="color:var(--dim);margin-top:2rem;font-style:italic;">No tools match that search.</div>
+<div id="no-results" class="hidden" style="color:var(--dim);margin-top:2rem;font-style:italic;" data-t="noresults">검색 결과가 없습니다.</div>
 
 <!-- CONTACT -->
-<h2>Contact</h2>
+<h2><span data-t="cat.contact">연락처</span></h2>
 
-<p style="color:var(--dim);font-size:0.9rem;margin-bottom:1rem;">
-  For sensitive topics use SimpleX, Signal, or 0xchat. Email is fine for everything else.
+<p style="color:var(--dim);font-size:0.9rem;margin-bottom:1rem;" data-t="contactIntro">
+  민감한 내용은 SimpleX, Signal, 0xchat을 이용해 주세요. 그 외에는 이메일로 충분합니다.
 </p>
 
 <table class="contact-table">
   <tr>
     <td><a href="https://simplex.chat/contact#/?v=1-4&smp=smp%3A%2F%2FZKe4uxF4Z_aLJJOEsC-Y6hSkXgQS5-oc442JQGkyP8M%3D%40smp17.simplex.im%2FLXdgDWe5e0SlmDr0Ij4oJv88XsB9zs_0%23%2F%3Fv%3D1-2%26dh%3DMCowBQYDK2VuAyEAO_cORFNlf7wWNQF9DHQ3M-59f20eAuKqfYG3JN4KuSQ%253D%26srv%3Dogtwf" target="_blank" rel="noopener">SimpleX Chat</a></td>
-    <td>anonymous, no account</td>
-    <td><span class="badge-pref">preferred</span></td>
+    <td data-t="c.simplex">익명, 계정 불필요</td>
+    <td><span class="badge-pref" data-t="b.pref">권장</span></td>
   </tr>
   <tr>
     <td><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a></td>
     <td>@robbiemed.01</td>
-    <td><span class="badge-pref">preferred</span></td>
+    <td><span class="badge-pref" data-t="b.pref">권장</span></td>
   </tr>
   <tr>
     <td><a href="https://www.0xchat.com/" target="_blank" rel="noopener">0xchat</a></td>
-    <td>Nostr DM; npub below</td>
-    <td><span class="badge-pref">preferred</span></td>
+    <td data-t="c.0xchat">Nostr DM; 아래 npub 참조</td>
+    <td><span class="badge-pref" data-t="b.pref">권장</span></td>
   </tr>
   <tr>
     <td><a href="mailto:talk@robbiemed.org">Email</a></td>
-    <td>talk@robbiemed.org; PGP key below</td>
-    <td><span class="badge-ok">ok</span></td>
+    <td data-t="c.email">talk@robbiemed.org; 아래 PGP 키 참조</td>
+    <td><span class="badge-ok" data-t="b.ok">가능</span></td>
   </tr>
   <tr>
     <td><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener">Anonymous note</a></td>
-    <td>suggestion box; no log</td>
-    <td><span class="badge-ok">anon</span></td>
+    <td data-t="c.anon">익명 제안함; 기록 없음</td>
+    <td><span class="badge-ok" data-t="b.anon">익명</span></td>
   </tr>
 </table>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
-  npub: <span style="font-family:monospace;font-size:0.75rem;word-break:break-all;">npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy</span>
+  npub: <span dir="ltr" style="font-family:var(--mono);font-size:0.75rem;word-break:break-all;">npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy</span>
 </p>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
-  PGP fingerprint: <span style="font-family:monospace;">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</span>
+  <span data-t="pgp">PGP 지문</span>: <span dir="ltr" style="font-family:var(--mono);">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</span>
 </p>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
-  Elsewhere:
+  <span data-t="elsewhere">다른 곳</span>:
   <a href="https://github.com/robbie-med" target="_blank" rel="noopener">GitHub</a> ·
   <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener">Nostr</a> ·
   <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener">Mastodon</a>
 </p>
 
 <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--dim);">
-  Support: Venmo <span style="color:var(--fg)">@robbie-med</span> · Cash App <span style="color:var(--fg)">$robbiemedcash</span> · BTC <span style="font-family:monospace;font-size:0.78rem;">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</span>
+  <span data-t="support">후원</span>: Venmo <span style="color:var(--fg)">@robbie-med</span> · Cash App <span style="color:var(--fg)">$robbiemedcash</span> · BTC <span dir="ltr" style="font-family:var(--mono);font-size:0.78rem;">bc1qmjpav8vrw74tnjc7apame0f3y4lm6gw2n0dwrs</span>
 </p>
 
 <footer>
-  <p>robbie.med · A.D. 2026 · not medical advice · <a href="https://github.com/robbie-med" target="_blank" rel="noopener">github</a></p>
+  <p>robbie.med · A.D. 2026 · <span data-t="disclaimer">의학적 조언이 아닙니다</span> · <a href="https://github.com/robbie-med" target="_blank" rel="noopener">github</a></p>
   <p style="margin-top:0.8rem;letter-spacing:0.2em;opacity:0.4;font-style:italic;">S.D.G.</p>
 </footer>
 
 <script>
+/* ---------- theme ---------- */
 (function () {
   var stored = null;
   try { stored = localStorage.getItem('rm-theme'); } catch (e) {}
@@ -356,8 +389,448 @@ function toggleTheme() {
   try { localStorage.setItem('rm-theme', next); } catch (e) {}
 }
 
-// inject section counts
-document.querySelectorAll('[data-cat]').forEach(function(sec) {
+/* ---------- flags (monotone, currentColor) ---------- */
+var FLAGS = {
+  ko: '<svg viewBox="0 0 24 16"><rect x=".5" y=".5" width="23" height="15" fill="none" stroke="currentColor" stroke-opacity=".3"/><circle cx="12" cy="8" r="4.3" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M7.7 8a2.15 2.15 0 0 1 4.3 0 2.15 2.15 0 0 0 4.3 0" fill="none" stroke="currentColor" stroke-width="1.3"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".7"><path d="M2.9 3.6l2 1.5M2.9 12.4l2-1.5M21.1 3.6l-2 1.5M21.1 12.4l-2-1.5"/></g></svg>',
+  en: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="currentColor" opacity=".18"/><path d="M0 0l24 16M24 0L0 16" stroke="currentColor" stroke-width="1.5" opacity=".75"/><path d="M12 0v16" stroke="currentColor" stroke-width="3"/><path d="M0 8h24" stroke="currentColor" stroke-width="3"/></svg>',
+  fr: '<svg viewBox="0 0 24 16"><rect width="8" height="16" fill="currentColor"/><rect x="8" width="8" height="16" fill="currentColor" opacity=".28"/><rect x="16" width="8" height="16" fill="currentColor" opacity=".65"/></svg>',
+  zh: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="currentColor" opacity=".22"/><path d="M5.6 2.2l1.06 3.26h3.43l-2.77 2.01 1.06 3.26L5.6 8.72 2.82 10.73l1.06-3.26L1.11 5.46h3.43z" fill="currentColor"/><circle cx="11.6" cy="2.5" r="1" fill="currentColor"/><circle cx="13.7" cy="4.8" r="1" fill="currentColor"/><circle cx="13.7" cy="7.7" r="1" fill="currentColor"/><circle cx="11.6" cy="9.9" r="1" fill="currentColor"/></svg>',
+  ru: '<svg viewBox="0 0 24 16"><rect width="24" height="5.34" fill="currentColor" opacity=".22"/><rect y="5.34" width="24" height="5.33" fill="currentColor" opacity=".55"/><rect y="10.67" width="24" height="5.33" fill="currentColor"/></svg>',
+  ar: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="currentColor" opacity=".26"/><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.1q1.9-1.9 3.8 0t3.8 0 3.8 0"/><path d="M4.5 10.6h13.5M16.2 9.2l2.3 1.4-2.3 1.4"/></g></svg>'
+};
+var LANG_ORDER = ['ko', 'en', 'fr', 'zh', 'ru', 'ar'];
+var LANG_NAME  = { ko: '한국어', en: 'English', fr: 'Français', zh: '中文', ru: 'Русский', ar: 'العربية' };
+
+/* ---------- translations ---------- */
+var TR = {
+ko: {
+  lede1: '필요해서 직접 만든 도구들입니다.', lede2: '무료. 추적 없음, 광고 없음, 계정 없음.',
+  search: '검색…', noresults: '검색 결과가 없습니다.',
+  contactIntro: '민감한 내용은 SimpleX, Signal, 0xchat을 이용해 주세요. 그 외에는 이메일로 충분합니다.',
+  'c.simplex': '익명, 계정 불필요', 'c.0xchat': 'Nostr DM; 아래 npub 참조',
+  'c.email': 'talk@robbiemed.org; 아래 PGP 키 참조', 'c.anon': '익명 제안함; 기록 없음',
+  'b.pref': '권장', 'b.ok': '가능', 'b.anon': '익명',
+  pgp: 'PGP 지문', elsewhere: '다른 곳', support: '후원', disclaimer: '의학적 조언이 아닙니다',
+  'cat.sim': '시뮬레이션 및 증례', 'cat.cards': '순환기', 'cat.ob': '산과 / 분만',
+  'cat.peds': '소아과', 'cat.labs': '검사 및 계산기', 'cat.clin': '임상 워크플로 및 참고자료',
+  'cat.edu': '교육 및 언어', 'cat.life': '생활, 가정, 신앙', 'cat.fin': '재무',
+  'cat.util': '유틸리티', 'cat.contact': '연락처',
+  d: {
+    rhesus: '가상 환자 시뮬레이터. 검사·약물·영상을 처방하고, 모든 결정에 대해 점수를 받습니다.',
+    abxahbs: '항생제 무기고 훈련. 약물을 3칸 구성에 끌어넣고 용량·간격·경로를 조절해 시간 안에 완료하세요.',
+    armory: '시간제한 감염내과 처방 시뮬레이터. 입원·외래 시나리오를 커버리지, 안전성, 항생제 관리, 용량, 속도로 채점합니다.',
+    scahn: '세계 최초의 오픈소스 웹 기반 인체 초음파 시뮬레이터. 휴대폰을 탐촉자로 사용합니다.',
+    ekhayg: '심전도 판독 도구. 병상에서 바로 12유도 분석.',
+    ezekg: '12유도 판독을 위한 구조적 접근. 심박수, 리듬, 축, 간격, 형태 순으로 진행합니다.',
+    elektrolang: '단계별 심전도 판독기. 12유도 해석을 체계적으로 따라갑니다.',
+    laborcurve: '실시간 분만 추적. Friedman 곡선, 자궁경부 진찰 기록, 분만 시각 예측.',
+    myob: '예비 엄마를 위한 디지털 안내서. 도구, 기록, 저장 모두 로컬 우선.',
+    rhisk: '자궁경부암 검진 위험도 계산 및 질확대경 관리. ASCCP 지침 기반.',
+    prehgtime: '임신 주수별 주요 시점, 검진 시기, 산전 관리 기준점을 한눈에.',
+    nheonatal: 'KP 신생아 패혈증 계산기와 빌리루빈 위험도를 하나로.',
+    petahamr: '간격 반복 학습으로 소아 활력징후를 익히는 훈련.',
+    khaycal: '소아 근무조 섭취 칼로리 계산기. 수액, 경장영양, 약물의 시간당·근무조당 kg 환산.',
+    prhehydrate: '근거 기반 소아 탈수 중증도 및 수액요법 계산기. WHO Plan A/B/C, CDS 점수, Holliday–Segar 유지량. 오프라인 PWA.',
+    ghrow: '종단 플로팅과 Z-점수 계산이 가능한 소아 성장 곡선. 두 기능을 모두 제공하는 유일한 무료 도구.',
+    asthma: '환자별 약물 지시가 포함된 인쇄용 녹색/황색/적색 구역 계획서.',
+    rcv: '변화가 실제인가? 생리적 변화와 생물학적·분석적 변동을 구분합니다.',
+    nabxcalc: '정맥 항생제 주입으로 인한 나트륨 부하를 추정. 나트륨 제한 환자에게 필수.',
+    hanemia: '병원 획득 빈혈을 위한 채혈 실혈량 추적. 헤모글로빈이 떨어지기 전에 위험을 감지합니다.',
+    rhefeed: '재급식 증후군 위험 계층화. 전해질 모니터링과 안전한 열량 증량.',
+    ehvidence: '실시간 의학 근거 분석. 숲그림, NNT/NNH, RR, 95% 신뢰구간, 임상 주제별 무작위효과 통합.',
+    mme: '정규·필요시·PCA·경피 등 모든 오피오이드 처방을 하루 MME로 환산. 목표 약물 전환과 CDC 기준 위험 표시 포함.',
+    etoh: '병상에서의 알코올 금단 관리. CIWA, 중증 금단 예측, 페노바르비탈·덱스메데토미딘·케타민 용량. 오프라인 작동.',
+    fou: '불명열 감별진단 생성기. 노출력 기반으로 68개 질환을 실시간 채점합니다.',
+    ohbtracker: '환자 데이터를 시각적 대시보드로. 마찰 없는 회진과 인계.',
+    roundingos: '태블릿 우선 입원 회진. 평가 중심 A&P, 임상 마네킹, 드래그앤드롭 약물 연결, 동적 노트 내보내기. 14개 이상 템플릿.',
+    bhillit: '오프라인 2026 E/M 진료 코더. 진료 흐름을 따라가며 자신 있게 코딩하세요.',
+    by8: '노트 서명 준수율에 대한 냉정한 통계. 8시까지 서명하세요.',
+    pegj: '경피 내시경 위-공장루 관리, 문제 해결, 환자 교육.',
+    kapp: '개인 맞춤 한국어 앱. 적응형 어휘·문법 훈련.',
+    spehx: 'SPEX(특수목적시험) 재면허 시험 대비 문제 훈련.',
+    step3: 'USMLE Step 3 생물통계 및 연구설계 문제 해석 연습.',
+    rhetrain: '장기 금식이나 경관영양 의존 후 생리학 기반 경구 섭취 재훈련.',
+    wheed: '대마 동반 앱. 로컬 우선, 판단 없음.',
+    prhay: '디지털 기도 수첩. 기도 제목을 기록하고 응답을 추적. 로컬 우선.',
+    bhible: '성경 통독 추적. 계획별 진도를 기록하고 습관을 만듭니다. 로컬 우선.',
+    mehmorize: '이중언어 성구 암송 PWA. 영어 ESV + 한국어 KLB, 간격 반복, 글자 지우기 연습, 인쇄용 학습지. 오프라인 작동.',
+    mohri: '생명표와 만남 빈도로 계산한 사랑하는 사람과 남은 시간. 소프트웨어로 구현한 메멘토 모리.',
+    pehriod: '프라이버시 우선 월경 주기 추적. 생식 데이터를 어디로도 보내지 않습니다.',
+    cihrcletime: '하루, 한 해, 또는 일생을 시계 문자판으로. 일정은 색깔 부채꼴로 표시되며 이동 시간 경고, 인쇄, 로컬 저장을 지원합니다.',
+    dayhcounter: '중요한 순간으로부터 지난 날짜를 추적하고 데스크톱 알림을 받습니다.',
+    flightdeck: '항공편 추적 PWA. FlightAware URL 파싱, .ics 생성, 지도에 대권 항로 표시.',
+    cashflow: '실시간 급여 추적과 지출 관리. 초 단위로 쌓이는 수입.',
+    lifeofcash: '평생 자금 흐름 시각화. 이번 급여가 아니라 경력 전체의 궤적을 봅니다.',
+    lifeahtlas: '재정, 개인, 경력의 이정표를 하나의 타임라인에.',
+    ghlobe: '어떤 나라나 주든 실제 3D 지구본 위로 끌어 크기를 비교하세요. 평면 지도는 거짓말을 합니다.',
+    encryptor: '비밀번호 기반 클라이언트 사이드 코드 블록 암호화. 브라우저 내 AES, 서버 접촉 없음.'
+  }
+},
+en: {
+  lede1: 'Tools I built because I needed them.', lede2: 'Free. No trackers, no ads, no accounts.',
+  search: 'search…', noresults: 'No tools match that search.',
+  contactIntro: 'For sensitive topics use SimpleX, Signal, or 0xchat. Email is fine for everything else.',
+  'c.simplex': 'anonymous, no account', 'c.0xchat': 'Nostr DM; npub below',
+  'c.email': 'talk@robbiemed.org; PGP key below', 'c.anon': 'suggestion box; no log',
+  'b.pref': 'preferred', 'b.ok': 'ok', 'b.anon': 'anon',
+  pgp: 'PGP fingerprint', elsewhere: 'Elsewhere', support: 'Support', disclaimer: 'not medical advice',
+  'cat.sim': 'Simulation & Cases', 'cat.cards': 'Cardiology', 'cat.ob': 'OB / Labor & Delivery',
+  'cat.peds': 'Pediatrics', 'cat.labs': 'Labs & Calculators', 'cat.clin': 'Clinical Workflow & Reference',
+  'cat.edu': 'Education & Language', 'cat.life': 'Life, Home & Faith', 'cat.fin': 'Finance',
+  'cat.util': 'Utilities', 'cat.contact': 'Contact',
+  d: {
+    rhesus: 'Virtual patient simulator. Order labs, meds, imaging; get scored on each decision.',
+    abxahbs: 'Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose/interval/route, beat the timer.',
+    armory: 'Timed ID prescribing simulator—inpatient and outpatient, scored on coverage, safety, stewardship, and speed.',
+    scahn: "The world's first FOSS web-based human ultrasound simulator—use your phone as the probe.",
+    ekhayg: 'ECG interpretation tool. 12-lead analysis at the bedside.',
+    ezekg: 'Structured walkthrough for 12-lead interpretation—rate, rhythm, axis, intervals, morphology, in order.',
+    elektrolang: 'Step-by-step EKG reader. Walk through 12-lead interpretation systematically.',
+    laborcurve: 'Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.',
+    myob: 'Digital handbook for mothers-to-be. Tools, records, and storage—local-first.',
+    rhisk: 'Cervical cancer screening risk calculator and colposcopy management—ASCCP-aligned.',
+    prehgtime: 'Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.',
+    nheonatal: 'KP neonatal sepsis calculator + bilirubin risk, all in one.',
+    petahamr: 'Spaced-repetition peds vitals drill.',
+    khaycal: 'Pediatric shift intake calorie calculator—IVF, enteral feeds, meds. Hourly and shift totals per kg.',
+    prhehydrate: 'Evidence-based pediatric dehydration severity and rehydration protocol calculator. WHO Plan A/B/C, CDS scoring, Holliday–Segar maintenance. Offline PWA.',
+    ghrow: 'Pediatric growth charts with longitudinal plotting and Z-score calculation. The only free tool on the internet that does both.',
+    asthma: 'Printable green/yellow/red zone plans with patient-specific medication instructions.',
+    rcv: 'Is the change real? Distinguishes physiologic change from biological/analytical noise.',
+    nabxcalc: 'Estimates sodium load from IV antibiotic infusions. Critical for Na-restricted patients.',
+    hanemia: 'Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.',
+    rhefeed: 'Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.',
+    ehvidence: 'Real-time medical evidence analysis; forest plots, NNT/NNH, RR, 95% CI, and random-effects pooling across clinical topics.',
+    mme: 'Convert any opioid regimen—scheduled, PRN, PCA, transdermal—into a single daily MME, with target-opioid conversion and CDC-aligned risk flags.',
+    etoh: 'Alcohol withdrawal at the bedside—CIWA, severe-withdrawal prediction, phenobarb/dex/ketamine dosing. Works offline.',
+    fou: 'Fever of unknown origin—exposure-driven differential generator. 68 diseases scored in real time.',
+    ohbtracker: 'Patient data into a visual dashboard. Minimal-friction rounding and team handoff.',
+    roundingos: 'Tablet-first inpatient rounding. Assessment-first A&P, clinical mannequin, drag-drop med linking, dynamic note export. 14+ templates.',
+    bhillit: 'Offline 2026 E/M visit coder. Move through your visit, code with confidence.',
+    by8: "Cold hard stats on your note-signing compliance. Sign 'em by eight.",
+    pegj: 'Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.',
+    kapp: 'Personalized Korean language app—adaptive vocabulary and grammar drills.',
+    spehx: 'Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.',
+    step3: 'Practice interpreting biostatistics and study design questions for USMLE Step 3.',
+    rhetrain: 'Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.',
+    wheed: 'Cannabis companion app. Local-first, no judgment.',
+    prhay: 'Digital prayer notebook—log intentions, track answered prayers. Local-first.',
+    bhible: 'Bible reading tracker—log progress through plans, build consistency. Local-first.',
+    mehmorize: 'Bilingual scripture memorization PWA; English ESV + Korean KLB, spaced repetition, letter-drip practice, printable worksheets. Works offline.',
+    mohri: 'Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.',
+    pehriod: 'Privacy-first menstrual cycle tracking. No apps sending reproductive data anywhere.',
+    cihrcletime: 'Your day, year, or lifetime as a clock face. Events as colored wedges; travel-time warnings, print to page, local storage.',
+    dayhcounter: 'Track days since important life moments, with desktop notifications.',
+    flightdeck: 'Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.',
+    cashflow: 'Real-time salary tracker with expense management—earnings to the second.',
+    lifeofcash: 'Lifetime financial flow visualizer—the full arc of a career, not just this paycheck.',
+    lifeahtlas: 'Financial, personal, and career milestones on a unified timeline.',
+    ghlobe: "Drag any country or state onto a true 3D globe and compare real-world sizes. Flat maps lie; this one doesn't.",
+    encryptor: 'Client-side code-block encryption with password—AES in-browser, zero server contact.'
+  }
+},
+fr: {
+  lede1: 'Des outils que j’ai faits parce que j’en avais besoin.', lede2: 'Gratuit. Aucun traceur, aucune publicité, aucun compte.',
+  search: 'rechercher…', noresults: 'Aucun outil ne correspond à cette recherche.',
+  contactIntro: 'Pour les sujets sensibles, utilisez SimpleX, Signal ou 0xchat. L’e-mail convient pour tout le reste.',
+  'c.simplex': 'anonyme, sans compte', 'c.0xchat': 'DM Nostr ; npub ci-dessous',
+  'c.email': 'talk@robbiemed.org ; clé PGP ci-dessous', 'c.anon': 'boîte à suggestions ; aucun journal',
+  'b.pref': 'préféré', 'b.ok': 'ok', 'b.anon': 'anon',
+  pgp: 'Empreinte PGP', elsewhere: 'Ailleurs', support: 'Soutien', disclaimer: 'pas un avis médical',
+  'cat.sim': 'Simulation et cas', 'cat.cards': 'Cardiologie', 'cat.ob': 'Obstétrique / Accouchement',
+  'cat.peds': 'Pédiatrie', 'cat.labs': 'Analyses et calculateurs', 'cat.clin': 'Flux clinique et références',
+  'cat.edu': 'Éducation et langues', 'cat.life': 'Vie, maison et foi', 'cat.fin': 'Finance',
+  'cat.util': 'Utilitaires', 'cat.contact': 'Contact',
+  d: {
+    rhesus: 'Simulateur de patient virtuel. Prescrivez analyses, médicaments et imagerie ; chaque décision est notée.',
+    abxahbs: 'Exercice Antibiotic Armory. Glissez les médicaments dans trois emplacements, réglez dose, intervalle et voie, battez le chrono.',
+    armory: 'Simulateur de prescription en infectiologie chronométré : hospitalisation et ambulatoire, noté sur la couverture, la sécurité, le bon usage, la posologie et la rapidité.',
+    scahn: 'Le premier simulateur d’échographie humaine libre et web au monde : votre téléphone devient la sonde.',
+    ekhayg: 'Outil d’interprétation de l’ECG. Analyse 12 dérivations au lit du patient.',
+    ezekg: 'Parcours structuré pour l’interprétation 12 dérivations : fréquence, rythme, axe, intervalles, morphologie, dans l’ordre.',
+    elektrolang: 'Lecteur d’ECG pas à pas. Interprétation systématique des 12 dérivations.',
+    laborcurve: 'Suivi du travail en temps réel avec courbe de Friedman, examens cervicaux et estimation de l’heure d’accouchement.',
+    myob: 'Manuel numérique pour les futures mères. Outils, dossiers et stockage — local d’abord.',
+    rhisk: 'Calculateur de risque pour le dépistage du cancer du col et prise en charge colposcopique — aligné ASCCP.',
+    prehgtime: 'Jalons gestationnels, fenêtres de dépistage et repères de suivi prénatal tout au long de la grossesse.',
+    nheonatal: 'Calculateur de sepsis néonatal KP et risque de bilirubine, réunis.',
+    petahamr: 'Exercice de constantes pédiatriques en répétition espacée.',
+    khaycal: 'Calculateur d’apport calorique pédiatrique par garde — perfusions, nutrition entérale, médicaments. Totaux horaires et par garde, par kg.',
+    prhehydrate: 'Calculateur fondé sur les preuves : sévérité de la déshydratation pédiatrique et protocole de réhydratation. Plans OMS A/B/C, score CDS, entretien Holliday–Segar. PWA hors ligne.',
+    ghrow: 'Courbes de croissance pédiatriques avec tracé longitudinal et calcul du Z-score. Le seul outil gratuit qui fait les deux.',
+    asthma: 'Plans imprimables zones verte/jaune/rouge avec instructions médicamenteuses personnalisées.',
+    rcv: 'Le changement est-il réel ? Distingue la variation physiologique du bruit biologique et analytique.',
+    nabxcalc: 'Estime la charge sodée des perfusions d’antibiotiques IV. Essentiel chez les patients à restriction sodée.',
+    hanemia: 'Suivi des pertes sanguines par prélèvement pour l’anémie nosocomiale. Repérez le risque avant la chute de l’hémoglobine.',
+    rhefeed: 'Stratification du risque de syndrome de renutrition avec surveillance électrolytique et progression calorique sûre.',
+    ehvidence: 'Analyse de preuves médicales en temps réel : forest plots, NNT/NNH, RR, IC 95 % et agrégation à effets aléatoires par thème clinique.',
+    mme: 'Convertissez tout schéma opioïde — régulier, PRN, PCA, transdermique — en un EMM quotidien unique, avec conversion vers l’opioïde cible et alertes alignées CDC.',
+    etoh: 'Sevrage alcoolique au lit du patient : CIWA, prédiction du sevrage sévère, posologies phénobarbital/dexmédétomidine/kétamine. Fonctionne hors ligne.',
+    fou: 'Fièvre d’origine inconnue : générateur de diagnostic différentiel fondé sur les expositions. 68 maladies notées en temps réel.',
+    ohbtracker: 'Données patients dans un tableau de bord visuel. Visites et transmissions sans friction.',
+    roundingos: 'Visites hospitalières pensées pour tablette. A&P centré sur l’évaluation, mannequin clinique, liaison des traitements par glisser-déposer, export dynamique des notes. Plus de 14 modèles.',
+    bhillit: 'Codeur de consultation E/M 2026 hors ligne. Suivez la consultation, codez en confiance.',
+    by8: 'Statistiques sans complaisance sur la signature de vos notes. Signez-les avant huit heures.',
+    pegj: 'Soins de gastro-jéjunostomie endoscopique percutanée, dépannage et éducation du patient.',
+    kapp: 'Application personnalisée de coréen — vocabulaire et grammaire adaptatifs.',
+    spehx: 'Exercices d’entraînement pour l’examen de re-licence SPEX (Special Purpose Examination).',
+    step3: 'Entraînement à l’interprétation des biostatistiques et des plans d’étude pour l’USMLE Step 3.',
+    rhetrain: 'Reprise alimentaire orale fondée sur la physiologie après un jeûne prolongé ou une dépendance à la nutrition entérale.',
+    wheed: 'Application compagnon cannabis. Local d’abord, sans jugement.',
+    prhay: 'Carnet de prière numérique — notez vos intentions, suivez les réponses. Local d’abord.',
+    bhible: 'Suivi de lecture biblique — avancez dans vos plans, installez la régularité. Local d’abord.',
+    mehmorize: 'PWA bilingue de mémorisation des Écritures ; ESV anglais + KLB coréen, répétition espacée, exercice à lettres dégressives, fiches imprimables. Fonctionne hors ligne.',
+    mohri: 'Temps restant avec vos proches, calculé sur les tables de mortalité et la fréquence des visites. Le memento mori en logiciel.',
+    pehriod: 'Suivi du cycle menstruel respectueux de la vie privée. Aucune donnée reproductive envoyée où que ce soit.',
+    cihrcletime: 'Votre journée, votre année ou votre vie sur un cadran. Événements en secteurs colorés ; alertes de temps de trajet, impression, stockage local.',
+    dayhcounter: 'Comptez les jours depuis les moments qui comptent, avec notifications de bureau.',
+    flightdeck: 'PWA de suivi de vols — analyse les URL FlightAware, génère des .ics, trace les orthodromies sur une carte.',
+    cashflow: 'Suivi de salaire en temps réel avec gestion des dépenses — vos gains à la seconde près.',
+    lifeofcash: 'Visualisation des flux financiers d’une vie — toute la trajectoire d’une carrière, pas seulement cette paie.',
+    lifeahtlas: 'Jalons financiers, personnels et professionnels sur une frise unique.',
+    ghlobe: 'Faites glisser n’importe quel pays ou région sur un vrai globe 3D et comparez les tailles réelles. Les cartes planes mentent ; pas celle-ci.',
+    encryptor: 'Chiffrement de blocs de code côté client par mot de passe — AES dans le navigateur, aucun contact serveur.'
+  }
+},
+zh: {
+  lede1: '这些工具，都是我自己需要才写的。', lede2: '免费。无追踪，无广告，无账户。',
+  search: '搜索…', noresults: '没有匹配的工具。',
+  contactIntro: '敏感话题请使用 SimpleX、Signal 或 0xchat。其他事宜用邮件即可。',
+  'c.simplex': '匿名，无需账户', 'c.0xchat': 'Nostr 私信；npub 见下',
+  'c.email': 'talk@robbiemed.org；PGP 密钥见下', 'c.anon': '意见箱；不留记录',
+  'b.pref': '推荐', 'b.ok': '可用', 'b.anon': '匿名',
+  pgp: 'PGP 指纹', elsewhere: '其他平台', support: '支持', disclaimer: '非医疗建议',
+  'cat.sim': '模拟与病例', 'cat.cards': '心脏科', 'cat.ob': '产科与分娩',
+  'cat.peds': '儿科', 'cat.labs': '检验与计算器', 'cat.clin': '临床流程与参考',
+  'cat.edu': '教育与语言', 'cat.life': '生活、家庭与信仰', 'cat.fin': '财务',
+  'cat.util': '实用工具', 'cat.contact': '联系方式',
+  d: {
+    rhesus: '虚拟患者模拟器。开检验、用药、影像检查，每个决策都会评分。',
+    abxahbs: '抗生素军械库训练。把药物拖入三个槽位，调整剂量、间隔和给药途径，在计时结束前完成。',
+    armory: '限时感染科处方模拟器，涵盖住院与门诊场景，按覆盖面、安全性、抗菌药物管理、剂量和速度评分。',
+    scahn: '全球首个开源网页版人体超声模拟器，用手机当探头。',
+    ekhayg: '心电图判读工具。床旁完成十二导联分析。',
+    ezekg: '十二导联判读的结构化流程：心率、节律、电轴、间期、形态，依次进行。',
+    elektrolang: '分步心电图判读器。系统地走完十二导联解读全过程。',
+    laborcurve: '实时产程追踪，含 Friedman 曲线、宫颈检查记录和分娩时间预测。',
+    myob: '为准妈妈准备的数字手册。工具、记录与存储，本地优先。',
+    rhisk: '宫颈癌筛查风险计算与阴道镜管理，遵循 ASCCP 指南。',
+    prehgtime: '孕周里程碑、筛查窗口和产前保健节点，贯穿整个孕期时间轴。',
+    nheonatal: 'KP 新生儿脓毒症计算器与胆红素风险评估，二合一。',
+    petahamr: '用间隔重复法牢记儿科生命体征。',
+    khaycal: '儿科班次摄入热量计算器：静脉输液、肠内营养、药物，按每公斤计算每小时与每班总量。',
+    prhehydrate: '循证儿科脱水严重度与补液方案计算器。WHO A/B/C 方案、CDS 评分、Holliday–Segar 维持量。离线 PWA。',
+    ghrow: '支持纵向绘图与 Z 值计算的儿童生长曲线。网上唯一同时具备两项功能的免费工具。',
+    asthma: '可打印的绿/黄/红分区计划，附患者个体化用药说明。',
+    rcv: '这个变化是真的吗？区分生理性改变与生物学、分析性波动。',
+    nabxcalc: '估算静脉抗生素输注带来的钠负荷。对限钠患者至关重要。',
+    hanemia: '医院获得性贫血的采血失血量追踪。在血红蛋白下降前发现风险。',
+    rhefeed: '再喂养综合征风险分层，含电解质监测与安全的热量递增。',
+    ehvidence: '实时医学证据分析：森林图、NNT/NNH、RR、95% 置信区间，以及各临床主题的随机效应合并。',
+    mme: '把任何阿片方案——定时、按需、PCA、透皮——换算成单一每日 MME，附目标药物转换和 CDC 风险提示。',
+    etoh: '床旁酒精戒断管理：CIWA、重度戒断预测，苯巴比妥/右美托咪定/氯胺酮剂量。可离线使用。',
+    fou: '不明原因发热鉴别诊断生成器，基于暴露史实时对 68 种疾病评分。',
+    ohbtracker: '把患者数据变成可视化面板。低摩擦查房与交班。',
+    roundingos: '面向平板的住院查房。以评估为先的 A&P、临床人体模型、拖放式用药关联、动态病历导出，14 种以上模板。',
+    bhillit: '离线 2026 版 E/M 就诊编码器。跟着诊疗流程走，放心编码。',
+    by8: '病历签署合规率的冷酷数据。八点前签完。',
+    pegj: '经皮内镜下胃-空肠造口的护理、故障排除与患者教育。',
+    kapp: '个性化韩语学习应用，自适应词汇与语法训练。',
+    spehx: 'SPEX（专项目的考试）重新执业考试练习题。',
+    step3: '练习解读 USMLE Step 3 的生物统计学与研究设计题目。',
+    rhetrain: '长期禁食或管饲依赖后，基于生理学的经口进食再训练。',
+    wheed: '大麻记录应用。本地优先，不作评判。',
+    prhay: '数字祷告笔记：记录祷告事项，追踪应允。本地优先。',
+    bhible: '读经进度追踪：按计划记录进度，养成习惯。本地优先。',
+    mehmorize: '双语经文背诵 PWA：英文 ESV + 韩文 KLB，间隔重复、逐字消隐练习、可打印练习纸。可离线使用。',
+    mohri: '依据生命表和相聚频率，算出与所爱之人剩余的时间。软件化的「勿忘你终有一死」。',
+    pehriod: '隐私优先的月经周期追踪。绝不把生育数据发往任何地方。',
+    cihrcletime: '把一天、一年或一生画成钟面。事件呈彩色扇形，含行程时间提醒、打印输出与本地存储。',
+    dayhcounter: '追踪重要人生时刻至今的天数，并提供桌面通知。',
+    flightdeck: '航班追踪 PWA：解析 FlightAware 链接、生成 .ics、在地图上绘制大圆航线。',
+    cashflow: '实时薪资追踪与支出管理，收入精确到秒。',
+    lifeofcash: '一生资金流可视化：看的是整个职业生涯的轨迹，而非这一次薪水。',
+    lifeahtlas: '把财务、个人与职业里程碑放在同一条时间轴上。',
+    ghlobe: '把任意国家或省州拖到真实的 3D 地球仪上，比较真实大小。平面地图会骗人，这个不会。',
+    encryptor: '基于密码的客户端代码块加密：浏览器内 AES，零服务器交互。'
+  }
+},
+ru: {
+  lede1: 'Инструменты, которые я сделал, потому что они были нужны мне самому.', lede2: 'Бесплатно. Без трекеров, без рекламы, без аккаунтов.',
+  search: 'поиск…', noresults: 'Ничего не найдено.',
+  contactIntro: 'Для конфиденциальных тем используйте SimpleX, Signal или 0xchat. Для всего остального подойдёт почта.',
+  'c.simplex': 'анонимно, без аккаунта', 'c.0xchat': 'Nostr DM; npub ниже',
+  'c.email': 'talk@robbiemed.org; PGP-ключ ниже', 'c.anon': 'ящик предложений; без логов',
+  'b.pref': 'предпочт.', 'b.ok': 'ок', 'b.anon': 'аноним',
+  pgp: 'Отпечаток PGP', elsewhere: 'Другие площадки', support: 'Поддержать', disclaimer: 'не медицинская рекомендация',
+  'cat.sim': 'Симуляции и клинические случаи', 'cat.cards': 'Кардиология', 'cat.ob': 'Акушерство и роды',
+  'cat.peds': 'Педиатрия', 'cat.labs': 'Анализы и калькуляторы', 'cat.clin': 'Клинические процессы и справочники',
+  'cat.edu': 'Образование и языки', 'cat.life': 'Жизнь, дом и вера', 'cat.fin': 'Финансы',
+  'cat.util': 'Утилиты', 'cat.contact': 'Контакты',
+  d: {
+    rhesus: 'Симулятор виртуального пациента. Назначайте анализы, препараты и визуализацию; каждое решение оценивается.',
+    abxahbs: 'Тренажёр Antibiotic Armory. Перетащите препараты в три слота, задайте дозу, интервал и путь введения, уложитесь в таймер.',
+    armory: 'Симулятор назначения антибиотиков на время — стационар и амбулатория, оценка по охвату, безопасности, рациональности, дозированию и скорости.',
+    scahn: 'Первый в мире свободный веб-симулятор УЗИ человека — телефон становится датчиком.',
+    ekhayg: 'Инструмент расшифровки ЭКГ. Анализ 12 отведений у постели больного.',
+    ezekg: 'Структурированный разбор 12 отведений: частота, ритм, ось, интервалы, морфология — по порядку.',
+    elektrolang: 'Пошаговый разбор ЭКГ. Систематическая интерпретация 12 отведений.',
+    laborcurve: 'Отслеживание родов в реальном времени: кривая Фридмана, осмотры шейки матки и прогноз времени родоразрешения.',
+    myob: 'Цифровой справочник для будущих мам. Инструменты, записи и хранение — локально в первую очередь.',
+    rhisk: 'Калькулятор риска при скрининге рака шейки матки и ведение кольпоскопии — по рекомендациям ASCCP.',
+    prehgtime: 'Гестационные вехи, окна скрининга и опорные точки дородового наблюдения на всей шкале беременности.',
+    nheonatal: 'Калькулятор неонатального сепсиса KP и риск билирубина — в одном месте.',
+    petahamr: 'Тренажёр педиатрических витальных показателей с интервальным повторением.',
+    khaycal: 'Калькулятор калорий за смену у детей — инфузии, энтеральное питание, препараты. Итоги за час и за смену на кг.',
+    prhehydrate: 'Доказательный калькулятор тяжести обезвоживания и схемы регидратации у детей. Планы ВОЗ A/B/C, шкала CDS, поддержание по Холлидею–Сегару. Офлайн-PWA.',
+    ghrow: 'Педиатрические кривые роста с построением динамики и расчётом Z-оценки. Единственный бесплатный инструмент, умеющий и то, и другое.',
+    asthma: 'Печатные планы зелёной/жёлтой/красной зон с индивидуальными указаниями по препаратам.',
+    rcv: 'Реально ли изменение? Отличает физиологический сдвиг от биологического и аналитического шума.',
+    nabxcalc: 'Оценивает натриевую нагрузку от внутривенных антибиотиков. Критично для пациентов с ограничением натрия.',
+    hanemia: 'Учёт кровопотери на заборы крови при госпитальной анемии. Заметьте риск до падения гемоглобина.',
+    rhefeed: 'Стратификация риска синдрома возобновлённого питания с контролем электролитов и безопасным наращиванием калорий.',
+    ehvidence: 'Анализ медицинских доказательств в реальном времени: форест-плоты, NNT/NNH, ОР, 95% ДИ и объединение по модели случайных эффектов.',
+    mme: 'Переведите любую схему опиоидов — плановую, по требованию, PCA, трансдермальную — в единый суточный MME, с переходом на целевой препарат и метками риска по CDC.',
+    etoh: 'Алкогольная абстиненция у постели больного: CIWA, прогноз тяжёлого течения, дозы фенобарбитала, дексмедетомидина и кетамина. Работает офлайн.',
+    fou: 'Лихорадка неясного генеза — генератор дифференциального диагноза на основе экспозиций. 68 болезней оцениваются в реальном времени.',
+    ohbtracker: 'Данные пациентов на наглядной панели. Обходы и передача смены без лишнего трения.',
+    roundingos: 'Обходы в стационаре с прицелом на планшет. A&P от оценки, клинический манекен, привязка препаратов перетаскиванием, динамический экспорт записей. Более 14 шаблонов.',
+    bhillit: 'Офлайн-кодировщик визитов E/M 2026. Пройдите приём и кодируйте уверенно.',
+    by8: 'Беспощадная статистика по подписанию записей. Подпишите их к восьми.',
+    pegj: 'Уход за чрескожной эндоскопической гастроеюностомой, устранение проблем и обучение пациента.',
+    kapp: 'Персональное приложение для корейского — адаптивная лексика и грамматика.',
+    spehx: 'Тренировочные задания к экзамену на восстановление лицензии SPEX.',
+    step3: 'Практика интерпретации биостатистики и дизайна исследований для USMLE Step 3.',
+    rhetrain: 'Восстановление перорального питания на физиологической основе после долгого голодания или зондового кормления.',
+    wheed: 'Приложение-компаньон по каннабису. Локально и без осуждения.',
+    prhay: 'Цифровой молитвенный дневник — записывайте прошения, отмечайте ответы. Локально в первую очередь.',
+    bhible: 'Трекер чтения Библии — фиксируйте прогресс по планам, вырабатывайте постоянство. Локально в первую очередь.',
+    mehmorize: 'Двуязычная PWA для заучивания Писания: английский ESV и корейский KLB, интервальное повторение, побуквенное затухание, печатные листы. Работает офлайн.',
+    mohri: 'Сколько времени осталось с близкими — по таблицам смертности и частоте встреч. Memento mori в виде программы.',
+    pehriod: 'Отслеживание цикла с приоритетом приватности. Репродуктивные данные никуда не уходят.',
+    cihrcletime: 'День, год или вся жизнь как циферблат. События — цветные секторы; предупреждения о времени в пути, печать и локальное хранение.',
+    dayhcounter: 'Считайте дни с важных моментов жизни, с уведомлениями на рабочем столе.',
+    flightdeck: 'PWA для отслеживания рейсов — разбирает ссылки FlightAware, создаёт .ics, рисует ортодромии на карте.',
+    cashflow: 'Отслеживание зарплаты в реальном времени с учётом расходов — доход посекундно.',
+    lifeofcash: 'Визуализация денежных потоков за всю жизнь — вся дуга карьеры, а не одна зарплата.',
+    lifeahtlas: 'Финансовые, личные и карьерные вехи на единой шкале времени.',
+    ghlobe: 'Перетащите любую страну или регион на настоящий 3D-глобус и сравните реальные размеры. Плоские карты лгут — эта нет.',
+    encryptor: 'Клиентское шифрование блоков кода паролем — AES в браузере, ноль обращений к серверу.'
+  }
+},
+ar: {
+  lede1: 'أدوات صنعتها لأنني احتجت إليها.', lede2: 'مجانية. بلا تتبّع، بلا إعلانات، بلا حسابات.',
+  search: 'بحث…', noresults: 'لا توجد أدوات مطابقة.',
+  contactIntro: 'للمواضيع الحساسة استخدم SimpleX أو Signal أو 0xchat. أما ما عدا ذلك فالبريد الإلكتروني يفي بالغرض.',
+  'c.simplex': 'مجهول، بلا حساب', 'c.0xchat': 'رسالة Nostr؛ مفتاح npub أدناه',
+  'c.email': 'talk@robbiemed.org؛ مفتاح PGP أدناه', 'c.anon': 'صندوق اقتراحات؛ بلا سجلات',
+  'b.pref': 'مفضّل', 'b.ok': 'متاح', 'b.anon': 'مجهول',
+  pgp: 'بصمة PGP', elsewhere: 'مواضع أخرى', support: 'الدعم', disclaimer: 'ليست استشارة طبية',
+  'cat.sim': 'المحاكاة والحالات', 'cat.cards': 'أمراض القلب', 'cat.ob': 'التوليد والولادة',
+  'cat.peds': 'طب الأطفال', 'cat.labs': 'التحاليل والحاسبات', 'cat.clin': 'سير العمل السريري والمراجع',
+  'cat.edu': 'التعليم واللغات', 'cat.life': 'الحياة والبيت والإيمان', 'cat.fin': 'المالية',
+  'cat.util': 'أدوات مساعدة', 'cat.contact': 'التواصل',
+  d: {
+    rhesus: 'محاكي مريض افتراضي. اطلب التحاليل والأدوية والتصوير، وستُقيَّم على كل قرار.',
+    abxahbs: 'تدريب ترسانة المضادات الحيوية. اسحب الأدوية إلى ثلاث خانات، واضبط الجرعة والفاصل الزمني وطريق الإعطاء قبل انتهاء الوقت.',
+    armory: 'محاكي وصف المضادات الحيوية بوقت محدد، للمرضى الداخليين والخارجيين، مع تقييم التغطية والسلامة وترشيد الاستخدام والجرعة والسرعة.',
+    scahn: 'أول محاكٍ مفتوح المصدر للتصوير بالموجات فوق الصوتية على الويب؛ هاتفك يصبح المسبار.',
+    ekhayg: 'أداة لقراءة تخطيط القلب الكهربائي. تحليل الاتجاهات الاثني عشر بجانب سرير المريض.',
+    ezekg: 'مسار منظّم لقراءة الاتجاهات الاثني عشر: المعدل، النظم، المحور، الفواصل، الشكل، بالترتيب.',
+    elektrolang: 'قارئ تخطيط القلب خطوة بخطوة. تفسير منهجي للاتجاهات الاثني عشر.',
+    laborcurve: 'متابعة المخاض لحظيًا مع منحنى فريدمان وفحوص عنق الرحم وتقدير وقت الولادة.',
+    myob: 'دليل رقمي للحوامل. أدوات وسجلات وتخزين، محليًا أولًا.',
+    rhisk: 'حاسبة مخاطر فحص سرطان عنق الرحم وإدارة تنظير عنق الرحم، وفق إرشادات ASCCP.',
+    prehgtime: 'محطات الحمل ونوافذ الفحص ومرتكزات الرعاية السابقة للولادة على امتداد فترة الحمل.',
+    nheonatal: 'حاسبة إنتان حديثي الولادة من KP مع تقييم خطر البيليروبين، في أداة واحدة.',
+    petahamr: 'تدريب على العلامات الحيوية لدى الأطفال بالتكرار المتباعد.',
+    khaycal: 'حاسبة السعرات المتناولة للأطفال لكل وردية: السوائل الوريدية والتغذية المعوية والأدوية. الإجمالي بالساعة وبالوردية لكل كيلوغرام.',
+    prhehydrate: 'حاسبة قائمة على الأدلة لشدة الجفاف عند الأطفال وبروتوكول الإماهة. خطط منظمة الصحة العالمية أ/ب/ج، ومقياس CDS، وصيانة هوليداي–سيجار. تطبيق ويب يعمل دون اتصال.',
+    ghrow: 'مخططات نمو الأطفال مع الرسم الطولي وحساب درجة Z. الأداة المجانية الوحيدة التي تجمع الاثنين.',
+    asthma: 'خطط قابلة للطباعة بمناطق خضراء وصفراء وحمراء مع تعليمات دوائية خاصة بكل مريض.',
+    rcv: 'هل التغيّر حقيقي؟ يميّز التغيّر الفسيولوجي عن التشويش الحيوي والتحليلي.',
+    nabxcalc: 'يقدّر حمل الصوديوم الناتج عن حقن المضادات الحيوية الوريدية. أساسي لمرضى تقييد الصوديوم.',
+    hanemia: 'تتبّع فقد الدم بسبب سحب العينات في فقر الدم المكتسب بالمستشفى. اكتشف الخطر قبل هبوط الهيموغلوبين.',
+    rhefeed: 'تصنيف خطر متلازمة إعادة التغذية مع مراقبة الشوارد وزيادة السعرات بأمان.',
+    ehvidence: 'تحليل لحظي للأدلة الطبية: مخططات الغابة، وNNT/NNH، والخطر النسبي، وفاصل الثقة 95%، والتجميع بالتأثيرات العشوائية.',
+    mme: 'حوّل أي نظام أفيوني — مجدول أو عند اللزوم أو PCA أو عبر الجلد — إلى مكافئ مورفين يومي واحد، مع التحويل إلى الدواء المستهدف وتنبيهات وفق CDC.',
+    etoh: 'إدارة انسحاب الكحول بجانب السرير: مقياس CIWA، والتنبؤ بالانسحاب الشديد، وجرعات الفينوباربيتال والديكسميديتوميدين والكيتامين. يعمل دون اتصال.',
+    fou: 'الحمى مجهولة المنشأ: مولّد تشخيص تفريقي قائم على التعرضات، يقيّم 68 مرضًا لحظيًا.',
+    ohbtracker: 'بيانات المرضى في لوحة مرئية. جولات وتسليم مناوبات بأقل احتكاك.',
+    roundingos: 'جولات المرضى الداخليين بتصميم يناسب اللوحي. تقييم أولًا في خطة العمل، ومجسّم سريري، وربط الأدوية بالسحب والإفلات، وتصدير ديناميكي للملاحظات. أكثر من 14 قالبًا.',
+    bhillit: 'أداة ترميز زيارات E/M لعام 2026 تعمل دون اتصال. سِر مع الزيارة ورمّز بثقة.',
+    by8: 'إحصاءات صريحة عن التزامك بتوقيع الملاحظات. وقّعها قبل الثامنة.',
+    pegj: 'رعاية فغر المعدة والصائم بالتنظير عبر الجلد، وحل المشكلات، وتثقيف المريض.',
+    kapp: 'تطبيق مخصص لتعلّم الكورية، بتدريبات تكيفية على المفردات والقواعد.',
+    spehx: 'تدريبات لامتحان SPEX لإعادة الترخيص.',
+    step3: 'تدريب على تفسير الإحصاء الحيوي وتصميم الدراسات لامتحان USMLE Step 3.',
+    rhetrain: 'إعادة تدريب التغذية الفموية على أساس فسيولوجي بعد صيام مطوّل أو اعتماد على التغذية الأنبوبية.',
+    wheed: 'تطبيق مرافق للقنّب. محلي أولًا، وبلا أحكام.',
+    prhay: 'دفتر صلاة رقمي: دوّن طلباتك وتابع الاستجابات. محلي أولًا.',
+    bhible: 'متابعة قراءة الكتاب المقدس: سجّل تقدمك في الخطط وابنِ الانتظام. محلي أولًا.',
+    mehmorize: 'تطبيق ويب ثنائي اللغة لحفظ النصوص المقدسة: ESV الإنجليزية وKLB الكورية، بالتكرار المتباعد وتمرين إخفاء الحروف وأوراق عمل قابلة للطباعة. يعمل دون اتصال.',
+    mohri: 'الوقت المتبقي مع أحبائك بحسب جداول الحياة وتواتر اللقاءات. تذكّر الموت في صورة برنامج.',
+    pehriod: 'متابعة الدورة الشهرية مع أولوية الخصوصية. لا تُرسل بيانات الإنجاب إلى أي جهة.',
+    cihrcletime: 'يومك أو سنتك أو عمرك كله على قرص ساعة. الأحداث قطاعات ملوّنة، مع تنبيهات وقت التنقل والطباعة والتخزين المحلي.',
+    dayhcounter: 'تتبّع الأيام منذ اللحظات المهمة في حياتك، مع إشعارات على سطح المكتب.',
+    flightdeck: 'تطبيق ويب لتتبّع الرحلات: يحلّل روابط FlightAware، وينشئ ملفات .ics، ويرسم المسارات الدائرية العظمى على الخريطة.',
+    cashflow: 'متابعة لحظية للراتب مع إدارة المصروفات؛ دخلك بالثانية.',
+    lifeofcash: 'تصوّر لتدفق المال عبر العمر: مسار المهنة كاملًا، لا هذا الراتب وحده.',
+    lifeahtlas: 'محطات مالية وشخصية ومهنية على خط زمني واحد.',
+    ghlobe: 'اسحب أي دولة أو ولاية على كرة أرضية ثلاثية الأبعاد حقيقية وقارن الأحجام الفعلية. الخرائط المسطحة تكذب، وهذه لا تفعل.',
+    encryptor: 'تشفير كتل الشيفرة بكلمة مرور من جهة العميل: AES داخل المتصفح، وبلا أي اتصال بالخادم.'
+  }
+}
+};
+
+/* ---------- apply language ---------- */
+var curLang = 'ko';
+
+function applyLang(lang) {
+  if (!TR[lang]) lang = 'ko';
+  curLang = lang;
+  var t = TR[lang];
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-t]').forEach(function (el) {
+    var key = el.dataset.t;
+    if (t[key] != null) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('.tool').forEach(function (li) {
+    var k = li.dataset.k;
+    var d = li.querySelector('.desc');
+    if (d && t.d[k] != null) d.textContent = t.d[k];
+  });
+
+  document.getElementById('q').placeholder = t.search;
+
+  document.querySelectorAll('#langbar button').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.lang === lang);
+  });
+
+  try { localStorage.setItem('rm-lang', lang); } catch (e) {}
+  doSearch(document.getElementById('q').value);
+}
+
+/* ---------- build language bar ---------- */
+(function () {
+  var bar = document.getElementById('langbar');
+  LANG_ORDER.forEach(function (l) {
+    var b = document.createElement('button');
+    b.dataset.lang = l;
+    b.innerHTML = FLAGS[l];
+    b.title = LANG_NAME[l];
+    b.setAttribute('aria-label', LANG_NAME[l]);
+    b.addEventListener('click', function () { applyLang(l); });
+    bar.appendChild(b);
+  });
+})();
+
+/* ---------- section counts ---------- */
+document.querySelectorAll('[data-cat]').forEach(function (sec) {
   var h2 = sec.querySelector('h2');
   var n = sec.querySelectorAll('.tool').length;
   var span = document.createElement('span');
@@ -366,11 +839,15 @@ document.querySelectorAll('[data-cat]').forEach(function(sec) {
   h2.appendChild(span);
 });
 
+/* ---------- search ---------- */
 function doSearch(val) {
-  var q = val.toLowerCase().trim();
+  var q = (val || '').toLowerCase().trim();
   var any = false;
   document.querySelectorAll('.tool').forEach(function (li) {
-    var match = !q || (li.dataset.s || '').indexOf(q) >= 0;
+    var hay = (li.dataset.s || '') + ' ' +
+              (li.querySelector('a') ? li.querySelector('a').textContent : '') + ' ' +
+              (li.querySelector('.desc') ? li.querySelector('.desc').textContent : '');
+    var match = !q || hay.toLowerCase().indexOf(q) >= 0;
     li.classList.toggle('hidden', !match);
     if (match) any = true;
   });
@@ -380,6 +857,13 @@ function doSearch(val) {
   });
   document.getElementById('no-results').classList.toggle('hidden', any || !q);
 }
+
+/* ---------- init ---------- */
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('rm-lang'); } catch (e) {}
+  applyLang(saved || 'ko');
+})();
 </script>
 </body>
 </html>
