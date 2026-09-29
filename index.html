@@ -70,7 +70,7 @@
       "@type": "ItemList",
       "@id": "https://www.robbiemed.org/#tools",
       "name": "Tools",
-      "numberOfItems": 50,
+      "numberOfItems": 51,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -869,6 +869,24 @@
           "position": 45,
           "item": {
             "@type": "SoftwareApplication",
+            "name": "Eehl",
+            "url": "https://eehl.robbiemed.org",
+            "description": "Degoogled countdown and count-up app for Android. One event, many readouts; D-day notation, 100-day cycles, lunar anniversaries. Offline, no Play Services. APK download.",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Android",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 46,
+          "item": {
+            "@type": "SoftwareApplication",
             "name": "Flightdeck",
             "url": "https://flightdeck.robbiemed.org",
             "description": "Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.",
@@ -884,7 +902,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 46,
+          "position": 47,
           "item": {
             "@type": "SoftwareApplication",
             "name": "CashFlow",
@@ -902,7 +920,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 47,
+          "position": 48,
           "item": {
             "@type": "SoftwareApplication",
             "name": "LifeOfCash",
@@ -920,7 +938,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 48,
+          "position": 49,
           "item": {
             "@type": "SoftwareApplication",
             "name": "Lifeahtlas",
@@ -938,7 +956,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 49,
+          "position": 50,
           "item": {
             "@type": "SoftwareApplication",
             "name": "Ghlobe",
@@ -956,7 +974,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 50,
+          "position": 51,
           "item": {
             "@type": "SoftwareApplication",
             "name": "Encryptor",
@@ -1260,6 +1278,7 @@ footer a:hover { color: var(--fg); }
     <li class="tool" data-k="pehriod" data-s="pehriod menstrual cycle tracking privacy local reproductive"><a href="https://pehriod.robbiemed.org" target="_blank" rel="noopener">Pehriod</a> <span class="desc">프라이버시 우선 월경 주기 추적. 생식 데이터를 어디로도 보내지 않습니다.</span></li>
     <li class="tool" data-k="cihrcletime" data-s="cihrcletime ctime circle time circular planner day year lifetime clock wedge events local"><a href="https://ctime.robbiemed.org" target="_blank" rel="noopener">Cihrcletime</a> <span class="desc">하루, 한 해, 또는 일생을 시계 문자판으로. 일정은 색깔 부채꼴로 표시되며 이동 시간 경고, 인쇄, 로컬 저장을 지원합니다.</span></li>
     <li class="tool" data-k="dayhcounter" data-s="dayhcounter days counter memory life moments notifications"><a href="https://days.robbiemed.org" target="_blank" rel="noopener">DayhCounter</a> <span class="desc">중요한 순간으로부터 지난 날짜를 추적하고 데스크톱 알림을 받습니다.</span></li>
+    <li class="tool" data-k="eehl" data-s="eehl countdown countup count up dday d-day 100 days lunar anniversary android apk fdroid degoogled offline widget"><a href="https://eehl.robbiemed.org" target="_blank" rel="noopener">Eehl</a> <span class="desc">Google 없이 동작하는 안드로이드 카운트다운·카운트업 앱. 하나의 일정에 여러 표기, D-day, 100일 주기, 음력 기념일. 오프라인 작동, Play 서비스 불필요. APK 배포.</span></li>
     <li class="tool" data-k="flightdeck" data-s="flightdeck flight tracking pwa ics great circle leaflet map"><a href="https://flightdeck.robbiemed.org" target="_blank" rel="noopener">Flightdeck</a> <span class="desc">항공편 추적 PWA. FlightAware URL 파싱, .ics 생성, 지도에 대권 항로 표시.</span></li>
   </ul>
 </div>
@@ -1428,6 +1447,7 @@ ko: {
     pehriod: '프라이버시 우선 월경 주기 추적. 생식 데이터를 어디로도 보내지 않습니다.',
     cihrcletime: '하루, 한 해, 또는 일생을 시계 문자판으로. 일정은 색깔 부채꼴로 표시되며 이동 시간 경고, 인쇄, 로컬 저장을 지원합니다.',
     dayhcounter: '중요한 순간으로부터 지난 날짜를 추적하고 데스크톱 알림을 받습니다.',
+    eehl: 'Google 없이 동작하는 안드로이드 카운트다운·카운트업 앱. 하나의 일정에 여러 표기, D-day, 100일 주기, 음력 기념일. 오프라인 작동, Play 서비스 불필요. APK 배포.',
     flightdeck: '항공편 추적 PWA. FlightAware URL 파싱, .ics 생성, 지도에 대권 항로 표시.',
     cashflow: '실시간 급여 추적과 지출 관리. 초 단위로 쌓이는 수입.',
     lifeofcash: '평생 자금 흐름 시각화. 이번 급여가 아니라 경력 전체의 궤적을 봅니다.',
@@ -1493,6 +1513,7 @@ en: {
     pehriod: 'Privacy-first menstrual cycle tracking. No apps sending reproductive data anywhere.',
     cihrcletime: 'Your day, year, or lifetime as a clock face. Events as colored wedges; travel-time warnings, print to page, local storage.',
     dayhcounter: 'Track days since important life moments, with desktop notifications.',
+    eehl: 'Degoogled countdown and count-up app for Android. One event, many readouts; D-day notation, 100-day cycles, lunar anniversaries. Offline, no Play Services. APK download.',
     flightdeck: 'Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.',
     cashflow: 'Real-time salary tracker with expense management—earnings to the second.',
     lifeofcash: 'Lifetime financial flow visualizer—the full arc of a career, not just this paycheck.',
@@ -1558,6 +1579,7 @@ fr: {
     pehriod: 'Suivi du cycle menstruel respectueux de la vie privée. Aucune donnée reproductive envoyée où que ce soit.',
     cihrcletime: 'Votre journée, votre année ou votre vie sur un cadran. Événements en secteurs colorés ; alertes de temps de trajet, impression, stockage local.',
     dayhcounter: 'Comptez les jours depuis les moments qui comptent, avec notifications de bureau.',
+    eehl: 'Application Android de compte à rebours et de compte à partir, sans Google. Un événement, plusieurs affichages ; notation J-, cycles de 100 jours, anniversaires lunaires. Hors ligne, sans Play Services. Téléchargement APK.',
     flightdeck: 'PWA de suivi de vols — analyse les URL FlightAware, génère des .ics, trace les orthodromies sur une carte.',
     cashflow: 'Suivi de salaire en temps réel avec gestion des dépenses — vos gains à la seconde près.',
     lifeofcash: 'Visualisation des flux financiers d’une vie — toute la trajectoire d’une carrière, pas seulement cette paie.',
@@ -1623,6 +1645,7 @@ zh: {
     pehriod: '隐私优先的月经周期追踪。绝不把生育数据发往任何地方。',
     cihrcletime: '把一天、一年或一生画成钟面。事件呈彩色扇形，含行程时间提醒、打印输出与本地存储。',
     dayhcounter: '追踪重要人生时刻至今的天数，并提供桌面通知。',
+    eehl: '无 Google 依赖的 Android 倒数与正数计时应用。一个事件，多种显示；D-day 记法、百日周期、农历纪念日。离线运行，无需 Play 服务。提供 APK 下载。',
     flightdeck: '航班追踪 PWA：解析 FlightAware 链接、生成 .ics、在地图上绘制大圆航线。',
     cashflow: '实时薪资追踪与支出管理，收入精确到秒。',
     lifeofcash: '一生资金流可视化：看的是整个职业生涯的轨迹，而非这一次薪水。',
@@ -1688,6 +1711,7 @@ ru: {
     pehriod: 'Отслеживание цикла с приоритетом приватности. Репродуктивные данные никуда не уходят.',
     cihrcletime: 'День, год или вся жизнь как циферблат. События — цветные секторы; предупреждения о времени в пути, печать и локальное хранение.',
     dayhcounter: 'Считайте дни с важных моментов жизни, с уведомлениями на рабочем столе.',
+    eehl: 'Android-приложение для обратного и прямого отсчёта, без Google. Одно событие — несколько представлений; нотация D-day, циклы по 100 дней, лунные годовщины. Офлайн, без Play Services. Загрузка APK.',
     flightdeck: 'PWA для отслеживания рейсов — разбирает ссылки FlightAware, создаёт .ics, рисует ортодромии на карте.',
     cashflow: 'Отслеживание зарплаты в реальном времени с учётом расходов — доход посекундно.',
     lifeofcash: 'Визуализация денежных потоков за всю жизнь — вся дуга карьеры, а не одна зарплата.',
@@ -1753,6 +1777,7 @@ ar: {
     pehriod: 'متابعة الدورة الشهرية مع أولوية الخصوصية. لا تُرسل بيانات الإنجاب إلى أي جهة.',
     cihrcletime: 'يومك أو سنتك أو عمرك كله على قرص ساعة. الأحداث قطاعات ملوّنة، مع تنبيهات وقت التنقل والطباعة والتخزين المحلي.',
     dayhcounter: 'تتبّع الأيام منذ اللحظات المهمة في حياتك، مع إشعارات على سطح المكتب.',
+    eehl: 'تطبيق أندرويد للعدّ التنازلي والتصاعدي بلا اعتماد على Google. حدث واحد بعروض متعددة، وترميز D-day، ودورات المئة يوم، والذكريات السنوية القمرية. يعمل دون اتصال وبلا خدمات Play. متاح كملف APK.',
     flightdeck: 'تطبيق ويب لتتبّع الرحلات: يحلّل روابط FlightAware، وينشئ ملفات .ics، ويرسم المسارات الدائرية العظمى على الخريطة.',
     cashflow: 'متابعة لحظية للراتب مع إدارة المصروفات؛ دخلك بالثانية.',
     lifeofcash: 'تصوّر لتدفق المال عبر العمر: مسار المهنة كاملًا، لا هذا الراتب وحده.',

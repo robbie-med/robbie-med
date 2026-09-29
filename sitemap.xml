@@ -233,6 +233,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://eehl.robbiemed.org/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://flightdeck.robbiemed.org/</loc>
     <lastmod>2026-09-29</lastmod>
     <priority>0.8</priority>
