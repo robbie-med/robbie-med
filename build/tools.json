@@ -1,0 +1,958 @@
+{
+  "categories": [
+    {
+      "key": "sim",
+      "name": {
+        "ko": "시뮬레이션 및 증례",
+        "en": "Simulation & Cases",
+        "fr": "Simulation et cas",
+        "zh": "模拟与病例",
+        "ru": "Симуляции и клинические случаи",
+        "ar": "المحاكاة والحالات"
+      },
+      "short": {
+        "ko": "시뮬레이션",
+        "en": "Simulation",
+        "fr": "Simulation",
+        "zh": "模拟",
+        "ru": "Симуляции",
+        "ar": "المحاكاة"
+      },
+      "tools": [
+        {
+          "key": "rhesus",
+          "name": "Rhesus",
+          "url": "https://rhesus.robbiemed.org",
+          "tags": "rhesus sim ai virtual patient cases clinical edu",
+          "d": {
+            "ko": "가상 환자 시뮬레이터. 검사·약물·영상을 처방하고, 모든 결정에 대해 점수를 받습니다.",
+            "en": "Virtual patient simulator. Order labs, meds, imaging; get scored on each decision.",
+            "fr": "Simulateur de patient virtuel. Prescrivez analyses, médicaments et imagerie ; chaque décision est notée.",
+            "zh": "虚拟患者模拟器。开检验、用药、影像检查，每个决策都会评分。",
+            "ru": "Симулятор виртуального пациента. Назначайте анализы, препараты и визуализацию; каждое решение оценивается.",
+            "ar": "محاكي مريض افتراضي. اطلب التحاليل والأدوية والتصوير، وستُقيَّم على كل قرار."
+          }
+        },
+        {
+          "key": "abxahbs",
+          "name": "AbxAhbs",
+          "url": "https://abxahbs.robbiemed.org",
+          "tags": "abxahbs antibiotic armory drill id pharmacy",
+          "d": {
+            "ko": "항생제 무기고 훈련. 약물을 3칸 구성에 끌어넣고 용량·간격·경로를 조절해 시간 안에 완료하세요.",
+            "en": "Antibiotic Armory drill. Drag drugs into a 3-slot loadout, dial dose/interval/route, beat the timer.",
+            "fr": "Exercice Antibiotic Armory. Glissez les médicaments dans trois emplacements, réglez dose, intervalle et voie, battez le chrono.",
+            "zh": "抗生素军械库训练。把药物拖入三个槽位，调整剂量、间隔和给药途径，在计时结束前完成。",
+            "ru": "Тренажёр Antibiotic Armory. Перетащите препараты в три слота, задайте дозу, интервал и путь введения, уложитесь в таймер.",
+            "ar": "تدريب ترسانة المضادات الحيوية. اسحب الأدوية إلى ثلاث خانات، واضبط الجرعة والفاصل الزمني وطريق الإعطاء قبل انتهاء الوقت."
+          }
+        },
+        {
+          "key": "armory",
+          "name": "Antibiotic Armory",
+          "url": "https://ahntibioticarmory.robbiemed.org",
+          "tags": "antibiotic armory id sim pharmacy game",
+          "d": {
+            "ko": "시간제한 감염내과 처방 시뮬레이터. 입원·외래 시나리오를 커버리지, 안전성, 항생제 관리, 용량, 속도로 채점합니다.",
+            "en": "Timed ID prescribing simulator—inpatient and outpatient, scored on coverage, safety, stewardship, and speed.",
+            "fr": "Simulateur de prescription en infectiologie chronométré : hospitalisation et ambulatoire, noté sur la couverture, la sécurité, le bon usage, la posologie et la rapidité.",
+            "zh": "限时感染科处方模拟器，涵盖住院与门诊场景，按覆盖面、安全性、抗菌药物管理、剂量和速度评分。",
+            "ru": "Симулятор назначения антибиотиков на время — стационар и амбулатория, оценка по охвату, безопасности, рациональности, дозированию и скорости.",
+            "ar": "محاكي وصف المضادات الحيوية بوقت محدد، للمرضى الداخليين والخارجيين، مع تقييم التغطية والسلامة وترشيد الاستخدام والجرعة والسرعة."
+          }
+        },
+        {
+          "key": "scahn",
+          "name": "Scahn",
+          "url": "https://scahn.robbiemed.org",
+          "tags": "scahn ultrasound simulator phone probe pocus foss open source",
+          "d": {
+            "ko": "세계 최초의 오픈소스 웹 기반 인체 초음파 시뮬레이터. 휴대폰을 탐촉자로 사용합니다.",
+            "en": "The world's first FOSS web-based human ultrasound simulator—use your phone as the probe.",
+            "fr": "Le premier simulateur d’échographie humaine libre et web au monde : votre téléphone devient la sonde.",
+            "zh": "全球首个开源网页版人体超声模拟器，用手机当探头。",
+            "ru": "Первый в мире свободный веб-симулятор УЗИ человека — телефон становится датчиком.",
+            "ar": "أول محاكٍ مفتوح المصدر للتصوير بالموجات فوق الصوتية على الويب؛ هاتفك يصبح المسبار."
+          }
+        }
+      ]
+    },
+    {
+      "key": "cards",
+      "name": {
+        "ko": "순환기",
+        "en": "Cardiology",
+        "fr": "Cardiologie",
+        "zh": "心脏科",
+        "ru": "Кардиология",
+        "ar": "أمراض القلب"
+      },
+      "short": {
+        "ko": "순환기",
+        "en": "Cardiology",
+        "fr": "Cardiologie",
+        "zh": "心脏科",
+        "ru": "Кардиология",
+        "ar": "القلب"
+      },
+      "tools": [
+        {
+          "key": "ekhayg",
+          "name": "EkhayG",
+          "url": "https://ekhayg.robbiemed.org",
+          "tags": "ekhayg ecg ekg 12-lead model simulator 3d heart torso vector vcg axis bundle branch lbbb rbbb wpw lvh rvh coronary occlusion st electrode cards",
+          "d": {
+            "ko": "실시간 12유도 심전도를 만들어내는 3D 심장·몸통 모델. 심박수, 축, 전도 이상(각차단, WPW, 좌·우심실 비대)을 바꾸고, 관상동맥을 막아 ST 변화를 보거나 전극 위치를 옮겨 보세요.",
+            "en": "3D heart-and-torso model that generates a live 12-lead. Change rate, axis, and conduction (BBB, WPW, LVH, RVH), occlude a coronary to see ST changes, or move the electrodes.",
+            "fr": "Modèle 3D du cœur et du thorax qui génère un ECG 12 dérivations en direct. Modifiez la fréquence, l’axe et la conduction (blocs de branche, WPW, HVG, HVD), occluez une coronaire pour voir les modifications du segment ST, ou déplacez les électrodes.",
+            "zh": "生成实时十二导联心电图的三维心脏与躯干模型。调整心率、电轴和传导（束支阻滞、WPW、左/右心室肥厚），阻塞一支冠状动脉观察 ST 改变，或移动电极位置。",
+            "ru": "Трёхмерная модель сердца и торса, которая строит ЭКГ в 12 отведениях в реальном времени. Меняйте ЧСС, ось и проводимость (блокады ножек, WPW, ГЛЖ, ГПЖ), перекройте коронарную артерию, чтобы увидеть изменения ST, или переставьте электроды.",
+            "ar": "نموذج ثلاثي الأبعاد للقلب والجذع يولّد تخطيطًا بالاتجاهات الاثني عشر لحظيًا. غيّر المعدل والمحور والتوصيل (إحصار الحزمة، WPW، تضخم البطين الأيسر أو الأيمن)، أو أغلق شريانًا تاجيًا لترى تغيّرات ST، أو حرّك الأقطاب."
+          }
+        },
+        {
+          "key": "elektrolang",
+          "name": "Elektrolang",
+          "url": "https://elektrolang.robbiemed.org",
+          "tags": "elektrolang ekg ecg step by step learn teach tutorial reader 12-lead measure mnemonic threshold cards",
+          "d": {
+            "ko": "심전도 읽는 법을 한 단계씩 배웁니다. 9개 화면마다 측정 방법, 암기 요령, 진단 기준이 담겨 있습니다.",
+            "en": "Learn to read an EKG one step at a time: nine screens, each with how to measure it, mnemonics, and the diagnostic thresholds.",
+            "fr": "Apprenez à lire un ECG étape par étape : neuf écrans, chacun avec la méthode de mesure, des moyens mnémotechniques et les seuils diagnostiques.",
+            "zh": "一步一步学会读心电图：九个页面，每页讲解测量方法、记忆口诀和诊断阈值。",
+            "ru": "Учитесь читать ЭКГ шаг за шагом: девять экранов, на каждом — как измерять, мнемоники и диагностические пороги.",
+            "ar": "تعلّم قراءة تخطيط القلب خطوة بخطوة: تسع شاشات، في كل منها طريقة القياس ووسائل للحفظ والعتبات التشخيصية."
+          }
+        },
+        {
+          "key": "ezekg",
+          "name": "EKG Systematic Read",
+          "url": "https://ezekg.robbiemed.org",
+          "tags": "ezekg ekg ecg systematic read checklist ed quick guided full interpretation impression red flags cards",
+          "d": {
+            "ko": "실제 심전도를 빠짐없이 읽기 위한 체크리스트. 심박수, 리듬, 간격, 축, ST, T파, 위험 패턴, 판독 소견까지. 응급실 빠른 판독, 안내형, 전체 모드.",
+            "en": "Checklist for reading a real tracing without missing anything: rate, rhythm, intervals, axis, ST, T waves, red flags, impression. ED-quick, guided, or full.",
+            "fr": "Liste de contrôle pour lire un vrai tracé sans rien oublier : fréquence, rythme, intervalles, axe, ST, ondes T, signes d’alarme, conclusion. Modes rapide (urgences), guidé ou complet.",
+            "zh": "读真实心电图时不漏项的检查清单：心率、节律、间期、电轴、ST、T 波、危险征象、结论。急诊速读、引导或完整模式。",
+            "ru": "Чек-лист, чтобы прочитать реальную ЭКГ и ничего не упустить: ЧСС, ритм, интервалы, ось, ST, зубцы T, тревожные паттерны, заключение. Режимы: быстрый (приёмное), с подсказками, полный.",
+            "ar": "قائمة تحقق لقراءة تخطيط حقيقي دون إغفال شيء: المعدل، النظم، الفواصل، المحور، ST، موجات T، العلامات الخطرة، الانطباع. وضع سريع للطوارئ، أو موجّه، أو كامل."
+          }
+        }
+      ]
+    },
+    {
+      "key": "ob",
+      "name": {
+        "ko": "산과 / 분만",
+        "en": "OB / Labor & Delivery",
+        "fr": "Obstétrique / Accouchement",
+        "zh": "产科与分娩",
+        "ru": "Акушерство и роды",
+        "ar": "التوليد والولادة"
+      },
+      "short": {
+        "ko": "산과",
+        "en": "OB",
+        "fr": "Obstétrique",
+        "zh": "产科",
+        "ru": "Акушерство",
+        "ar": "التوليد"
+      },
+      "tools": [
+        {
+          "key": "laborcurve",
+          "name": "Labor Curve",
+          "url": "https://laborlog.robbiemed.org",
+          "tags": "labor curve ob clinical tracker delivery friedman",
+          "d": {
+            "ko": "실시간 분만 추적. Friedman 곡선, 자궁경부 진찰 기록, 분만 시각 예측.",
+            "en": "Real-time labor tracker with Friedman curve, cervical exams, and delivery time estimation.",
+            "fr": "Suivi du travail en temps réel avec courbe de Friedman, examens cervicaux et estimation de l’heure d’accouchement.",
+            "zh": "实时产程追踪，含 Friedman 曲线、宫颈检查记录和分娩时间预测。",
+            "ru": "Отслеживание родов в реальном времени: кривая Фридмана, осмотры шейки матки и прогноз времени родоразрешения.",
+            "ar": "متابعة المخاض لحظيًا مع منحنى فريدمان وفحوص عنق الرحم وتقدير وقت الولادة."
+          }
+        },
+        {
+          "key": "myob",
+          "name": "MyOB",
+          "url": "https://myob.robbiemed.org",
+          "tags": "myob ob pregnancy handbook mothers digital tools storage local",
+          "d": {
+            "ko": "예비 엄마를 위한 디지털 안내서. 도구, 기록, 저장 모두 로컬 우선.",
+            "en": "Digital handbook for mothers-to-be. Tools, records, and storage—local-first.",
+            "fr": "Manuel numérique pour les futures mères. Outils, dossiers et stockage — local d’abord.",
+            "zh": "为准妈妈准备的数字手册。工具、记录与存储，本地优先。",
+            "ru": "Цифровой справочник для будущих мам. Инструменты, записи и хранение — локально в первую очередь.",
+            "ar": "دليل رقمي للحوامل. أدوات وسجلات وتخزين، محليًا أولًا."
+          }
+        },
+        {
+          "key": "rhisk",
+          "name": "Rhisk",
+          "url": "https://rhisk.robbiemed.org",
+          "tags": "rhisk gyn screening cervical cancer asccp colposcopy",
+          "d": {
+            "ko": "자궁경부암 검진 위험도 계산 및 질확대경 관리. ASCCP 지침 기반.",
+            "en": "Cervical cancer screening risk calculator and colposcopy management—ASCCP-aligned.",
+            "fr": "Calculateur de risque pour le dépistage du cancer du col et prise en charge colposcopique — aligné ASCCP.",
+            "zh": "宫颈癌筛查风险计算与阴道镜管理，遵循 ASCCP 指南。",
+            "ru": "Калькулятор риска при скрининге рака шейки матки и ведение кольпоскопии — по рекомендациям ASCCP.",
+            "ar": "حاسبة مخاطر فحص سرطان عنق الرحم وإدارة تنظير عنق الرحم، وفق إرشادات ASCCP."
+          }
+        },
+        {
+          "key": "prehgtime",
+          "name": "Pregnancy Clinical Timeline",
+          "url": "https://prehghx.robbiemed.org",
+          "tags": "prehgtime pregnancy timeline ob prenatal screening gestational",
+          "d": {
+            "ko": "임신 주수별 주요 시점, 검진 시기, 산전 관리 기준점을 한눈에.",
+            "en": "Gestational milestones, screening windows, and prenatal-care anchors across the pregnancy timeline.",
+            "fr": "Jalons gestationnels, fenêtres de dépistage et repères de suivi prénatal tout au long de la grossesse.",
+            "zh": "孕周里程碑、筛查窗口和产前保健节点，贯穿整个孕期时间轴。",
+            "ru": "Гестационные вехи, окна скрининга и опорные точки дородового наблюдения на всей шкале беременности.",
+            "ar": "محطات الحمل ونوافذ الفحص ومرتكزات الرعاية السابقة للولادة على امتداد فترة الحمل."
+          }
+        },
+        {
+          "key": "nheonatal",
+          "name": "Nheonatal",
+          "url": "https://nheonatal.robbiemed.org",
+          "tags": "nheonatal neonatal neo bilirubin kp kaiser sepsis calculator nursery",
+          "d": {
+            "ko": "KP 신생아 패혈증 계산기와 빌리루빈 위험도를 하나로.",
+            "en": "KP neonatal sepsis calculator + bilirubin risk, all in one.",
+            "fr": "Calculateur de sepsis néonatal KP et risque de bilirubine, réunis.",
+            "zh": "KP 新生儿脓毒症计算器与胆红素风险评估，二合一。",
+            "ru": "Калькулятор неонатального сепсиса KP и риск билирубина — в одном месте.",
+            "ar": "حاسبة إنتان حديثي الولادة من KP مع تقييم خطر البيليروبين، في أداة واحدة."
+          }
+        }
+      ]
+    },
+    {
+      "key": "peds",
+      "name": {
+        "ko": "소아과",
+        "en": "Pediatrics",
+        "fr": "Pédiatrie",
+        "zh": "儿科",
+        "ru": "Педиатрия",
+        "ar": "طب الأطفال"
+      },
+      "short": {
+        "ko": "소아과",
+        "en": "Pediatrics",
+        "fr": "Pédiatrie",
+        "zh": "儿科",
+        "ru": "Педиатрия",
+        "ar": "الأطفال"
+      },
+      "tools": [
+        {
+          "key": "petahamr",
+          "name": "PetaHamr",
+          "url": "https://petalhamr.robbiemed.org",
+          "tags": "petahamr peds vitals drill spaced repetition",
+          "d": {
+            "ko": "간격 반복 학습으로 소아 활력징후를 익히는 훈련.",
+            "en": "Spaced-repetition peds vitals drill.",
+            "fr": "Exercice de constantes pédiatriques en répétition espacée.",
+            "zh": "用间隔重复法牢记儿科生命体征。",
+            "ru": "Тренажёр педиатрических витальных показателей с интервальным повторением.",
+            "ar": "تدريب على العلامات الحيوية لدى الأطفال بالتكرار المتباعد."
+          }
+        },
+        {
+          "key": "khaycal",
+          "name": "Khaycal",
+          "url": "https://khaycal.robbiemed.org",
+          "tags": "khaycal peds nutrition calorie ivf enteral feeds",
+          "d": {
+            "ko": "소아 근무조 섭취 칼로리 계산기. 수액, 경장영양, 약물의 시간당·근무조당 kg 환산.",
+            "en": "Pediatric shift intake calorie calculator—IVF, enteral feeds, meds. Hourly and shift totals per kg.",
+            "fr": "Calculateur d’apport calorique pédiatrique par garde — perfusions, nutrition entérale, médicaments. Totaux horaires et par garde, par kg.",
+            "zh": "儿科班次摄入热量计算器：静脉输液、肠内营养、药物，按每公斤计算每小时与每班总量。",
+            "ru": "Калькулятор калорий за смену у детей — инфузии, энтеральное питание, препараты. Итоги за час и за смену на кг.",
+            "ar": "حاسبة السعرات المتناولة للأطفال لكل وردية: السوائل الوريدية والتغذية المعوية والأدوية. الإجمالي بالساعة وبالوردية لكل كيلوغرام."
+          }
+        },
+        {
+          "key": "prhehydrate",
+          "name": "PRhehydrate",
+          "url": "https://prhehydrate.robbiemed.org",
+          "tags": "rhehydrate rehydration dehydration pediatric ors who cds pwa offline",
+          "d": {
+            "ko": "근거 기반 소아 탈수 중증도 및 수액요법 계산기. WHO Plan A/B/C, CDS 점수, Holliday–Segar 유지량. 오프라인 PWA.",
+            "en": "Evidence-based pediatric dehydration severity and rehydration protocol calculator. WHO Plan A/B/C, CDS scoring, Holliday–Segar maintenance. Offline PWA.",
+            "fr": "Calculateur fondé sur les preuves : sévérité de la déshydratation pédiatrique et protocole de réhydratation. Plans OMS A/B/C, score CDS, entretien Holliday–Segar. PWA hors ligne.",
+            "zh": "循证儿科脱水严重度与补液方案计算器。WHO A/B/C 方案、CDS 评分、Holliday–Segar 维持量。离线 PWA。",
+            "ru": "Доказательный калькулятор тяжести обезвоживания и схемы регидратации у детей. Планы ВОЗ A/B/C, шкала CDS, поддержание по Холлидею–Сегару. Офлайн-PWA.",
+            "ar": "حاسبة قائمة على الأدلة لشدة الجفاف عند الأطفال وبروتوكول الإماهة. خطط منظمة الصحة العالمية أ/ب/ج، ومقياس CDS، وصيانة هوليداي–سيجار. تطبيق ويب يعمل دون اتصال."
+          }
+        },
+        {
+          "key": "ghrow",
+          "name": "Ghrow",
+          "url": "https://ghrow.robbiemed.org",
+          "tags": "ghrow growth charts pediatric plot weight height percentile z score over time",
+          "d": {
+            "ko": "종단 플로팅과 Z-점수 계산이 가능한 소아 성장 곡선. 두 기능을 모두 제공하는 유일한 무료 도구.",
+            "en": "Pediatric growth charts with longitudinal plotting and Z-score calculation. The only free tool on the internet that does both.",
+            "fr": "Courbes de croissance pédiatriques avec tracé longitudinal et calcul du Z-score. Le seul outil gratuit qui fait les deux.",
+            "zh": "支持纵向绘图与 Z 值计算的儿童生长曲线。网上唯一同时具备两项功能的免费工具。",
+            "ru": "Педиатрические кривые роста с построением динамики и расчётом Z-оценки. Единственный бесплатный инструмент, умеющий и то, и другое.",
+            "ar": "مخططات نمو الأطفال مع الرسم الطولي وحساب درجة Z. الأداة المجانية الوحيدة التي تجمع الاثنين."
+          }
+        },
+        {
+          "key": "asthma",
+          "name": "Asthma Action Plan",
+          "url": "https://asthma.robbiemed.org",
+          "tags": "asthma action plan peds resp printable green yellow red",
+          "d": {
+            "ko": "환자별 약물 지시가 포함된 인쇄용 녹색/황색/적색 구역 계획서.",
+            "en": "Printable green/yellow/red zone plans with patient-specific medication instructions.",
+            "fr": "Plans imprimables zones verte/jaune/rouge avec instructions médicamenteuses personnalisées.",
+            "zh": "可打印的绿/黄/红分区计划，附患者个体化用药说明。",
+            "ru": "Печатные планы зелёной/жёлтой/красной зон с индивидуальными указаниями по препаратам.",
+            "ar": "خطط قابلة للطباعة بمناطق خضراء وصفراء وحمراء مع تعليمات دوائية خاصة بكل مريض."
+          }
+        }
+      ]
+    },
+    {
+      "key": "labs",
+      "name": {
+        "ko": "검사 및 계산기",
+        "en": "Labs & Calculators",
+        "fr": "Analyses et calculateurs",
+        "zh": "检验与计算器",
+        "ru": "Анализы и калькуляторы",
+        "ar": "التحاليل والحاسبات"
+      },
+      "short": {
+        "ko": "검사·계산기",
+        "en": "Labs",
+        "fr": "Analyses",
+        "zh": "检验",
+        "ru": "Анализы",
+        "ar": "التحاليل"
+      },
+      "tools": [
+        {
+          "key": "rcv",
+          "name": "RCV Analyzer",
+          "url": "https://rcv.robbiemed.org",
+          "tags": "rcv analyzer reference change value lab stats noise",
+          "d": {
+            "ko": "변화가 실제인가? 생리적 변화와 생물학적·분석적 변동을 구분합니다.",
+            "en": "Is the change real? Distinguishes physiologic change from biological/analytical noise.",
+            "fr": "Le changement est-il réel ? Distingue la variation physiologique du bruit biologique et analytique.",
+            "zh": "这个变化是真的吗？区分生理性改变与生物学、分析性波动。",
+            "ru": "Реально ли изменение? Отличает физиологический сдвиг от биологического и аналитического шума.",
+            "ar": "هل التغيّر حقيقي؟ يميّز التغيّر الفسيولوجي عن التشويش الحيوي والتحليلي."
+          }
+        },
+        {
+          "key": "nabxcalc",
+          "name": "NaBXCalc",
+          "url": "https://nabxcalc.robbiemed.org",
+          "tags": "nabxcalc sodium antibiotic iv lab electrolytes fluid restricted",
+          "d": {
+            "ko": "정맥 항생제 주입으로 인한 나트륨 부하를 추정. 나트륨 제한 환자에게 필수.",
+            "en": "Estimates sodium load from IV antibiotic infusions. Critical for Na-restricted patients.",
+            "fr": "Estime la charge sodée des perfusions d’antibiotiques IV. Essentiel chez les patients à restriction sodée.",
+            "zh": "估算静脉抗生素输注带来的钠负荷。对限钠患者至关重要。",
+            "ru": "Оценивает натриевую нагрузку от внутривенных антибиотиков. Критично для пациентов с ограничением натрия.",
+            "ar": "يقدّر حمل الصوديوم الناتج عن حقن المضادات الحيوية الوريدية. أساسي لمرضى تقييد الصوديوم."
+          }
+        },
+        {
+          "key": "hanemia",
+          "name": "Hanemia",
+          "url": "https://hanemia.robbiemed.org",
+          "tags": "hanemia anemia phlebotomy blood loss heme hospital",
+          "d": {
+            "ko": "병원 획득 빈혈을 위한 채혈 실혈량 추적. 헤모글로빈이 떨어지기 전에 위험을 감지합니다.",
+            "en": "Phlebotomy blood-loss tracker for hospital-acquired anemia. Flag risk before the hemoglobin drops.",
+            "fr": "Suivi des pertes sanguines par prélèvement pour l’anémie nosocomiale. Repérez le risque avant la chute de l’hémoglobine.",
+            "zh": "医院获得性贫血的采血失血量追踪。在血红蛋白下降前发现风险。",
+            "ru": "Учёт кровопотери на заборы крови при госпитальной анемии. Заметьте риск до падения гемоглобина.",
+            "ar": "تتبّع فقد الدم بسبب سحب العينات في فقر الدم المكتسب بالمستشفى. اكتشف الخطر قبل هبوط الهيموغلوبين."
+          }
+        },
+        {
+          "key": "rhefeed",
+          "name": "Rhefeed",
+          "url": "https://rhefeed.robbiemed.org",
+          "tags": "rhefeed refeeding syndrome electrolyte nutrition risk",
+          "d": {
+            "ko": "재급식 증후군 위험 계층화. 전해질 모니터링과 안전한 열량 증량.",
+            "en": "Refeeding syndrome risk stratification with electrolyte monitoring and safe caloric advancement.",
+            "fr": "Stratification du risque de syndrome de renutrition avec surveillance électrolytique et progression calorique sûre.",
+            "zh": "再喂养综合征风险分层，含电解质监测与安全的热量递增。",
+            "ru": "Стратификация риска синдрома возобновлённого питания с контролем электролитов и безопасным наращиванием калорий.",
+            "ar": "تصنيف خطر متلازمة إعادة التغذية مع مراقبة الشوارد وزيادة السعرات بأمان."
+          }
+        },
+        {
+          "key": "cahlcidiol",
+          "name": "Cahlcidiol",
+          "url": "https://cahlcidiol.robbiemed.org",
+          "tags": "cahlcidiol calcidiol calcifediol 25ohd 25-hydroxyvitamin vitamin d cholecalciferol deez vihts pharmacokinetic simulator uvb sun supplement season skin",
+          "d": {
+            "ko": "구획 모델 기반 비타민 D 시뮬레이터. 자외선 B 피부 합성, 경구 보충, 체격, 계절을 반영해 최대 네 명의 혈중 25(OH)D를 그립니다.",
+            "en": "Compartmental vitamin D simulator. Models UVB skin synthesis, oral supplements, body size and season; plots serum 25(OH)D for up to four personas.",
+            "fr": "Simulateur compartimental de la vitamine D. Modélise la synthèse cutanée UVB, la supplémentation orale, la corpulence et la saison ; trace le 25(OH)D sérique pour jusqu’à quatre profils.",
+            "zh": "维生素 D 房室模型模拟器。计入 UVB 皮肤合成、口服补充、体型与季节，绘制最多四个人物的血清 25(OH)D 曲线。",
+            "ru": "Камерная модель витамина D. Учитывает кожный синтез под UVB, приём добавок, массу тела и сезон; строит кривую сывороточного 25(OH)D для четырёх профилей.",
+            "ar": "محاكٍ حجيري لفيتامين د. يحاكي التخليق الجلدي بالأشعة فوق البنفسجية B والمكمّلات الفموية وحجم الجسم والفصل، ويرسم مستوى 25(OH)D في المصل لأربعة نماذج."
+          }
+        },
+        {
+          "key": "ehvidence",
+          "name": "Ehvidence",
+          "url": "https://ehvidence.robbiemed.org",
+          "tags": "ehvidence evidence medical analysis forest plot nnt nnh rr ci pooled meta-analysis clinical",
+          "d": {
+            "ko": "실시간 의학 근거 분석. 숲그림, NNT/NNH, RR, 95% 신뢰구간, 임상 주제별 무작위효과 통합.",
+            "en": "Real-time medical evidence analysis; forest plots, NNT/NNH, RR, 95% CI, and random-effects pooling across clinical topics.",
+            "fr": "Analyse de preuves médicales en temps réel : forest plots, NNT/NNH, RR, IC 95 % et agrégation à effets aléatoires par thème clinique.",
+            "zh": "实时医学证据分析：森林图、NNT/NNH、RR、95% 置信区间，以及各临床主题的随机效应合并。",
+            "ru": "Анализ медицинских доказательств в реальном времени: форест-плоты, NNT/NNH, ОР, 95% ДИ и объединение по модели случайных эффектов.",
+            "ar": "تحليل لحظي للأدلة الطبية: مخططات الغابة، وNNT/NNH، والخطر النسبي، وفاصل الثقة 95%، والتجميع بالتأثيرات العشوائية."
+          }
+        },
+        {
+          "key": "mme",
+          "name": "MME Calculator",
+          "url": "https://mmhe.robbiemed.org",
+          "tags": "mme opioid morphine milligram equivalent converter calculator pain fentanyl methadone cdc pca mar",
+          "d": {
+            "ko": "정규·필요시·PCA·경피 등 모든 오피오이드 처방을 하루 MME로 환산. 목표 약물 전환과 CDC 기준 위험 표시 포함.",
+            "en": "Convert any opioid regimen—scheduled, PRN, PCA, transdermal—into a single daily MME, with target-opioid conversion and CDC-aligned risk flags.",
+            "fr": "Convertissez tout schéma opioïde — régulier, PRN, PCA, transdermique — en un EMM quotidien unique, avec conversion vers l’opioïde cible et alertes alignées CDC.",
+            "zh": "把任何阿片方案——定时、按需、PCA、透皮——换算成单一每日 MME，附目标药物转换和 CDC 风险提示。",
+            "ru": "Переведите любую схему опиоидов — плановую, по требованию, PCA, трансдермальную — в единый суточный MME, с переходом на целевой препарат и метками риска по CDC.",
+            "ar": "حوّل أي نظام أفيوني — مجدول أو عند اللزوم أو PCA أو عبر الجلد — إلى مكافئ مورفين يومي واحد، مع التحويل إلى الدواء المستهدف وتنبيهات وفق CDC."
+          }
+        },
+        {
+          "key": "etoh",
+          "name": "EtOH WD",
+          "url": "https://etoh.robbiemed.org",
+          "tags": "etoh alcohol withdrawal ciwa phenobarb pwa offline addiction",
+          "d": {
+            "ko": "알코올 금단 관리. CIWA, 중증 금단 예측, 페노바르비탈·덱스메데토미딘·케타민 용량. 오프라인 작동.",
+            "en": "Alcohol withdrawal management—CIWA, severe-withdrawal prediction, phenobarb/dex/ketamine dosing. Works offline.",
+            "fr": "Sevrage alcoolique : CIWA, prédiction du sevrage sévère, posologies phénobarbital/dexmédétomidine/kétamine. Fonctionne hors ligne.",
+            "zh": "酒精戒断管理：CIWA、重度戒断预测，苯巴比妥/右美托咪定/氯胺酮剂量。可离线使用。",
+            "ru": "Алкогольная абстиненция: CIWA, прогноз тяжёлого течения, дозы фенобарбитала, дексмедетомидина и кетамина. Работает офлайн.",
+            "ar": "إدارة انسحاب الكحول: مقياس CIWA، والتنبؤ بالانسحاب الشديد، وجرعات الفينوباربيتال والديكسميديتوميدين والكيتامين. يعمل دون اتصال."
+          }
+        }
+      ]
+    },
+    {
+      "key": "clin",
+      "name": {
+        "ko": "임상 워크플로 및 참고자료",
+        "en": "Clinical Workflow & Reference",
+        "fr": "Flux clinique et références",
+        "zh": "临床流程与参考",
+        "ru": "Клинические процессы и справочники",
+        "ar": "سير العمل السريري والمراجع"
+      },
+      "short": {
+        "ko": "임상 업무",
+        "en": "Clinical",
+        "fr": "Clinique",
+        "zh": "临床",
+        "ru": "Клиника",
+        "ar": "السريري"
+      },
+      "tools": [
+        {
+          "key": "ohbtracker",
+          "name": "OhbTracker",
+          "url": "https://ohbtracker.robbiemed.org",
+          "tags": "ohbtracker rounding team handoff dashboard clinical workflow",
+          "d": {
+            "ko": "환자 데이터를 시각적 대시보드로. 마찰 없는 회진과 인계.",
+            "en": "Patient data into a visual dashboard. Minimal-friction rounding and team handoff.",
+            "fr": "Données patients dans un tableau de bord visuel. Visites et transmissions sans friction.",
+            "zh": "把患者数据变成可视化面板。低摩擦查房与交班。",
+            "ru": "Данные пациентов на наглядной панели. Обходы и передача смены без лишнего трения.",
+            "ar": "بيانات المرضى في لوحة مرئية. جولات وتسليم مناوبات بأقل احتكاك."
+          }
+        },
+        {
+          "key": "roundingos",
+          "name": "RoundingOS",
+          "url": "https://rhoundos.robbiemed.org",
+          "tags": "roundingos rounding inpatient tablet pwa dka copd sepsis note templates",
+          "d": {
+            "ko": "태블릿 우선 입원 회진. 평가 중심 A&P, 임상 마네킹, 드래그앤드롭 약물 연결, 동적 노트 내보내기. 14개 이상 템플릿.",
+            "en": "Tablet-first inpatient rounding. Assessment-first A&P, clinical mannequin, drag-drop med linking, dynamic note export. 14+ templates.",
+            "fr": "Visites hospitalières pensées pour tablette. A&P centré sur l’évaluation, mannequin clinique, liaison des traitements par glisser-déposer, export dynamique des notes. Plus de 14 modèles.",
+            "zh": "面向平板的住院查房。以评估为先的 A&P、临床人体模型、拖放式用药关联、动态病历导出，14 种以上模板。",
+            "ru": "Обходы в стационаре с прицелом на планшет. A&P от оценки, клинический манекен, привязка препаратов перетаскиванием, динамический экспорт записей. Более 14 шаблонов.",
+            "ar": "جولات المرضى الداخليين بتصميم يناسب اللوحي. تقييم أولًا في خطة العمل، ومجسّم سريري، وربط الأدوية بالسحب والإفلات، وتصدير ديناميكي للملاحظات. أكثر من 14 قالبًا."
+          }
+        },
+        {
+          "key": "bhillit",
+          "name": "Bhillit",
+          "url": "https://bhillit.robbiemed.org",
+          "tags": "bhillit em coding e/m medical decision making cpt 2026 pwa offline",
+          "d": {
+            "ko": "오프라인 2026 E/M 진료 코더. 진료 흐름을 따라가며 자신 있게 코딩하세요.",
+            "en": "Offline 2026 E/M visit coder. Move through your visit, code with confidence.",
+            "fr": "Codeur de consultation E/M 2026 hors ligne. Suivez la consultation, codez en confiance.",
+            "zh": "离线 2026 版 E/M 就诊编码器。跟着诊疗流程走，放心编码。",
+            "ru": "Офлайн-кодировщик визитов E/M 2026. Пройдите приём и кодируйте уверенно.",
+            "ar": "أداة ترميز زيارات E/M لعام 2026 تعمل دون اتصال. سِر مع الزيارة ورمّز بثقة."
+          }
+        },
+        {
+          "key": "by8",
+          "name": "By8",
+          "url": "https://by8.robbiemed.org",
+          "tags": "by8 note signing compliance admin stats",
+          "d": {
+            "ko": "노트 서명 준수율에 대한 냉정한 통계. 8시까지 서명하세요.",
+            "en": "Cold hard stats on your note-signing compliance. Sign 'em by eight.",
+            "fr": "Statistiques sans complaisance sur la signature de vos notes. Signez-les avant huit heures.",
+            "zh": "病历签署合规率的冷酷数据。八点前签完。",
+            "ru": "Беспощадная статистика по подписанию записей. Подпишите их к восьми.",
+            "ar": "إحصاءات صريحة عن التزامك بتوقيع الملاحظات. وقّعها قبل الثامنة."
+          }
+        },
+        {
+          "key": "vihsihtlihmiht",
+          "name": "Vihsihtlihmiht",
+          "url": "https://vihsihtlihmiht.robbiemed.org",
+          "tags": "vihsihtlihmiht visit timer clinic 15 minutes preceptor desktop bar windows countdown",
+          "os": "Windows",
+          "d": {
+            "ko": "15분입니다. 라포 형성, 약물 정리, 진찰, 지도 선생님 이야기 경청, 오더 입력까지 전부. 자, 이거 받으세요. 데스크톱을 가로지르는 타이머 바입니다. 현재 Windows 전용, Linux와 Mac은 곧 지원 예정.",
+            "en": "You have 15 minutes—to establish rapport, do the med rec, examine the patient, listen to your preceptor's stories, and place your orders. Here, take this. It's a timer bar across your desktop. Windows-only at this time, Linux and Mac coming soon.",
+            "fr": "Vous avez 15 minutes — pour établir le lien, faire le bilan médicamenteux, examiner le patient, écouter les anecdotes de votre superviseur et saisir les prescriptions. Tenez, prenez ça. Une barre de minuterie en travers de votre bureau. Windows uniquement pour l’instant ; Linux et Mac à venir.",
+            "zh": "你有 15 分钟——建立关系、核对用药、查体、听带教老师讲故事，还要下医嘱。喏，拿着这个。一条横跨桌面的计时条。目前仅支持 Windows，Linux 和 Mac 即将推出。",
+            "ru": "У вас 15 минут — установить контакт, сверить препараты, осмотреть пациента, выслушать истории наставника и оформить назначения. Вот, держите. Полоса таймера через весь рабочий стол. Пока только Windows; Linux и Mac скоро.",
+            "ar": "أمامك 15 دقيقة — لبناء الألفة، ومراجعة الأدوية، وفحص المريض، والإنصات لحكايات المشرف، وإدخال الطلبات. خذ هذا. شريط مؤقّت يمتد عبر سطح مكتبك. يعمل على Windows فقط حاليًا، وLinux وmac قريبًا."
+          }
+        },
+        {
+          "key": "vihsit",
+          "name": "Vihsit",
+          "url": "https://vihsit.robbiemed.org",
+          "tags": "vihsit case log resident residency family medicine acgme cerner oracle athena athenahealth schedule continuity panel ccc deidentified offline",
+          "d": {
+            "ko": "가정의학과 전공의를 위한 비공개 오프라인 진료 기록. Cerner나 athenahealth 일정을 붙여넣으면 비식별 통계만 남기고 ACGME 요건을 추적합니다. 네트워크 접근 불가.",
+            "en": "Private, offline case log for family medicine residents. Paste a Cerner or athenahealth day; it keeps only de-identified counts and tracks ACGME requirements. Can't touch the network.",
+            "fr": "Carnet de cas privé et hors ligne pour les internes de médecine familiale. Collez une journée Cerner ou athenahealth ; seuls des décomptes anonymisés sont conservés, avec le suivi des exigences ACGME. Aucun accès réseau.",
+            "zh": "面向家庭医学住院医师的私密离线病例记录。粘贴 Cerner 或 athenahealth 的日程，只保留去标识化的计数，并追踪 ACGME 要求。完全无法联网。",
+            "ru": "Закрытый офлайн-журнал случаев для ординаторов семейной медицины. Вставьте день из Cerner или athenahealth: сохраняются только обезличенные счётчики, ведётся учёт требований ACGME. Доступа к сети нет.",
+            "ar": "سجلّ حالات خاص يعمل دون اتصال لمقيمي طب الأسرة. الصق جدول يوم من Cerner أو athenahealth؛ يحتفظ بأعداد مجهولة الهوية فقط ويتابع متطلبات ACGME. لا وصول إلى الشبكة."
+          }
+        },
+        {
+          "key": "pegj",
+          "name": "PEG-J Reference",
+          "url": "https://pegj.robbiemed.org",
+          "tags": "pegj peg-j gi procedures gastrojejunostomy care patient education",
+          "d": {
+            "ko": "경피 내시경 위-공장루 관리, 문제 해결, 환자 교육.",
+            "en": "Percutaneous endoscopic gastro-jejunostomy care, troubleshooting, and patient education.",
+            "fr": "Soins de gastro-jéjunostomie endoscopique percutanée, dépannage et éducation du patient.",
+            "zh": "经皮内镜下胃-空肠造口的护理、故障排除与患者教育。",
+            "ru": "Уход за чрескожной эндоскопической гастроеюностомой, устранение проблем и обучение пациента.",
+            "ar": "رعاية فغر المعدة والصائم بالتنظير عبر الجلد، وحل المشكلات، وتثقيف المريض."
+          }
+        },
+        {
+          "key": "stohn",
+          "name": "Stohn",
+          "url": "https://stohn.robbiemed.org",
+          "tags": "stohn stone kidney renal calculus urology first stone passage aua eau ct 30 days patient offline",
+          "d": {
+            "ko": "첫 신장결석 이후 30일을 함께하는 도구. CT 코호트 기반 배출 기간 범위, 위험 징후 확인(상향 권고만), 진료 준비 질문, 인쇄용 요약. 로컬 우선.",
+            "en": "Companion for the first 30 days after a first kidney stone. Published passage ranges from CT cohorts, escalation-only danger-sign check-ins, visit prep, printable summary. Local-first.",
+            "fr": "Compagnon des 30 premiers jours après un premier calcul rénal. Délais d’expulsion publiés issus de cohortes scanner, auto-évaluations des signes d’alerte (escalade uniquement), préparation de la consultation, résumé imprimable. Local d’abord.",
+            "zh": "首次肾结石后 30 天的陪伴工具。基于 CT 队列的排石时间区间、只升级不安抚的危险征象自查、就诊准备问题、可打印摘要。本地优先。",
+            "ru": "Спутник на первые 30 дней после первого камня в почке. Опубликованные сроки отхождения по КТ-когортам, проверки тревожных признаков (только на повышение), подготовка к приёму, печатная сводка. Локально в первую очередь.",
+            "ar": "رفيق الثلاثين يومًا الأولى بعد أول حصوة كلوية. مُدد خروج الحصوة المنشورة من دراسات التصوير المقطعي، وفحوص العلامات الخطرة (تصعيد فقط)، وتحضير الزيارة، وملخّص قابل للطباعة. محلي أولًا."
+          }
+        }
+      ]
+    },
+    {
+      "key": "edu",
+      "name": {
+        "ko": "교육 및 언어",
+        "en": "Education & Language",
+        "fr": "Éducation et langues",
+        "zh": "教育与语言",
+        "ru": "Образование и языки",
+        "ar": "التعليم واللغات"
+      },
+      "short": {
+        "ko": "교육",
+        "en": "Education",
+        "fr": "Éducation",
+        "zh": "教育",
+        "ru": "Образование",
+        "ar": "التعليم"
+      },
+      "tools": [
+        {
+          "key": "kapp",
+          "name": "Kapp",
+          "url": "https://kapp.robbiemed.org",
+          "tags": "kapp korean language adaptive vocabulary grammar drills",
+          "d": {
+            "ko": "개인 맞춤 한국어 앱. 적응형 어휘·문법 훈련.",
+            "en": "Personalized Korean language app—adaptive vocabulary and grammar drills.",
+            "fr": "Application personnalisée de coréen — vocabulaire et grammaire adaptatifs.",
+            "zh": "个性化韩语学习应用，自适应词汇与语法训练。",
+            "ru": "Персональное приложение для корейского — адаптивная лексика и грамматика.",
+            "ar": "تطبيق مخصص لتعلّم الكورية، بتدريبات تكيفية على المفردات والقواعد."
+          }
+        },
+        {
+          "key": "spehx",
+          "name": "SPEX Practice Test",
+          "url": "https://spehx.robbiemed.org",
+          "tags": "spehx spex practice test boards edu re-licensure exam",
+          "d": {
+            "ko": "SPEX(특수목적시험) 재면허 시험 대비 문제 훈련.",
+            "en": "Practice drills for the SPEX (Special Purpose Examination) re-licensure exam.",
+            "fr": "Exercices d’entraînement pour l’examen de re-licence SPEX (Special Purpose Examination).",
+            "zh": "SPEX（专项目的考试）重新执业考试练习题。",
+            "ru": "Тренировочные задания к экзамену на восстановление лицензии SPEX.",
+            "ar": "تدريبات لامتحان SPEX لإعادة الترخيص."
+          }
+        },
+        {
+          "key": "step3",
+          "name": "Step 3 Evidence Interpreter",
+          "url": "https://step-3-biostats.robbiemed.org",
+          "tags": "step 3 biostats evidence interpreter usmle boards edu stats",
+          "d": {
+            "ko": "USMLE Step 3 생물통계 및 연구설계 문제 해석 연습.",
+            "en": "Practice interpreting biostatistics and study design questions for USMLE Step 3.",
+            "fr": "Entraînement à l’interprétation des biostatistiques et des plans d’étude pour l’USMLE Step 3.",
+            "zh": "练习解读 USMLE Step 3 的生物统计学与研究设计题目。",
+            "ru": "Практика интерпретации биостатистики и дизайна исследований для USMLE Step 3.",
+            "ar": "تدريب على تفسير الإحصاء الحيوي وتصميم الدراسات لامتحان USMLE Step 3."
+          }
+        },
+        {
+          "key": "rhetrain",
+          "name": "Rhetrain",
+          "url": "https://rhetrain.robbiemed.org",
+          "tags": "rhetrain oral intake retraining npo tube feed gi nutrition",
+          "d": {
+            "ko": "장기 금식이나 경관영양 의존 후 생리학 기반 경구 섭취 재훈련.",
+            "en": "Physiology-based oral intake retraining after prolonged NPO or tube-feed dependence.",
+            "fr": "Reprise alimentaire orale fondée sur la physiologie après un jeûne prolongé ou une dépendance à la nutrition entérale.",
+            "zh": "长期禁食或管饲依赖后，基于生理学的经口进食再训练。",
+            "ru": "Восстановление перорального питания на физиологической основе после долгого голодания или зондового кормления.",
+            "ar": "إعادة تدريب التغذية الفموية على أساس فسيولوجي بعد صيام مطوّل أو اعتماد على التغذية الأنبوبية."
+          }
+        },
+        {
+          "key": "wheed",
+          "name": "Wheed",
+          "url": "https://wheed.robbiemed.org",
+          "tags": "wheed cannabis marijuana weed mary jane tracking",
+          "d": {
+            "ko": "대마 동반 앱. 로컬 우선, 판단 없음.",
+            "en": "Cannabis companion app. Local-first, no judgment.",
+            "fr": "Application compagnon cannabis. Local d’abord, sans jugement.",
+            "zh": "大麻记录应用。本地优先，不作评判。",
+            "ru": "Приложение-компаньон по каннабису. Локально и без осуждения.",
+            "ar": "تطبيق مرافق للقنّب. محلي أولًا، وبلا أحكام."
+          }
+        }
+      ]
+    },
+    {
+      "key": "life",
+      "name": {
+        "ko": "생활, 가정, 신앙",
+        "en": "Life, Home & Faith",
+        "fr": "Vie, maison et foi",
+        "zh": "生活、家庭与信仰",
+        "ru": "Жизнь, дом и вера",
+        "ar": "الحياة والبيت والإيمان"
+      },
+      "short": {
+        "ko": "생활",
+        "en": "Life",
+        "fr": "Vie",
+        "zh": "生活",
+        "ru": "Жизнь",
+        "ar": "الحياة"
+      },
+      "tools": [
+        {
+          "key": "prhay",
+          "name": "Prhay",
+          "url": "https://prhay.robbiemed.org",
+          "tags": "prhay prayer notebook faith log intentions answered local",
+          "d": {
+            "ko": "디지털 기도 수첩. 기도 제목을 기록하고 응답을 추적. 로컬 우선.",
+            "en": "Digital prayer notebook—log intentions, track answered prayers. Local-first.",
+            "fr": "Carnet de prière numérique — notez vos intentions, suivez les réponses. Local d’abord.",
+            "zh": "数字祷告笔记：记录祷告事项，追踪应允。本地优先。",
+            "ru": "Цифровой молитвенный дневник — записывайте прошения, отмечайте ответы. Локально в первую очередь.",
+            "ar": "دفتر صلاة رقمي: دوّن طلباتك وتابع الاستجابات. محلي أولًا."
+          }
+        },
+        {
+          "key": "bhible",
+          "name": "Bhible",
+          "url": "https://bhible.robbiemed.org",
+          "tags": "bhible bible reading tracker faith plans local",
+          "d": {
+            "ko": "성경 통독 추적. 계획별 진도를 기록하고 습관을 만듭니다. 로컬 우선.",
+            "en": "Bible reading tracker—log progress through plans, build consistency. Local-first.",
+            "fr": "Suivi de lecture biblique — avancez dans vos plans, installez la régularité. Local d’abord.",
+            "zh": "读经进度追踪：按计划记录进度，养成习惯。本地优先。",
+            "ru": "Трекер чтения Библии — фиксируйте прогресс по планам, вырабатывайте постоянство. Локально в первую очередь.",
+            "ar": "متابعة قراءة الكتاب المقدس: سجّل تقدمك في الخطط وابنِ الانتظام. محلي أولًا."
+          }
+        },
+        {
+          "key": "mehmorize",
+          "name": "Mehmorize",
+          "url": "https://mehmorize.robbiemed.org",
+          "tags": "mehmorize scripture memorization bilingual esv korean klb spaced repetition pwa offline faith",
+          "d": {
+            "ko": "이중언어 성구 암송 PWA. 영어 ESV + 한국어 KLB, 간격 반복, 글자 지우기 연습, 인쇄용 학습지. 오프라인 작동.",
+            "en": "Bilingual scripture memorization PWA; English ESV + Korean KLB, spaced repetition, letter-drip practice, printable worksheets. Works offline.",
+            "fr": "PWA bilingue de mémorisation des Écritures ; ESV anglais + KLB coréen, répétition espacée, exercice à lettres dégressives, fiches imprimables. Fonctionne hors ligne.",
+            "zh": "双语经文背诵 PWA：英文 ESV + 韩文 KLB，间隔重复、逐字消隐练习、可打印练习纸。可离线使用。",
+            "ru": "Двуязычная PWA для заучивания Писания: английский ESV и корейский KLB, интервальное повторение, побуквенное затухание, печатные листы. Работает офлайн.",
+            "ar": "تطبيق ويب ثنائي اللغة لحفظ النصوص المقدسة: ESV الإنجليزية وKLB الكورية، بالتكرار المتباعد وتمرين إخفاء الحروف وأوراق عمل قابلة للطباعة. يعمل دون اتصال."
+          }
+        },
+        {
+          "key": "mohri",
+          "name": "Mohri",
+          "url": "https://mohri.robbiemed.org",
+          "tags": "mohri mortality actuarial memento mori time remaining loved ones",
+          "d": {
+            "ko": "생명표와 만남 빈도로 계산한 사랑하는 사람과 남은 시간. 소프트웨어로 구현한 메멘토 모리.",
+            "en": "Time remaining with loved ones based on actuarial tables and visit frequency. Memento mori as software.",
+            "fr": "Temps restant avec vos proches, calculé sur les tables de mortalité et la fréquence des visites. Le memento mori en logiciel.",
+            "zh": "依据生命表和相聚频率，算出与所爱之人剩余的时间。软件化的「勿忘你终有一死」。",
+            "ru": "Сколько времени осталось с близкими — по таблицам смертности и частоте встреч. Memento mori в виде программы.",
+            "ar": "الوقت المتبقي مع أحبائك بحسب جداول الحياة وتواتر اللقاءات. تذكّر الموت في صورة برنامج."
+          }
+        },
+        {
+          "key": "pehriod",
+          "name": "Pehriod",
+          "url": "https://pehriod.robbiemed.org",
+          "tags": "pehriod menstrual cycle tracking privacy local reproductive",
+          "d": {
+            "ko": "프라이버시 우선 월경 주기 추적. 생식 데이터를 어디로도 보내지 않습니다.",
+            "en": "Privacy-first menstrual cycle tracking. Your reproductive data never leaves the device.",
+            "fr": "Suivi du cycle menstruel respectueux de la vie privée. Aucune donnée reproductive envoyée où que ce soit.",
+            "zh": "隐私优先的月经周期追踪。绝不把生育数据发往任何地方。",
+            "ru": "Отслеживание цикла с приоритетом приватности. Репродуктивные данные никуда не уходят.",
+            "ar": "متابعة الدورة الشهرية مع أولوية الخصوصية. لا تُرسل بيانات الإنجاب إلى أي جهة."
+          }
+        },
+        {
+          "key": "cihrcletime",
+          "name": "Cihrcletime",
+          "url": "https://ctime.robbiemed.org",
+          "tags": "cihrcletime ctime circle time circular planner day year lifetime clock wedge events local",
+          "d": {
+            "ko": "하루, 한 해, 또는 일생을 시계 문자판으로. 일정은 색깔 부채꼴로 표시되며 이동 시간 경고, 인쇄, 로컬 저장을 지원합니다.",
+            "en": "Your day, year, or lifetime as a clock face. Events as colored wedges; travel-time warnings, print to page, local storage.",
+            "fr": "Votre journée, votre année ou votre vie sur un cadran. Événements en secteurs colorés ; alertes de temps de trajet, impression, stockage local.",
+            "zh": "把一天、一年或一生画成钟面。事件呈彩色扇形，含行程时间提醒、打印输出与本地存储。",
+            "ru": "День, год или вся жизнь как циферблат. События — цветные секторы; предупреждения о времени в пути, печать и локальное хранение.",
+            "ar": "يومك أو سنتك أو عمرك كله على قرص ساعة. الأحداث قطاعات ملوّنة، مع تنبيهات وقت التنقل والطباعة والتخزين المحلي."
+          }
+        },
+        {
+          "key": "dayhcounter",
+          "name": "DayhCounter",
+          "url": "https://days.robbiemed.org",
+          "tags": "dayhcounter days counter memory life moments notifications",
+          "d": {
+            "ko": "중요한 순간으로부터 지난 날짜를 추적하고 데스크톱 알림을 받습니다.",
+            "en": "Track days since important life moments, with desktop notifications.",
+            "fr": "Comptez les jours depuis les moments qui comptent, avec notifications de bureau.",
+            "zh": "追踪重要人生时刻至今的天数，并提供桌面通知。",
+            "ru": "Считайте дни с важных моментов жизни, с уведомлениями на рабочем столе.",
+            "ar": "تتبّع الأيام منذ اللحظات المهمة في حياتك، مع إشعارات على سطح المكتب."
+          }
+        },
+        {
+          "key": "eehl",
+          "name": "Eehl",
+          "url": "https://eehl.robbiemed.org",
+          "tags": "eehl countdown countup count up dday d-day 100 days lunar anniversary webapp web android apk fdroid degoogled offline widget",
+          "os": "Any (web browser), Android",
+          "d": {
+            "ko": "Google 없이 동작하는 카운트다운·카운트업 웹앱, APK도 제공. 하나의 일정에 여러 표기, D-day, 100일 주기, 음력 기념일. 오프라인 작동.",
+            "en": "Degoogled countdown and count-up webapp with APK. One event, many readouts; D-day notation, 100-day cycles, lunar anniversaries. Offline.",
+            "fr": "Application web de compte à rebours et de compte à partir, sans Google, avec APK. Un événement, plusieurs affichages ; notation J-, cycles de 100 jours, anniversaires lunaires. Hors ligne.",
+            "zh": "无 Google 依赖的倒数与正数计时网页应用，并提供 APK。一个事件，多种显示；D-day 记法、百日周期、农历纪念日。离线运行。",
+            "ru": "Веб-приложение для обратного и прямого отсчёта, без Google, с APK. Одно событие — несколько представлений; нотация D-day, циклы по 100 дней, лунные годовщины. Офлайн.",
+            "ar": "تطبيق ويب للعدّ التنازلي والتصاعدي بلا اعتماد على Google، مع ملف APK. حدث واحد بعروض متعددة، وترميز D-day، ودورات المئة يوم، والذكريات السنوية القمرية. يعمل دون اتصال."
+          }
+        },
+        {
+          "key": "phlant",
+          "name": "Phlant",
+          "url": "https://phlant.robbiemed.org",
+          "tags": "phlant planting almanac moon lunar garden gardening calendar biodynamic farmers almanac 농사력 solar terms frost sun shade companion planting",
+          "d": {
+            "ko": "내 위치의 실제 하늘을 계산해 일곱 가지 전통(한국 농사력, 중국 농력, 바이오다이나믹, 프랑스, 영국, 러시아, 미국)의 파종 시기를 비교하는 농사 달력. 실제 일조와 그늘을 반영한 텃밭 설계 포함.",
+            "en": "Planting almanac that computes the real sky for your location and compares seven traditions: Korean, Chinese, biodynamic, French, English, Russian, American. Garden planner with real sun and shade.",
+            "fr": "Almanach de plantation qui calcule le vrai ciel de votre lieu et compare sept traditions : coréenne, chinoise, biodynamique, française, anglaise, russe, américaine. Plan de jardin avec ensoleillement et ombre réels.",
+            "zh": "根据你所在地点计算真实天象的种植历，对比七种传统：韩国农事历、中国农历、生物动力、法国、英国、俄罗斯、美国。附带依据真实日照与阴影的菜园规划。",
+            "ru": "Посевной календарь: рассчитывает реальное небо для вашего места и сравнивает семь традиций — корейскую, китайскую, биодинамическую, французскую, английскую, русскую, американскую. Планировщик огорода с реальным солнцем и тенью.",
+            "ar": "تقويم زراعي يحسب السماء الحقيقية لموقعك ويقارن سبعة تقاليد: الكورية والصينية والبيوديناميكية والفرنسية والإنجليزية والروسية والأمريكية. مع مخطّط حديقة يراعي الشمس والظل الفعليين."
+          }
+        },
+        {
+          "key": "flightdeck",
+          "name": "Flightdeck",
+          "url": "https://flightdeck.robbiemed.org",
+          "tags": "flightdeck flight tracking pwa ics great circle leaflet map",
+          "d": {
+            "ko": "항공편 추적 PWA. FlightAware URL 파싱, .ics 생성, 지도에 대권 항로 표시.",
+            "en": "Flight tracking PWA—parses FlightAware URLs, generates .ics, renders great-circle routes on a map.",
+            "fr": "PWA de suivi de vols — analyse les URL FlightAware, génère des .ics, trace les orthodromies sur une carte.",
+            "zh": "航班追踪 PWA：解析 FlightAware 链接、生成 .ics、在地图上绘制大圆航线。",
+            "ru": "PWA для отслеживания рейсов — разбирает ссылки FlightAware, создаёт .ics, рисует ортодромии на карте.",
+            "ar": "تطبيق ويب لتتبّع الرحلات: يحلّل روابط FlightAware، وينشئ ملفات .ics، ويرسم المسارات الدائرية العظمى على الخريطة."
+          }
+        }
+      ]
+    },
+    {
+      "key": "fin",
+      "name": {
+        "ko": "재무",
+        "en": "Finance",
+        "fr": "Finance",
+        "zh": "财务",
+        "ru": "Финансы",
+        "ar": "المالية"
+      },
+      "short": {
+        "ko": "재무",
+        "en": "Finance",
+        "fr": "Finance",
+        "zh": "财务",
+        "ru": "Финансы",
+        "ar": "المالية"
+      },
+      "tools": [
+        {
+          "key": "cashflow",
+          "name": "CashFlow",
+          "url": "https://cash.robbiemed.org",
+          "tags": "cashflow salary tracker real-time expense burn rate income finance",
+          "d": {
+            "ko": "실시간 급여 추적과 지출 관리. 초 단위로 쌓이는 수입.",
+            "en": "Real-time salary tracker with expense management—earnings to the second.",
+            "fr": "Suivi de salaire en temps réel avec gestion des dépenses — vos gains à la seconde près.",
+            "zh": "实时薪资追踪与支出管理，收入精确到秒。",
+            "ru": "Отслеживание зарплаты в реальном времени с учётом расходов — доход посекундно.",
+            "ar": "متابعة لحظية للراتب مع إدارة المصروفات؛ دخلك بالثانية."
+          }
+        },
+        {
+          "key": "lifeofcash",
+          "name": "LifeOfCash",
+          "url": "https://lifeofcash.robbiemed.org",
+          "tags": "lifeofcash lifetime financial flow career visualizer finance",
+          "d": {
+            "ko": "평생 자금 흐름 시각화. 이번 급여가 아니라 경력 전체의 궤적을 봅니다.",
+            "en": "Lifetime financial flow visualizer—the full arc of a career, not just this paycheck.",
+            "fr": "Visualisation des flux financiers d’une vie — toute la trajectoire d’une carrière, pas seulement cette paie.",
+            "zh": "一生资金流可视化：看的是整个职业生涯的轨迹，而非这一次薪水。",
+            "ru": "Визуализация денежных потоков за всю жизнь — вся дуга карьеры, а не одна зарплата.",
+            "ar": "تصوّر لتدفق المال عبر العمر: مسار المهنة كاملًا، لا هذا الراتب وحده."
+          }
+        },
+        {
+          "key": "lifeahtlas",
+          "name": "Lifeahtlas",
+          "url": "https://lifeahtlas.robbiemed.org",
+          "tags": "lifeahtlas life atlas financial personal career milestones timeline finance planning",
+          "d": {
+            "ko": "재정, 개인, 경력의 이정표를 하나의 타임라인에.",
+            "en": "Financial, personal, and career milestones on a unified timeline.",
+            "fr": "Jalons financiers, personnels et professionnels sur une frise unique.",
+            "zh": "把财务、个人与职业里程碑放在同一条时间轴上。",
+            "ru": "Финансовые, личные и карьерные вехи на единой шкале времени.",
+            "ar": "محطات مالية وشخصية ومهنية على خط زمني واحد."
+          }
+        }
+      ]
+    },
+    {
+      "key": "util",
+      "name": {
+        "ko": "유틸리티",
+        "en": "Utilities",
+        "fr": "Utilitaires",
+        "zh": "实用工具",
+        "ru": "Утилиты",
+        "ar": "أدوات مساعدة"
+      },
+      "short": {
+        "ko": "유틸리티",
+        "en": "Utilities",
+        "fr": "Utilitaires",
+        "zh": "工具",
+        "ru": "Утилиты",
+        "ar": "أدوات"
+      },
+      "tools": [
+        {
+          "key": "ghlobe",
+          "name": "Ghlobe",
+          "url": "https://ghlobe.robbiemed.org",
+          "tags": "ghlobe globe truesize country size compare 3d mercator geography interactive",
+          "d": {
+            "ko": "어떤 나라나 주든 실제 3D 지구본 위로 끌어 크기를 비교하세요. 평면 지도는 거짓말을 합니다.",
+            "en": "Drag any country or state onto a true 3D globe and compare real-world sizes. Flat maps lie; this one doesn't.",
+            "fr": "Faites glisser n’importe quel pays ou région sur un vrai globe 3D et comparez les tailles réelles. Les cartes planes mentent ; pas celle-ci.",
+            "zh": "把任意国家或省州拖到真实的 3D 地球仪上，比较真实大小。平面地图会骗人，这个不会。",
+            "ru": "Перетащите любую страну или регион на настоящий 3D-глобус и сравните реальные размеры. Плоские карты лгут — эта нет.",
+            "ar": "اسحب أي دولة أو ولاية على كرة أرضية ثلاثية الأبعاد حقيقية وقارن الأحجام الفعلية. الخرائط المسطحة تكذب، وهذه لا تفعل."
+          }
+        },
+        {
+          "key": "encryptor",
+          "name": "Encryptor",
+          "url": "https://encryptor.robbiemed.org",
+          "tags": "encryptor aes encryption client-side browser password privacy",
+          "d": {
+            "ko": "비밀번호 기반 클라이언트 사이드 코드 블록 암호화. 브라우저 내 AES, 서버 접촉 없음.",
+            "en": "Client-side code-block encryption with password—AES in-browser, zero server contact.",
+            "fr": "Chiffrement de blocs de code côté client par mot de passe — AES dans le navigateur, aucun contact serveur.",
+            "zh": "基于密码的客户端代码块加密：浏览器内 AES，零服务器交互。",
+            "ru": "Клиентское шифрование блоков кода паролем — AES в браузере, ноль обращений к серверу.",
+            "ar": "تشفير كتل الشيفرة بكلمة مرور من جهة العميل: AES داخل المتصفح، وبلا أي اتصال بالخادم."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>robbie.med — free clinical tools, calculators &amp; simulators</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Free, open clinical tools built by a physician: E/M coding, EKG readers, MME and pediatric calculators, ultrasound and patient simulators. No trackers, no ads, no accounts.">
+<meta name="author" content="robbie.med">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://www.robbiemed.org/">
+<link rel="alternate" hreflang="ko" href="https://www.robbiemed.org/?lang=ko">
+<link rel="alternate" hreflang="en" href="https://www.robbiemed.org/?lang=en">
+<link rel="alternate" hreflang="fr" href="https://www.robbiemed.org/?lang=fr">
+<link rel="alternate" hreflang="zh" href="https://www.robbiemed.org/?lang=zh">
+<link rel="alternate" hreflang="ru" href="https://www.robbiemed.org/?lang=ru">
+<link rel="alternate" hreflang="ar" href="https://www.robbiemed.org/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://www.robbiemed.org/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="robbie.med">
+<meta property="og:url" content="https://www.robbiemed.org/">
+<meta property="og:title" content="robbie.med — free clinical tools, calculators &amp; simulators">
+<meta property="og:description" content="Free, open clinical tools built by a physician. No trackers, no ads, no accounts.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ar_AR">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="robbie.med — free clinical tools, calculators &amp; simulators">
+<meta name="twitter:description" content="Free, open clinical tools built by a physician. No trackers, no ads, no accounts.">
+
+<!-- @JSONLD -->
+
+<script>
+/* Runs before first paint so returning visitors never see the wrong theme
+   or a flash of Korean before their saved language is applied. */
+(function () {
+  var d = document.documentElement, t = null, l = null;
+  try { t = localStorage.getItem('rm-theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  d.setAttribute('data-theme', t);
+  try { l = new URL(location.href).searchParams.get('lang'); } catch (e) {}
+  if (!l) { try { l = localStorage.getItem('rm-lang'); } catch (e) {} }
+  if (l && l !== 'ko' && ['en', 'fr', 'zh', 'ru', 'ar'].indexOf(l) >= 0) {
+    d.lang = l;
+    d.dir = l === 'ar' ? 'rtl' : 'ltr';
+    d.classList.add('i18n-pending');
+    setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500);
+  }
+})();
+</script>
+
+<style>
+:root {
+  --bg: #0f0f0f;
+  --fg: #ddd;
+  --dim: #8c8c8c;   /* 5.7:1 on --bg; body text needs 4.5 */
+  --link: #9ec89e;
+  --rule: #222;     /* decorative dividers */
+  --edge: #666;     /* control borders; 3:1 minimum */
+  /* FOSS-only stacks. No Google/Apple/Microsoft/Meta fonts, nothing fetched
+     over the network. Generic `serif`/`monospace` resolve to whatever libre
+     face the system ships (DejaVu, Liberation, Nimbus, FreeSerif, Noto CJK…). */
+  --serif: 'DejaVu Serif', 'Liberation Serif', 'Nimbus Roman', 'FreeSerif', serif;
+  --mono: 'DejaVu Sans Mono', 'Liberation Mono', 'FreeMono', monospace;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #fff;
+  --fg: #111;
+  --dim: #555;
+  --link: #1a5c1a;
+  --rule: #ddd;
+  --edge: #8a8a8a;
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; }
+html.i18n-pending body { visibility: hidden; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  line-height: 1.65;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+/* Hangul breaks at spaces, not between syllables */
+:lang(ko) body { word-break: keep-all; overflow-wrap: anywhere; }
+
+a { color: var(--link); }
+a:visited { color: var(--link); }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.hidden { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- header ---------- */
+h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+.lede { color: var(--dim); font-size: 0.95rem; }
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.6rem 0 1.1rem;
+}
+#langbar { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+#langbar button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.35rem 0.25rem;
+  color: var(--dim);
+  cursor: pointer;
+  line-height: 0;
+}
+#langbar button:hover { color: var(--fg); }
+#langbar button[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--link); }
+#langbar svg { width: 29px; height: 19px; display: block; }
+
+#theme-btn {
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--fg);
+  background: none;
+  border: 1px solid var(--edge);
+  padding: 0.3rem 0.8rem;
+  min-height: 2.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#theme-btn:hover { border-color: var(--fg); }
+.show-in-light { display: none; }
+[data-theme="light"] .show-in-light { display: inline; }
+[data-theme="light"] .show-in-dark { display: none; }
+
+/* ---------- sticky search + section index ---------- */
+#bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  margin: 0 -2rem;
+  padding: 0.7rem 2rem 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+#q {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--edge);
+  border-radius: 2px;
+  padding: 0.45rem 0.65rem;
+}
+#q::placeholder { color: var(--dim); opacity: 1; }
+#q:focus { border-color: var(--link); }
+#index {
+  display: flex;
+  gap: 1.1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  scrollbar-width: thin;
+}
+#index a { color: var(--dim); text-decoration: none; padding: 0.2rem 0; }
+#index a:hover { color: var(--fg); text-decoration: underline; }
+
+/* ---------- sections ---------- */
+.cat, #contact { scroll-margin-top: 6.5rem; }
+h2 {
+  font-size: 0.85rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg);
+  margin: 2.6rem 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+.cat:first-child h2 { margin-top: 1.8rem; }
+/* tracking and capitals are Latin conventions; in Arabic tracking breaks the joins */
+:lang(ko) h2, :lang(zh) h2 { text-transform: none; letter-spacing: 0.02em; }
+:lang(ar) h2 { text-transform: none; letter-spacing: 0; }
+h2 .cat-count {
+  color: var(--dim);
+  letter-spacing: 0;
+  margin-inline-start: 0.6em;
+}
+ul { list-style: none; padding: 0; }
+li.tool { display: flex; margin-bottom: 0.45rem; }
+li.tool a {
+  text-decoration: none;
+  font-weight: bold;
+  flex: 0 0 15rem;
+  padding-inline-end: 1.5rem;
+}
+li.tool a:hover { text-decoration: underline; }
+.desc { color: var(--dim); font-size: 0.85rem; flex: 1; }
+#no-results { color: var(--dim); margin-top: 2rem; font-style: italic; }
+
+/* ---------- contact ---------- */
+.contact-intro { color: var(--dim); font-size: 0.9rem; margin-bottom: 1rem; }
+.contact-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.contact-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+.contact-table td:first-child { padding-inline-start: 0; white-space: nowrap; font-weight: bold; }
+.contact-table td:nth-child(2) { color: var(--dim); font-size: 0.82rem; }
+.contact-table td:last-child { text-align: end; padding-inline-end: 0; }
+.badge-pref, .badge-ok {
+  font-size: 0.68rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.badge-pref { color: var(--link); border-color: var(--link); }
+.badge-ok { color: var(--dim); border-color: var(--edge); }
+:lang(ar) .badge-pref, :lang(ar) .badge-ok { letter-spacing: 0; }
+.note { color: var(--dim); font-size: 0.82rem; margin-top: 1.2rem; }
+.mono { font-family: var(--mono); font-size: 0.92em; overflow-wrap: anywhere; }
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--dim);
+  font-size: 0.82rem;
+  font-style: italic;
+  letter-spacing: 0.2em;
+}
+
+/* ---------- small screens / touch ---------- */
+@media (max-width: 540px) {
+  li.tool { flex-direction: column; gap: 0.1rem; margin-bottom: 0.8rem; }
+  li.tool a { flex: none; padding-inline-end: 0; }
+}
+@media (max-width: 480px) {
+  html { font-size: 16px; }
+  body { padding: 2rem 1.2rem 5rem; }
+  #bar { margin: 0 -1.2rem; padding: 0.6rem 1.2rem 0.45rem; }
+}
+@media (pointer: coarse) {
+  #langbar button { padding: 0.6rem 0.3rem; }
+  #theme-btn { min-height: 2.75rem; }
+  #index a { padding: 0.55rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>robbie.med</h1>
+  <p class="lede"><span data-t="lede1">필요해서 직접 만든 도구들입니다.</span><br><span data-t="lede2">무료. 추적 없음, 광고 없음, 계정 없음.</span></p>
+</header>
+
+<div id="controls">
+  <nav id="langbar" aria-label="언어" data-t-aria="nav.lang">
+    <button type="button" data-lang="ko" aria-pressed="true" title="한국어" aria-label="한국어"><svg viewBox="0 0 24 16" aria-hidden="true"><rect x=".5" y=".5" width="23" height="15" fill="none" stroke="currentColor" stroke-opacity=".3"/><circle cx="12" cy="8" r="4.3" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M7.7 8a2.15 2.15 0 0 1 4.3 0 2.15 2.15 0 0 0 4.3 0" fill="none" stroke="currentColor" stroke-width="1.3"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".7"><path d="M2.9 3.6l2 1.5M2.9 12.4l2-1.5M21.1 3.6l-2 1.5M21.1 12.4l-2-1.5"/></g></svg></button>
+    <button type="button" data-lang="en" aria-pressed="false" title="English" aria-label="English"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="currentColor" opacity=".18"/><path d="M0 0l24 16M24 0L0 16" stroke="currentColor" stroke-width="1.5" opacity=".75"/><path d="M12 0v16" stroke="currentColor" stroke-width="3"/><path d="M0 8h24" stroke="currentColor" stroke-width="3"/></svg></button>
+    <button type="button" data-lang="fr" aria-pressed="false" title="Français" aria-label="Français"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="8" height="16" fill="currentColor"/><rect x="8" width="8" height="16" fill="currentColor" opacity=".28"/><rect x="16" width="8" height="16" fill="currentColor" opacity=".65"/></svg></button>
+    <button type="button" data-lang="zh" aria-pressed="false" title="中文" aria-label="中文"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="currentColor" opacity=".22"/><path d="M5.6 2.2l1.06 3.26h3.43l-2.77 2.01 1.06 3.26L5.6 8.72 2.82 10.73l1.06-3.26L1.11 5.46h3.43z" fill="currentColor"/><circle cx="11.6" cy="2.5" r="1" fill="currentColor"/><circle cx="13.7" cy="4.8" r="1" fill="currentColor"/><circle cx="13.7" cy="7.7" r="1" fill="currentColor"/><circle cx="11.6" cy="9.9" r="1" fill="currentColor"/></svg></button>
+    <button type="button" data-lang="ru" aria-pressed="false" title="Русский" aria-label="Русский"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.34" fill="currentColor" opacity=".22"/><rect y="5.34" width="24" height="5.33" fill="currentColor" opacity=".55"/><rect y="10.67" width="24" height="5.33" fill="currentColor"/></svg></button>
+    <button type="button" data-lang="ar" aria-pressed="false" title="العربية" aria-label="العربية"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="currentColor" opacity=".26"/><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.1q1.9-1.9 3.8 0t3.8 0 3.8 0"/><path d="M4.5 10.6h13.5M16.2 9.2l2.3 1.4-2.3 1.4"/></g></svg></button>
+  </nav>
+  <button type="button" id="theme-btn"><span class="show-in-dark" data-t="theme.light">밝게</span><span class="show-in-light" data-t="theme.dark">어둡게</span></button>
+</div>
+
+<div id="bar">
+  <input type="search" id="q" placeholder="검색…" aria-label="도구 검색" data-t-aria="searchLabel" aria-keyshortcuts="/" autocomplete="off" spellcheck="false">
+  <nav id="index" aria-label="섹션" data-t-aria="nav.sections">
+<!-- @NAV -->
+  </nav>
+</div>
+<p id="results" class="sr-only" aria-live="polite"></p>
+
+<main id="tools">
+<!-- @SECTIONS -->
+<p id="no-results" class="hidden" data-t="noresults">검색 결과가 없습니다.</p>
+</main>
+
+<section id="contact">
+  <h2><span data-t="cat.contact">연락처</span></h2>
+  <p class="contact-intro" data-t="contactIntro">민감한 내용은 SimpleX, Signal, 0xchat을 이용해 주세요. 그 외에는 이메일로 충분합니다.</p>
+  <table class="contact-table">
+    <tr>
+      <td><a href="https://smp17.simplex.im/a#YSobmiK4FJLu6_KNFsYnwXqeVwKjXx2J1TW9wRqpwSM" target="_blank" rel="noopener">SimpleX Chat</a></td>
+      <td data-t="c.simplex">익명, 계정 불필요</td>
+      <td><span class="badge-pref" data-t="b.pref">권장</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://signal.me/#eu/5MpYx2hvqNWJAn6qmG5AUBjwOEn9pYySh95Wu-OIO8dTdDAEmM1ECraCQipdmufP" target="_blank" rel="noopener">Signal</a></td>
+      <td dir="ltr">@robbiemed.01</td>
+      <td><span class="badge-pref" data-t="b.pref">권장</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://www.0xchat.com/" target="_blank" rel="noopener">0xchat</a></td>
+      <td data-t="c.0xchat">Nostr DM; 아래 npub 참조</td>
+      <td><span class="badge-pref" data-t="b.pref">권장</span></td>
+    </tr>
+    <tr>
+      <td><a href="mailto:talk@robbiemed.org" data-t="c.emailName">이메일</a></td>
+      <td data-t="c.email">talk@robbiemed.org; 아래 PGP 키 참조</td>
+      <td><span class="badge-ok" data-t="b.ok">가능</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://freesuggestionbox.com/pub/mlezyxd" target="_blank" rel="noopener" data-t="c.anonName">익명 메모</a></td>
+      <td data-t="c.anon">익명 제안함; 기록 없음</td>
+      <td><span class="badge-ok" data-t="b.anon">익명</span></td>
+    </tr>
+  </table>
+  <p class="note">npub: <span class="mono" dir="ltr">npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy</span></p>
+  <p class="note"><span data-t="pgp">PGP 지문</span>: <span class="mono" dir="ltr">B632 6718 975C 0D7A 3621 09B5 FFEF 0CEB 9BDB 9243</span></p>
+  <p class="note">
+    <span data-t="elsewhere">다른 곳</span>:
+    <a href="https://github.com/robbie-med" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://iris.to/npub1drkh2km4l9dgfcza8ceghjnq2rcut6jwe22kj4x3dhuzaxvmzjjscqdwxy" target="_blank" rel="noopener">Nostr</a> ·
+    <a href="https://mastodon.social/@robbiemed" target="_blank" rel="noopener">Mastodon</a>
+  </p>
+</section>
+
+<footer>
+  <p>S.D.G.</p>
+</footer>
+
+<script>
+/* ---------- interface strings (tool and section text comes from TOOL_TR) ---------- */
+var TR = {
+ko: {
+  lede1: '필요해서 직접 만든 도구들입니다.', lede2: '무료. 추적 없음, 광고 없음, 계정 없음.',
+  search: '검색…', searchLabel: '도구 검색', noresults: '검색 결과가 없습니다.', results: '도구 {n}개',
+  'nav.lang': '언어', 'nav.sections': '섹션',
+  'theme.light': '밝게', 'theme.dark': '어둡게',
+  'theme.toLight': '밝은 화면으로 전환', 'theme.toDark': '어두운 화면으로 전환',
+  contactIntro: '민감한 내용은 SimpleX, Signal, 0xchat을 이용해 주세요. 그 외에는 이메일로 충분합니다.',
+  'c.simplex': '익명, 계정 불필요', 'c.0xchat': 'Nostr DM; 아래 npub 참조',
+  'c.email': 'talk@robbiemed.org; 아래 PGP 키 참조', 'c.anon': '익명 제안함; 기록 없음',
+  'c.emailName': '이메일', 'c.anonName': '익명 메모',
+  'b.pref': '권장', 'b.ok': '가능', 'b.anon': '익명',
+  pgp: 'PGP 지문', elsewhere: '다른 곳', 'cat.contact': '연락처'
+},
+en: {
+  lede1: 'Tools I built because I needed them.', lede2: 'Free. No trackers, no ads, no accounts.',
+  search: 'search…', searchLabel: 'Search tools', noresults: 'No tools match that search.', results: '{n} tools',
+  'nav.lang': 'Language', 'nav.sections': 'Sections',
+  'theme.light': 'Light', 'theme.dark': 'Dark',
+  'theme.toLight': 'Switch to light mode', 'theme.toDark': 'Switch to dark mode',
+  contactIntro: 'For sensitive topics use SimpleX, Signal, or 0xchat. Email is fine for everything else.',
+  'c.simplex': 'anonymous, no account', 'c.0xchat': 'Nostr DM; npub below',
+  'c.email': 'talk@robbiemed.org; PGP key below', 'c.anon': 'suggestion box; no log',
+  'c.emailName': 'Email', 'c.anonName': 'Anonymous note',
+  'b.pref': 'preferred', 'b.ok': 'ok', 'b.anon': 'anon',
+  pgp: 'PGP fingerprint', elsewhere: 'Elsewhere', 'cat.contact': 'Contact'
+},
+fr: {
+  lede1: 'Des outils que j’ai faits parce que j’en avais besoin.', lede2: 'Gratuit. Aucun traceur, aucune publicité, aucun compte.',
+  search: 'rechercher…', searchLabel: 'Rechercher un outil', noresults: 'Aucun outil ne correspond à cette recherche.', results: '{n} outils',
+  'nav.lang': 'Langue', 'nav.sections': 'Sections',
+  'theme.light': 'Clair', 'theme.dark': 'Sombre',
+  'theme.toLight': 'Passer en mode clair', 'theme.toDark': 'Passer en mode sombre',
+  contactIntro: 'Pour les sujets sensibles, utilisez SimpleX, Signal ou 0xchat. L’e-mail convient pour tout le reste.',
+  'c.simplex': 'anonyme, sans compte', 'c.0xchat': 'DM Nostr ; npub ci-dessous',
+  'c.email': 'talk@robbiemed.org ; clé PGP ci-dessous', 'c.anon': 'boîte à suggestions ; aucun journal',
+  'c.emailName': 'E-mail', 'c.anonName': 'Note anonyme',
+  'b.pref': 'préféré', 'b.ok': 'ok', 'b.anon': 'anon',
+  pgp: 'Empreinte PGP', elsewhere: 'Ailleurs', 'cat.contact': 'Contact'
+},
+zh: {
+  lede1: '这些工具，都是我自己需要才写的。', lede2: '免费。无追踪，无广告，无账户。',
+  search: '搜索…', searchLabel: '搜索工具', noresults: '没有匹配的工具。', results: '{n} 个工具',
+  'nav.lang': '语言', 'nav.sections': '分区',
+  'theme.light': '浅色', 'theme.dark': '深色',
+  'theme.toLight': '切换到浅色模式', 'theme.toDark': '切换到深色模式',
+  contactIntro: '敏感话题请使用 SimpleX、Signal 或 0xchat。其他事宜用邮件即可。',
+  'c.simplex': '匿名，无需账户', 'c.0xchat': 'Nostr 私信；npub 见下',
+  'c.email': 'talk@robbiemed.org；PGP 密钥见下', 'c.anon': '意见箱；不留记录',
+  'c.emailName': '电子邮件', 'c.anonName': '匿名留言',
+  'b.pref': '推荐', 'b.ok': '可用', 'b.anon': '匿名',
+  pgp: 'PGP 指纹', elsewhere: '其他平台', 'cat.contact': '联系方式'
+},
+ru: {
+  lede1: 'Инструменты, которые я сделал, потому что они были нужны мне самому.', lede2: 'Бесплатно. Без трекеров, без рекламы, без аккаунтов.',
+  search: 'поиск…', searchLabel: 'Поиск инструментов', noresults: 'Ничего не найдено.', results: 'Найдено: {n}',
+  'nav.lang': 'Язык', 'nav.sections': 'Разделы',
+  'theme.light': 'Светлая', 'theme.dark': 'Тёмная',
+  'theme.toLight': 'Переключить на светлую тему', 'theme.toDark': 'Переключить на тёмную тему',
+  contactIntro: 'Для конфиденциальных тем используйте SimpleX, Signal или 0xchat. Для всего остального подойдёт почта.',
+  'c.simplex': 'анонимно, без аккаунта', 'c.0xchat': 'Nostr DM; npub ниже',
+  'c.email': 'talk@robbiemed.org; PGP-ключ ниже', 'c.anon': 'ящик предложений; без логов',
+  'c.emailName': 'Почта', 'c.anonName': 'Анонимная записка',
+  'b.pref': 'предпочт.', 'b.ok': 'ок', 'b.anon': 'аноним',
+  pgp: 'Отпечаток PGP', elsewhere: 'Другие площадки', 'cat.contact': 'Контакты'
+},
+ar: {
+  lede1: 'أدوات صنعتها لأنني احتجت إليها.', lede2: 'مجانية. بلا تتبّع، بلا إعلانات، بلا حسابات.',
+  search: 'بحث…', searchLabel: 'ابحث في الأدوات', noresults: 'لا توجد أدوات مطابقة.', results: 'عدد الأدوات: {n}',
+  'nav.lang': 'اللغة', 'nav.sections': 'الأقسام',
+  'theme.light': 'فاتح', 'theme.dark': 'داكن',
+  'theme.toLight': 'التبديل إلى الوضع الفاتح', 'theme.toDark': 'التبديل إلى الوضع الداكن',
+  contactIntro: 'للمواضيع الحساسة استخدم SimpleX أو Signal أو 0xchat. أما ما عدا ذلك فالبريد الإلكتروني يفي بالغرض.',
+  'c.simplex': 'مجهول، بلا حساب', 'c.0xchat': 'رسالة Nostr؛ مفتاح npub أدناه',
+  'c.email': 'talk@robbiemed.org؛ مفتاح PGP أدناه', 'c.anon': 'صندوق اقتراحات؛ بلا سجلات',
+  'c.emailName': 'البريد الإلكتروني', 'c.anonName': 'ملاحظة مجهولة',
+  'b.pref': 'مفضّل', 'b.ok': 'متاح', 'b.anon': 'مجهول',
+  pgp: 'بصمة PGP', elsewhere: 'مواضع أخرى', 'cat.contact': 'التواصل'
+}
+};
+
+/* @TOOL_TR */
+
+/* ---------- language ---------- */
+var curLang = 'ko';
+
+function tr(lang, key) {
+  if (TR[lang][key] != null) return TR[lang][key];
+  if (key.indexOf('cat.') === 0) return TOOL_TR[lang].cat[key.slice(4)];
+  return null;
+}
+
+function applyLang(lang) {
+  if (!TR[lang]) lang = 'ko';
+  curLang = lang;
+  var d = document.documentElement;
+  d.lang = lang;
+  d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-t]').forEach(function (el) {
+    var v = tr(lang, el.dataset.t);
+    if (v != null) el.textContent = v;
+  });
+  document.querySelectorAll('[data-t-aria]').forEach(function (el) {
+    var v = tr(lang, el.dataset.tAria);
+    if (v != null) el.setAttribute('aria-label', v);
+  });
+  document.querySelectorAll('[data-n]').forEach(function (el) {
+    el.textContent = TOOL_TR[lang].short[el.dataset.n];
+  });
+  document.querySelectorAll('.tool').forEach(function (li) {
+    var v = TOOL_TR[lang].d[li.dataset.k];
+    if (v != null) li.querySelector('.desc').textContent = v;
+  });
+
+  var q = document.getElementById('q');
+  q.placeholder = TR[lang].search;
+  document.querySelectorAll('#langbar button').forEach(function (b) {
+    b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false');
+  });
+  setThemeTitle();
+
+  try { localStorage.setItem('rm-lang', lang); } catch (e) {}
+  try {
+    var u = new URL(location.href);
+    if (lang === 'ko') u.searchParams.delete('lang'); else u.searchParams.set('lang', lang);
+    history.replaceState(null, '', u);
+  } catch (e) {}
+
+  d.classList.remove('i18n-pending');
+  doSearch(q.value);
+}
+
+document.querySelectorAll('#langbar button').forEach(function (b) {
+  b.addEventListener('click', function () { applyLang(b.dataset.lang); });
+});
+
+/* ---------- theme ---------- */
+function currentTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+function setThemeTitle() {
+  document.getElementById('theme-btn').title =
+    TR[curLang][currentTheme() === 'dark' ? 'theme.toLight' : 'theme.toDark'];
+}
+document.getElementById('theme-btn').addEventListener('click', function () {
+  var next = currentTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('rm-theme', next); } catch (e) {}
+  setThemeTitle();
+});
+
+/* ---------- search ---------- */
+function doSearch(val) {
+  var q = (val || '').toLowerCase().trim();
+  var n = 0;
+  document.querySelectorAll('.tool').forEach(function (li) {
+    var hit = !q || ((li.dataset.s || '') + ' ' + li.textContent).toLowerCase().indexOf(q) >= 0;
+    li.classList.toggle('hidden', !hit);
+    if (hit) n++;
+  });
+  document.querySelectorAll('[data-cat]').forEach(function (sec) {
+    sec.classList.toggle('hidden', !sec.querySelector('.tool:not(.hidden)'));
+  });
+  document.getElementById('no-results').classList.toggle('hidden', n > 0 || !q);
+  document.getElementById('results').textContent = q ? TR[curLang].results.replace('{n}', n) : '';
+}
+
+(function () {
+  var q = document.getElementById('q');
+  var tools = document.getElementById('tools');
+  q.addEventListener('input', function () {
+    doSearch(q.value);
+    // results start at the top of the list; don't leave them scrolled out of view
+    var top = tools.getBoundingClientRect().top + scrollY - document.getElementById('bar').offsetHeight;
+    if (scrollY > top) scrollTo(0, top);
+  });
+  q.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { q.value = ''; doSearch(''); }
+  });
+  document.addEventListener('keydown', function (e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (e.key === '/' && tag !== 'input' && tag !== 'textarea' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      e.preventDefault();
+      q.focus();
+    }
+  });
+})();
+
+/* ---------- init ---------- */
+(function () {
+  var l = null, s = null;
+  try { l = new URL(location.href).searchParams.get('lang'); } catch (e) {}
+  try { s = localStorage.getItem('rm-lang'); } catch (e) {}
+  applyLang(l && TR[l] ? l : (s && TR[s] ? s : 'ko'));
+})();
+</script>
+</body>
+</html>
