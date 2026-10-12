@@ -34,6 +34,20 @@
           }
         },
         {
+          "key": "clinic",
+          "name": "A Clinic in the Valley",
+          "url": "https://clinic.robbiemed.org",
+          "tags": "clinic a clinic in the valley village rural game simulation where there is no doctor wtnd herbs herbal remedies pharmacology pk pd malaria antibiotic resistance falsified medicines global health",
+          "d": {
+            "ko": "의사가 없는 마을에서 진료소를 운영하는 게임. 환자들은 집에 돌아가서도 계속 진행되는 실제 질병을 안고 옵니다. 진찰한 뒤 직접 만든 약초나 사 온 약으로 치료하세요. 실제 약리학, 위조 의약품, 점점 늘어나는 내성.",
+            "en": "Run a village clinic where there is no doctor. Patients bring real illnesses that keep running at home; examine them, then treat with herbs you prepare or medicines you buy. Real pharmacology, falsified drugs, rising resistance.",
+            "fr": "Tenez un dispensaire de village là où il n’y a pas de médecin. Les patients arrivent avec de vraies maladies qui continuent d’évoluer chez eux ; examinez-les, puis soignez avec des plantes que vous préparez ou des médicaments achetés. Vraie pharmacologie, médicaments falsifiés, résistances croissantes.",
+            "zh": "在没有医生的地方经营一家乡村诊所。病人带着真实的疾病前来，回家后病情仍在发展；检查之后，用自己炮制的草药或买来的药物治疗。真实的药理学、假药，以及不断上升的耐药性。",
+            "ru": "Ведите деревенский медпункт там, где нет врача. Пациенты приходят с настоящими болезнями, которые продолжают развиваться дома; осмотрите их и лечите травами собственного приготовления или купленными лекарствами. Настоящая фармакология, фальсифицированные препараты, растущая резистентность.",
+            "ar": "أدِر عيادة قرية حيث لا يوجد طبيب. يأتي المرضى بأمراض حقيقية تستمر في التطور في بيوتهم؛ افحصهم ثم عالجهم بأعشاب تحضّرها بنفسك أو بأدوية تشتريها. علم أدوية حقيقي، وأدوية مغشوشة، ومقاومة متزايدة."
+          }
+        },
+        {
           "key": "abxahbs",
           "name": "AbxAhbs",
           "url": "https://abxahbs.robbiemed.org",
