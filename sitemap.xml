@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.robbiemed.org/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://www.robbiemed.org/?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.robbiemed.org/?lang=en"/>
@@ -126,6 +126,10 @@
   </url>
   <url>
     <loc>https://bhillit.robbiemed.org/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hcc.robbiemed.org/</loc>
     <priority>0.8</priority>
   </url>
   <url>

@@ -531,6 +531,20 @@
           }
         },
         {
+          "key": "hcc",
+          "name": "HCC Finder",
+          "url": "https://hcc.robbiemed.org",
+          "tags": "hcc finder risk adjustment cms-hcc v28 raf icd-10 icd10 icd-10-cm coding diagnosis code lookup descriptor medicare advantage",
+          "d": {
+            "ko": "진단명, 증상, 약어, ICD-10 코드로 검색해 CMS-HCC(V28)에 매핑되는 ICD-10-CM 코드를 RAF 가중치와 공식 명칭과 함께 확인합니다. 매핑되지 않는 코드도 보여 줍니다. 브라우저 안에서만 작동. 기록이 뒷받침하는 대로 코딩하세요.",
+            "en": "Search a diagnosis, symptom, abbreviation or ICD-10 code and see which ICD-10-CM codes map to a CMS-HCC (V28), with RAF weights and the official descriptor to copy. Shows the codes that don't map, too. Runs in the browser. Code what the note supports.",
+            "fr": "Recherchez un diagnostic, un symptôme, une abréviation ou un code CIM-10 et voyez quels codes ICD-10-CM correspondent à un CMS-HCC (V28), avec les poids RAF et le libellé officiel à copier. Affiche aussi les codes sans correspondance. Fonctionne dans le navigateur. Codez ce que la note justifie.",
+            "zh": "按诊断、症状、缩写或 ICD-10 代码搜索，查看哪些 ICD-10-CM 代码对应 CMS-HCC（V28），附 RAF 权重和可直接复制的官方名称。也会列出不对应的代码。完全在浏览器中运行。按病历所支持的内容编码。",
+            "ru": "Ищите по диагнозу, симптому, сокращению или коду МКБ-10 и смотрите, какие коды ICD-10-CM соответствуют CMS-HCC (V28), с весами RAF и официальной формулировкой для копирования. Показывает и коды без соответствия. Работает в браузере. Кодируйте то, что подтверждает запись.",
+            "ar": "ابحث بالتشخيص أو العَرَض أو الاختصار أو رمز ICD-10 لترى أيّ رموز ICD-10-CM تقابل فئة CMS-HCC (V28)، مع أوزان RAF والوصف الرسمي جاهزًا للنسخ. يعرض أيضًا الرموز التي لا تقابل أي فئة. يعمل داخل المتصفح. رمّز ما تدعمه الملاحظة السريرية."
+          }
+        },
+        {
           "key": "by8",
           "name": "By8",
           "url": "https://by8.robbiemed.org",
